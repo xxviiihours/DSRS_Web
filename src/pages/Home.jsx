@@ -1,38 +1,53 @@
-import React from 'react';
-import CardItem from '../components/CardItem';
-
+import React, { useEffect, useRef } from 'react';
 function Home() {
 	return (
-		<div className='bg-gray-900 py-24 sm:py-32'>
-			<div className='mx-auto max-w-7xl px-6 lg:px-8'>
-				<div className='mx-auto max-w-2xl lg:mx-0'>
-					<h2 className='text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl'>
-						From the blog
-					</h2>
-					<p className='mt-2 text-lg/8 text-gray-300'>
-						Learn how to grow your business with our expert advice.
-					</p>
+		<div className='grid grid-cols-3 md:grid-cols-5 grid-rows-1  gap-4'>
+			{/* header */}
+			<div className='row-start-1 col-span-full text-center content-center'>header</div>
+			{/*  */}
+			{/* sidebar */}
+			<div className='row-start-3 col-span-full md:col-span-1 md:row-start-2 content-center'>
+				sidebar
+			</div>
+			{/*  */}
+
+			{/* main content */}
+			<div className='row-start-2 col-start-1 md:col-start-2 col-span-3 content-center text-center'>
+				<div className='grid grid-cols-1 grid-rows-1 md:grid-cols-4 gap-4  p-4'>
+					{/* chart */}
+					<div className='row-span-1 col-span-full'>
+						<div className='card  w-auto h-auto'>
+							<div className='card-body'>
+								{/* <h2 className='card-title'>Card title!</h2>
+								<p>
+									A card component has a figure, a body part, and inside body there are title
+									and actions parts
+								</p>
+								<div className='card-actions justify-end'>
+									<button className='btn'>Buy Now</button>
+								</div> */}
+							</div>
+						</div>
+					</div>
+
+					<div className='row-start-2 col-span-2'>test</div>
+
+					<div className='row-start-2 col-auto'>test</div>
+
+					<div className='row-start-2 col-auto'>test</div>
 				</div>
-				<div className='mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-700 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3'>
-					<div className='flex max-w-xl flex-col justify-between'>
-						<CardItem />
-					</div>
-					<div className='flex max-w-xl flex-col justify-between'>
-						<CardItem />
-					</div>
-					<div className='flex max-w-xl flex-col justify-between'>
-						<CardItem />
-					</div>
-					<div className='flex max-w-xl flex-col justify-between'>
-						<CardItem />
-					</div>
-					<div className='flex max-w-xl flex-col justify-between'>
-						<CardItem />
-					</div>
-					<div className='flex max-w-xl flex-col justify-between'>
-						<CardItem />
-					</div>
-				</div>
+			</div>
+			{/*  */}
+
+			{/* leaderboards panel */}
+			<div className='row-start-4 col-span-full md:col-span-1 md:row-start-2 md:row-end-3 content-center text-center'>
+				rightbar
+			</div>
+			{/*  */}
+
+			{/* footer */}
+			<div className='row-start-5 md:row-start-3 col-span-full text-center content-center'>
+				footer
 			</div>
 		</div>
 	);
