@@ -6,7 +6,7 @@ function Header() {
 			<div className='size-14 flex-none content-center'>01</div>
 			<div className='size-14 flex-none content-center'>01</div>
 			<div className='size-14 grow content-center'>
-				<h1>Daily Stock Redistribution System</h1>
+				{/* <h1>Daily Stock Redistribution System</h1> */}
 			</div>
 			<div className='size-14 flex-none content-center'>03</div>
 			<div className='size-14 flex-none content-center'>03</div>
