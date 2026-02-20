@@ -1,0 +1,17 @@
+.recharts-wrapper svg:focus {
+	outline: none;
+}
+.recharts-rectangle:focus {
+	outline: 2px solid #3b82f6; /* blue instead of white */
+	outline-offset: 2px;
+}
+svg:focus {
+	outline: none !important;
+}
+.recharts-bar-rectangle:focus rect {
+	stroke: none !important;
+}
+
+.recharts-rectangle:focus {
+	stroke: none !important;
+}
