@@ -1,11 +1,12 @@
 import React, { useEffect, useRef } from 'react';
-import Header from '../layout/Header';
-import Footer from '../layout/Footer';
+import TheMenuDock from '../components/TheMenuDock';
 import TheChart from '../components/TheChart';
 import MainItem from '../features/Item/ui/MainItem';
 import RecentBuyers from '../features/buyers/ui/RecentBuyers';
 import RecentSellers from '../features/sellers/ui/RecentSellers';
 import MainContent from '../layout/MainContent';
+import HeaderContent from '../layout/HeaderContent';
+import FooterContent from '../layout/FooterContent';
 
 function Home() {
 	const data = [
@@ -48,15 +49,23 @@ function Home() {
 	];
 
 	return (
-		<div className='bg-base-200 grid grid-cols-3 lg:grid-cols-5 grid-rows-1  gap-2'>
+		<div className='bg-base-200 grid grid-cols-3 lg:grid-cols-5 auto-rows-max  gap-2'>
 			{/* header */}
-			<div className='bg-base-100 row-start-1 col-span-full text-center content-center'>
-				<Header />
-			</div>
+			<HeaderContent>
+				<div className='flex'>
+					<div className='size-10 flex-none content-center'>01</div>
+					<div className='size-10 flex-none content-center'>01</div>
+					<div className='size-10 grow content-center'>
+						{/* <h1>Daily Stock Redistribution System</h1> */}
+					</div>
+					<div className='size-10 flex-none content-center'>03</div>
+					<div className='size-10 flex-none content-center'>03</div>
+				</div>
+			</HeaderContent>
 
 			{/* sidebar */}
 			<div className='bg-base-100 row-start-3 col-span-full lg:col-span-1 lg:row-start-2 content-center text-center'>
-				sidebar
+				friend lists
 			</div>
 
 			{/* main content */}
@@ -69,13 +78,12 @@ function Home() {
 
 			{/* leaderboards panel */}
 			<div className='bg-base-100 row-start-4 col-span-full lg:col-span-1 lg:row-start-2 lg:row-end-3 content-center text-center'>
-				rightbar
+				leaderboards
 			</div>
 
+			<TheMenuDock />
 			{/* footer */}
-			<div className='bg-base-100 row-start-5 lg:row-start-3 col-span-full text-center content-center'>
-				<Footer />
-			</div>
+			<FooterContent />
 		</div>
 	);
 }
