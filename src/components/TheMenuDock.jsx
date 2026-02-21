@@ -5,7 +5,7 @@ function TheMenuDock() {
 	return (
 		<div className='bg-base-100 lg:row-start-4 col-span-full lg:hidden'>
 			<div className='dock dock-sm'>
-				<NavLink className='dock-active' to={'/'} end>
+				<NavLink className={({ isActive }) => (isActive ? 'dock-active' : '')} to={'/'} end>
 					<svg className='size-[1.2em]' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 						<g fill='currentColor' strokeLinejoin='miter' strokeLinecap='butt'>
 							<polyline
@@ -38,7 +38,7 @@ function TheMenuDock() {
 					</svg>
 				</NavLink>
 
-				<NavLink to='/'>
+				<NavLink className={({ isActive }) => (isActive ? 'dock-active' : '')} to='/inventory'>
 					<svg className='size-[1.2em]' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 						<g fill='currentColor' strokeLinejoin='miter' strokeLinecap='butt'>
 							<polyline
@@ -65,7 +65,7 @@ function TheMenuDock() {
 					</svg>
 				</NavLink>
 
-				<NavLink to='/'>
+				<NavLink className={({ isActive }) => (isActive ? 'dock-active' : '')} to='/settings'>
 					<svg className='size-[1.2em]' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 						<g fill='currentColor' strokeLinejoin='miter' strokeLinecap='butt'>
 							<circle
