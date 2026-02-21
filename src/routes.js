@@ -1,9 +1,21 @@
 import { createBrowserRouter } from 'react-router';
-import Home from './pages/Home';
+import { lazy } from 'react';
+
+const HomeComponent = lazy(() => import('./pages/HomeContent'));
+const InventoryComponent = lazy(() => import('./pages/InventoryContent'));
+const PlayerComponent = lazy(() => import('./pages/PlayerContent'));
 
 export const routes = createBrowserRouter([
 	{
 		path: '/',
-		Component: Home,
+		Component: HomeComponent,
+	},
+	{
+		path: '/inventory',
+		Component: InventoryComponent,
+	},
+	{
+		path: '/player',
+		Component: PlayerComponent,
 	},
 ]);
