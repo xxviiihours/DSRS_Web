@@ -12,13 +12,15 @@ const playerSlice = createSlice({
 	name: 'player',
 	initialState: { ...playerState },
 	reducers: {
-		invalidate: (state, { payload }) => {
-			payload.forEach((item) => {
-				state[item] = false;
-			});
+		register: (state, action) => {
+			state.id = action.payload.id;
+			state.name = action.payload.name;
+			state.balance = action.payload.balance;
+			state.inventoryItems.push(action.payload.inventoryItems);
+			state.dailyPrices.push(action.payload.dailyPrices);
 		},
 	},
 });
 
-export const { invalidate } = playerSlice.actions;
+export const { register } = playerSlice.actions;
 export default playerSlice.reducer;
