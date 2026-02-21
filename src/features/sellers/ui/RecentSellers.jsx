@@ -2,7 +2,7 @@ import React from 'react';
 
 function RecentSellers() {
 	return (
-		<div className='card bg-base-100 col-span-1  md:col-span-2 lg:col-span-1 shadow-sm w-auto'>
+		<div className='card bg-base-100 col-span-1 md:col-span-2 lg:col-span-1 shadow-sm w-auto'>
 			<div className='card-body p-0 pt-4'>
 				<h2 className='card-title justify-center mb-4'>RECENT SELLERS</h2>
 				<ul className='list overflow-auto h-70'>
