@@ -1,6 +1,6 @@
 import React from 'react';
 
-function MainItem() {
+function ItemMain() {
 	return (
 		<div className='card bg-base-100 col-span-full md:col-span-full lg:col-span-2 h-100'>
 			<figure>
@@ -24,4 +24,4 @@ function MainItem() {
 	);
 }
 
-export default MainItem;
+export default ItemMain;
