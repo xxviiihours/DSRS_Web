@@ -1,8 +1,14 @@
 import { RouterProvider } from 'react-router';
 import { routes } from './routes';
+import PlayerRegisterForm from './features/player/ui/PlayerRegisterForm';
 
 function App() {
-	return <RouterProvider router={routes} />;
+	return (
+		<>
+			<PlayerRegisterForm />
+			<RouterProvider router={routes} />
+		</>
+	);
 }
 
 export default App;
