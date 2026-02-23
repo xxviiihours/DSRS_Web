@@ -8,6 +8,7 @@ const PlayerComponent = lazy(() => import('./pages/PlayerContent'));
 export const routes = createBrowserRouter([
 	{
 		path: '/',
+		index: true,
 		Component: HomeComponent,
 	},
 	{
