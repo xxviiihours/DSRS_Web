@@ -9,15 +9,23 @@ export const playerApi = api.injectEndpoints({
 			}),
 			providesTags: ['Players'],
 		}),
+		getPlayerByName: builder.query({
+			query: ({ name }) => ({
+				url: `/players/name/${name}`,
+				method: 'GET',
+			}),
+			providesTags: ['Player'],
+		}),
 		registerPlayer: builder.mutation({
 			query: (body) => ({
 				url: '/players',
 				method: 'POST',
 				data: body,
 			}),
-			invalidatesTags: ['Players'],
+			invalidatesTags: ['Player'],
 		}),
 	}),
 });
 
-export const { useGetPlayersQuery, useRegisterPlayerMutation } = playerApi;
+export const { useGetPlayersQuery, useLazyGetPlayerByNameQuery, useRegisterPlayerMutation } =
+	playerApi;

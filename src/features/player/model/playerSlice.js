@@ -10,17 +10,11 @@ const playerState = {
 
 const playerSlice = createSlice({
 	name: 'player',
-	initialState: { ...playerState },
+	initialState: null,
 	reducers: {
-		register: (state, action) => {
-			state.id = action.payload.id;
-			state.name = action.payload.name;
-			state.balance = action.payload.balance;
-			state.inventoryItems.push(action.payload.inventoryItems);
-			state.dailyPrices.push(action.payload.dailyPrices);
-		},
+		setPlayer: (_, action) => action.payload,
 	},
 });
 
-export const { register } = playerSlice.actions;
+export const { setPlayer } = playerSlice.actions;
 export default playerSlice.reducer;
