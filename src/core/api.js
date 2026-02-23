@@ -4,6 +4,6 @@ import { axiosBaseQuery } from './base/axiosBaseQuery';
 export const api = createApi({
 	reducerPath: 'api',
 	baseQuery: axiosBaseQuery({ baseUrl: 'http://localhost:5223' }),
-	tagTypes: ['Players', 'Items', 'Inventory', 'DailyPrices'],
+	tagTypes: ['Players', 'Player', 'Items', 'Inventory', 'DailyPrices', 'Market'],
 	endpoints: () => ({}),
 });
