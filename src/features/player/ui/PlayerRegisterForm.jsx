@@ -5,6 +5,7 @@ import { useLazyGetPlayerByNameQuery, useRegisterPlayerMutation } from '../api/p
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { setPlayer } from '../model/playerSlice';
+import { getApiErrorMessage } from '../../../utils/apiHelper';
 
 function PlayerRegisterForm() {
 	const dispatch = useDispatch();
