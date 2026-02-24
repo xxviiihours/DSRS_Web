@@ -9,13 +9,6 @@ export const marketApi = api.injectEndpoints({
 			}),
 			providesTags: ['Market'],
 		}),
-		initDailyPrices: builder.query({
-			query: ({ id }) => ({
-				url: `/market/${id}`,
-				method: 'GET',
-			}),
-			providesTags: ['Market'],
-		}),
 	}),
 });
 
