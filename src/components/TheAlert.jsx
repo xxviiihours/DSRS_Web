@@ -8,7 +8,7 @@ const alertStyles = {
 
 function TheAlert({ show, succeeded, message, onClose }) {
 	useEffect(() => {
-		if (!show || !succeeded) return;
+		if (!show) return;
 
 		const timer = setTimeout(() => {
 			onClose(); // parent sets show = false
@@ -26,7 +26,7 @@ function TheAlert({ show, succeeded, message, onClose }) {
 				{succeeded ? (
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
-						className='h-6 w-6 shrink-0 stroke-current'
+						className='h-6 w-6 shrink-0 stroke-current text-base-100'
 						fill='none'
 						viewBox='0 0 24 24'
 					>
@@ -40,7 +40,7 @@ function TheAlert({ show, succeeded, message, onClose }) {
 				) : (
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
-						className='h-6 w-6 shrink-0 stroke-current'
+						className='h-6 w-6 shrink-0 stroke-current text-base-100'
 						fill='none'
 						viewBox='0 0 24 24'
 					>
@@ -53,7 +53,7 @@ function TheAlert({ show, succeeded, message, onClose }) {
 					</svg>
 				)}
 
-				<span>{message}</span>
+				<span className='text-base-100'>{message}</span>
 			</div>
 		);
 }
