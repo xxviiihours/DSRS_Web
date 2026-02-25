@@ -9,7 +9,15 @@ export const marketApi = api.injectEndpoints({
 			}),
 			providesTags: ['Market'],
 		}),
+		purchaseItem: builder.mutation({
+			query: ({ playerId, ...body }) => ({
+				url: `/market/${playerId}`,
+				method: 'POST',
+				data: body,
+			}),
+			invalidatesTags: ['Players', 'Inventory'],
+		}),
 	}),
 });
 
-export const { useInitDailyPricesQuery } = marketApi;
+export const { useInitDailyPricesQuery, usePurchaseItemMutation } = marketApi;
