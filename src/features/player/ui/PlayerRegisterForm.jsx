@@ -15,7 +15,7 @@ function PlayerRegisterForm() {
 
 	const [alertOptions, setAlertOptions] = useState({
 		show: false,
-		success: false,
+		succeeded: false,
 		message: '',
 		onClose: null,
 	});
@@ -38,7 +38,7 @@ function PlayerRegisterForm() {
 						setAlertOptions((prev) => ({
 							...prev,
 							show: true,
-							success: true,
+							succeeded: true,
 							message: 'Successfully Registered!',
 							onClose: () => setAlertOptions({ show: false }),
 						}));
@@ -52,7 +52,7 @@ function PlayerRegisterForm() {
 				setAlertOptions((prev) => ({
 					...prev,
 					show: true,
-					success: false,
+					succeeded: false,
 					message: getApiErrorMessage(error),
 					onClose: () => setAlertOptions({ show: false }),
 				}));
@@ -66,7 +66,7 @@ function PlayerRegisterForm() {
 	return (
 		<>
 			<TheAlert {...alertOptions} />
-			<TheModal>
+			<TheModal show={true} onClose={formik.handleReset}>
 				<h3 className='font-bold text-lg'>Welcome!</h3>
 				<p className='py-4'>What should we call you?</p>
 
