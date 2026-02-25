@@ -1,12 +1,13 @@
 @import 'tailwindcss';
 @plugin "daisyui" {
-	themes: luxury --prefersdark;
+	themes: retro --prefersdark;
 	root: ':root';
 	include:;
 	exclude: rootscrollgutter;
 	prefix:;
 	logs: true;
 }
+@plugin "@tailwindcss/typography";
 
 /* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
