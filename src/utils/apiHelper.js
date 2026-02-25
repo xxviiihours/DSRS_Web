@@ -1,11 +1,25 @@
 export const getApiErrorMessage = (result) => {
-	return (
-		result?.data?.detail ||
-		result?.error?.data?.detail ||
-		result?.data?.message ||
-		result?.error?.data?.message ||
-		result?.data ||
-		result?.error?.data ||
-		'Something went wrong. Please try again.'
-	);
+	const data = result?.data || result?.error?.data;
+
+	if (!data) {
+		return 'Something went wrong. Please try again.';
+	}
+
+	if (data.errors && typeof data.errors === 'object') {
+		const firstErrorKey = Object.keys(data.errors)[0];
+		if (firstErrorKey && Array.isArray(data.errors[firstErrorKey])) {
+			return data.errors[firstErrorKey][0];
+		}
+	}
+
+	if (data.title) {
+		return data.title;
+	}
+
+	if (data.detail) return data.detail;
+	if (data.message) return data.message;
+
+	if (typeof data === 'string') return data;
+
+	return 'Something went wrong. Please try again.';
 };
