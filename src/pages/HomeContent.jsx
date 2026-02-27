@@ -1,12 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { BaseLayout, ContentLayout } from '../layout';
-import { useInitDailyPricesQuery } from '../features/market/api/marketApi';
-import ItemMain from '../features/item/ui/ItemMain';
-import RecentBuyers from '../features/buyers/ui/RecentBuyers';
-import RecentSellers from '../features/sellers/ui/RecentSellers';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { skipToken } from '@reduxjs/toolkit/query';
-import PriceHistoryChart from '../features/dashboard/ui/PriceHistoryChart';
+import { BaseLayout, ContentLayout } from '@/layout';
+import { ItemMain, useInitDailyPricesQuery } from '@/features/market';
+import { PriceHistoryChart, RecentBuyers, RecentSellers } from '@/features/dashboard';
 
 function HomeContent() {
 	const player = useSelector((state) => state.player);

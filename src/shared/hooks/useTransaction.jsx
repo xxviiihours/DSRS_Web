@@ -1,14 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
-import {
-	usePurchaseItemMutation,
-	useSellItemMutation,
-} from '../../features/market/api/marketApi';
-import { useLazyGetPlayerByIdQuery } from '../../features/player/api/playerApi';
+import { usePurchaseItemMutation, useSellItemMutation } from '@/features/market';
+import { useLazyGetPlayerByIdQuery } from '@/features/player';
+import { setPlayer } from '@/features/player/model/playerSlice';
 import { useState } from 'react';
-import { setPlayer } from '../../features/player/model/playerSlice';
-import { getApiErrorMessage } from '../../utils/apiHelper';
+import { useDispatch, useSelector } from 'react-redux';
 
-export function useTransaction() {
+export const useTransaction = () => {
 	const player = useSelector((state) => state.player);
 	const dispatch = useDispatch();
 
@@ -98,4 +94,6 @@ export function useTransaction() {
 			reset,
 		},
 	};
-}
+};
+
+export default useTransaction;

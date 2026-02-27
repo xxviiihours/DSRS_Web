@@ -1,10 +1,8 @@
 import React from 'react';
-import { useGetDailyPricesByItemQuery } from '../api/dashboardApi';
-import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts';
-import { getDaisyUIColor } from '../../../utils/colorHelper';
 import { skipToken } from '@reduxjs/toolkit/query';
-import TheLoader from '../../../shared/components/TheLoader';
-import TheChart from '../../../shared/components/TheChart';
+import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts';
+import { useGetDailyPricesByItemQuery } from '@/features/dashboard/api/dashboardApi';
+import { getDaisyUIColor, TheChart, TheLoader } from '@/shared';
 
 function PriceHistoryChart({ item, player }) {
 	const { data, isLoading } = useGetDailyPricesByItemQuery(

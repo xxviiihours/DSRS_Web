@@ -1,8 +1,7 @@
+import FooterLayout from '@/layout/FooterLayout';
+import HeaderLayout from '@/layout/HeaderLayout';
+import { TheHeader, TheMenuDock } from '@/shared';
 import React from 'react';
-import HeaderLayout from './HeaderLayout';
-import FooterLayout from './FooterLayout';
-import TheHeader from '../shared/components/TheHeader';
-import TheMenuDock from '../shared/components/TheMenuDock';
 
 function BaseLayout({ children }) {
 	return (

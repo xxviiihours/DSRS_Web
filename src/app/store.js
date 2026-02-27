@@ -1,8 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import playerReducer from '../features/player/model/playerSlice';
-import itemReducer from '../features/item/model/itemSlice';
-import { api } from '../core/api';
-import '../features/player/api/playerApi';
+import { api } from '@/core/api';
+import { playerReducer } from '@/features/player';
+import { itemReducer } from '@/features/market';
 
 export const store = configureStore({
 	reducer: {

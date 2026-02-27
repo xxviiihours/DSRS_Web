@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { setItem } from '@/features/market';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setItem } from '../../features/item/model/itemSlice';
 
 export const useItemNavigation = ({ data, carouselRef }) => {
 	const dispatch = useDispatch();
@@ -29,3 +29,5 @@ export const useItemNavigation = ({ data, carouselRef }) => {
 
 	return { currentSlide, nextItem, prevItem };
 };
+
+export default useItemNavigation;

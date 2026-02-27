@@ -1,11 +1,9 @@
+import { usePlayerRegistration } from '@/features/player';
+import { TheAlert, TheModal } from '@/shared';
 import { useFormik } from 'formik';
-import TheAlert from '../../../shared/components/TheAlert';
-import TheModal from '../../../shared/components/TheModal';
-import usePlayerRegistration from '../hooks/usePlayerRegistration';
 
 function PlayerRegisterForm() {
 	const { player, state, actions } = usePlayerRegistration();
-
 	const formik = useFormik({
 		initialValues: {
 			name: '',
@@ -22,7 +20,7 @@ function PlayerRegisterForm() {
 
 	const showAlert = state.isSuccess || state.isError;
 
-	if (player) return null;
+	// if (player) return null;
 	return (
 		<>
 			{showAlert && (

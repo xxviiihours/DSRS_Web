@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLazyGetPlayerByNameQuery, useRegisterPlayerMutation } from '../api/playerApi';
-import { setPlayer } from '../model/playerSlice';
-import { getApiErrorMessage } from '../../../utils/apiHelper';
+import { getApiErrorMessage } from '@/shared';
+import {
+	setPlayer,
+	useLazyGetPlayerByNameQuery,
+	useRegisterPlayerMutation,
+} from '@/features/player';
 
 const usePlayerRegistration = () => {
 	const dispatch = useDispatch();

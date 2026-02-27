@@ -1,6 +1,6 @@
+import { InventoryItem } from '@/features/inventory';
+import { BaseLayout, ContentLayout } from '@/layout';
 import React from 'react';
-import { BaseLayout, ContentLayout } from '../layout';
-import InventoryItem from '../features/inventory/ui/InventoryItem';
 
 function InventoryContent() {
 	return (

@@ -1,4 +1,4 @@
-import { api } from '../../../core/api';
+import { api } from '@/core/api';
 
 export const marketApi = api.injectEndpoints({
 	endpoints: (builder) => ({

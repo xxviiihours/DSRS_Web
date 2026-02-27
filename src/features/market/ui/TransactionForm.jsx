@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import TheAlert from '../../../shared/components/TheAlert';
-import { useTransaction } from '../../../shared/hooks/useTransaction';
+import { TheAlert, useTransaction } from '@/shared';
 
 function TransactionForm({ data }) {
 	const { player, state, actions } = useTransaction();
