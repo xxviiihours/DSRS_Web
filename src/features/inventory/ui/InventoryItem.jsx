@@ -1,5 +1,5 @@
 import React from 'react';
-import The3DCard from '../../../components/The3DCard';
+import The3DCard from '../../../shared/components/The3DCard';
 
 function InventoryItem() {
 	return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import TheLoaderSmall from '../../../components/TheLoaderSmall';
+import TheLoaderSmall from '../../../shared/components/TheLoaderSmall';
 
 function RecentSellers({ sellers, isFetching = true }) {
 	return (

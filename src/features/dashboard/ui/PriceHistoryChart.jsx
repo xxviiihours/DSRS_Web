@@ -1,10 +1,10 @@
 import React from 'react';
-import TheChart from '../../../components/TheChart';
 import { useGetDailyPricesByItemQuery } from '../api/dashboardApi';
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts';
-import TheLoader from '../../../components/TheLoader';
 import { getDaisyUIColor } from '../../../utils/colorHelper';
 import { skipToken } from '@reduxjs/toolkit/query';
+import TheLoader from '../../../shared/components/TheLoader';
+import TheChart from '../../../shared/components/TheChart';
 
 function PriceHistoryChart({ item, player }) {
 	const { data, isLoading } = useGetDailyPricesByItemQuery(
