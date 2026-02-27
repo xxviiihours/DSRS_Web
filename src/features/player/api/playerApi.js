@@ -9,6 +9,13 @@ export const playerApi = api.injectEndpoints({
 			}),
 			providesTags: ['Players'],
 		}),
+		getPlayerById: builder.query({
+			query: ({ id }) => ({
+				url: `/players/${id}`,
+				method: 'GET',
+			}),
+			providesTags: ['Player'],
+		}),
 		getPlayerByName: builder.query({
 			query: ({ name }) => ({
 				url: `/players/name/${name}`,
@@ -27,5 +34,9 @@ export const playerApi = api.injectEndpoints({
 	}),
 });
 
-export const { useGetPlayersQuery, useLazyGetPlayerByNameQuery, useRegisterPlayerMutation } =
-	playerApi;
+export const {
+	useGetPlayersQuery,
+	useLazyGetPlayerByIdQuery,
+	useLazyGetPlayerByNameQuery,
+	useRegisterPlayerMutation,
+} = playerApi;
