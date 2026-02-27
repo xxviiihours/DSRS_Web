@@ -1,11 +1,11 @@
+import { TheLoaderSmall } from '@/shared';
 import React from 'react';
-import TheLoaderSmall from '../../../shared/components/TheLoaderSmall';
 
-function RecentSellers({ sellers, isFetching = true }) {
+function RecentBuyers({ buyers, isFetching = true }) {
 	return (
-		<div className='card bg-base-100 col-span-1 md:col-span-2 lg:col-span-1 shadow-sm w-auto'>
+		<div className='card bg-base-100 col-span-1 md:col-span-2 lg:col-span-1 shadow-sm w-auto content-center'>
 			<div className='card-body p-0 pt-4'>
-				<h2 className='card-title justify-center mb-4'>RECENT SELLERS</h2>
+				<h2 className='card-title justify-center mb-4'>RECENT BUYERS</h2>
 				{isFetching ? (
 					<TheLoaderSmall />
 				) : (
@@ -31,4 +31,4 @@ function RecentSellers({ sellers, isFetching = true }) {
 	);
 }
 
-export default RecentSellers;
+export default RecentBuyers;

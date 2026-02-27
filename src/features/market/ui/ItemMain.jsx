@@ -1,9 +1,7 @@
+import { TransactionForm } from '@/features/market';
+import useItemNavigation, { currencyFormat, TheLoaderInfo } from '@/shared';
+import image from '@/assets/images/fantasy_item_1.png';
 import React, { useRef } from 'react';
-import image from '../../../assets/images/fantasy_item_6.png';
-import { currencyFormat } from '../../../utils/valueFormatter';
-import TheLoaderInfo from '../../../shared/components/TheLoaderInfo';
-import { useItemNavigation } from '../../../shared/hooks/useItemNavigation';
-import TransactionForm from '../../market/ui/TransactionForm';
 
 function ItemNavigationSlider({ previousAction, nextAction }) {
 	return (
