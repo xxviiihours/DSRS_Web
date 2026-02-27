@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setItem } from '../features/item/model/itemSlice';
+import { setItem } from '../../features/item/model/itemSlice';
 
 export const useItemNavigation = ({ data, carouselRef }) => {
 	const dispatch = useDispatch();

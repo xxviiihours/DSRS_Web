@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
-import TheLoaderInfo from '../../../components/TheLoaderInfo';
 import image from '../../../assets/images/fantasy_item_6.png';
 import { currencyFormat } from '../../../utils/valueFormatter';
+import TheLoaderInfo from '../../../shared/components/TheLoaderInfo';
+import { useItemNavigation } from '../../../shared/hooks/useItemNavigation';
 import TransactionForm from '../../market/ui/TransactionForm';
-import { useItemNavigation } from '../../../hooks/ItemNavigation';
 
 function ItemNavigationSlider({ previousAction, nextAction }) {
 	return (
@@ -50,7 +50,7 @@ function ItemInfo({ data, children }) {
 function ItemMain({ prices, isFetching }) {
 	const carouselRef = useRef(null);
 
-	const { currentSlide, nextItem, prevItem } = useItemNavigation({
+	const { nextItem, prevItem } = useItemNavigation({
 		data: prices,
 		carouselRef,
 	});
@@ -72,7 +72,7 @@ function ItemMain({ prices, isFetching }) {
 						) : (
 							<>
 								<ItemInfo data={price}>
-									{prices[index] !== null && <TransactionForm data={price} />}
+									<TransactionForm data={price} />
 								</ItemInfo>
 							</>
 						)}
