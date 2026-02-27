@@ -7,7 +7,7 @@ function TheHeader() {
 	const item = useSelector((state) => state.item);
 	const navigate = useNavigate();
 
-	const currentItem = player.inventoryItems?.find((p) => p.itemId === item?.id);
+	const currentItem = player?.inventoryItems.find((p) => p.itemId === item?.id);
 	return (
 		<div className='navbar bg-base-100 shadow-sm flex justify-between'>
 			<div className='flex-none'>
@@ -45,7 +45,7 @@ function TheHeader() {
 					>
 						<div className='card-body'>
 							<span className='text-lg font-bold'>Quantity: {currentItem?.quantity ?? 0}</span>
-							<span className='text-info'>Balance: ${player.balance}</span>
+							<span className='text-info'>Balance: ${player?.balance ?? 0}</span>
 							<div className='card-actions'>
 								<button
 									className='btn btn-primary btn-block'
