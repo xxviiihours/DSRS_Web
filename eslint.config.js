@@ -1,29 +1,44 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import { defineConfig, globalIgnores } from 'eslint/config'
+import js from '@eslint/js';
+import globals from 'globals';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import { defineConfig, globalIgnores } from 'eslint/config';
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{js,jsx}'],
-    extends: [
-      js.configs.recommended,
-      reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
-    ],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        ecmaFeatures: { jsx: true },
-        sourceType: 'module',
-      },
-    },
-    rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
-    },
-  },
-])
+module.exports = {
+	root: true,
+	parser: '@babel/eslint-parser',
+	extends: ['eslint:recommended', 'plugin:import/errors', 'plugin:import/warnings'],
+	plugins: ['import'],
+	rules: {
+		// 🚫 Disallow deep relative imports like ../../../
+		'no-restricted-imports': [
+			'error',
+			{
+				patterns: ['../../*', '../../../*', '!@/*'],
+			},
+		],
+
+		// 📦 Import sorting
+		'import/order': [
+			'warn',
+			{
+				groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+				pathGroups: [
+					{
+						pattern: '@/**',
+						group: 'internal',
+					},
+				],
+				'newlines-between': 'always',
+			},
+		],
+	},
+	settings: {
+		'import/resolver': {
+			node: {
+				paths: ['src'],
+				extensions: ['.js', '.jsx', '.ts', '.tsx'],
+			},
+		},
+	},
+};
