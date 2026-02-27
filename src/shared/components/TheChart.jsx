@@ -1,7 +1,4 @@
 import React from 'react';
-import { getDaisyUIColor } from '../utils/colorHelper';
-import { useGetDailyPricesByItemQuery } from '../features/dashboard/api/dashboardApi';
-import { skipToken } from '@reduxjs/toolkit/query';
 
 function TheChart({ children }) {
 	return (

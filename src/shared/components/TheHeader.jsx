@@ -6,13 +6,8 @@ function TheHeader() {
 	const player = useSelector((state) => state.player);
 	const item = useSelector((state) => state.item);
 	const navigate = useNavigate();
-	const [currentItem, setCurrentItem] = useState(null);
 
-	useEffect(() => {
-		if (item !== null) {
-			setCurrentItem(player.inventoryItems.find((p) => p.itemId === item?.id));
-		}
-	}, [item]);
+	const currentItem = player.inventoryItems?.find((p) => p.itemId === item?.id);
 	return (
 		<div className='navbar bg-base-100 shadow-sm flex justify-between'>
 			<div className='flex-none'>
