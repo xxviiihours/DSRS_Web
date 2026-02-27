@@ -15,9 +15,18 @@ export const marketApi = api.injectEndpoints({
 				method: 'POST',
 				data: body,
 			}),
-			invalidatesTags: ['Players', 'Inventory'],
+			invalidatesTags: ['Players', 'Inventory', 'Player'],
+		}),
+		sellItem: builder.mutation({
+			query: ({ playerId, ...body }) => ({
+				url: `/market/${playerId}`,
+				method: 'PUT',
+				data: body,
+			}),
+			invalidatesTags: ['Players', 'Inventory', 'Player'],
 		}),
 	}),
 });
 
-export const { useInitDailyPricesQuery, usePurchaseItemMutation } = marketApi;
+export const { useInitDailyPricesQuery, usePurchaseItemMutation, useSellItemMutation } =
+	marketApi;
