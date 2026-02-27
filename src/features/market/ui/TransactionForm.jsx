@@ -1,59 +1,52 @@
-import React, { useState } from 'react';
-import TheModal from '../../../components/TheModal';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { useSelector } from 'react-redux';
-import { usePurchaseItemMutation } from '../api/marketApi';
-import TheAlert from '../../../components/TheAlert';
-import { getApiErrorMessage } from '../../../utils/apiHelper';
+import TheAlert from '../../../shared/components/TheAlert';
+import { useTransaction } from '../../../shared/hooks/useTransaction';
 
 function TransactionForm({ data }) {
-	const player = useSelector((state) => state.player);
-	const [purchaseItem] = usePurchaseItemMutation(player.id);
-	const [alertOptions, setAlertOptions] = useState({
-		show: false,
-		succeeded: false,
-		message: '',
-		onClose: null,
-	});
+	const { player, state, actions } = useTransaction();
 
 	const formik = useFormik({
 		initialValues: {
-			type: '',
 			quantity: 0,
 		},
-		onSubmit: async (values, { setSubmitting, resetForm }) => {
-			try {
-				const request = { ...values, itemId: data.item.id, playerId: player.id };
-
-				if (values.type === 'BUYING') {
-					await purchaseItem(request).unwrap();
-				}
-				setAlertOptions((prev) => ({
-					...prev,
-					show: true,
-					succeeded: true,
-					message: 'Purchase Completed!',
-					onClose: () => setAlertOptions({ show: false }),
-				}));
-			} catch (error) {
-				console.log(error);
-				setAlertOptions((prev) => ({
-					...prev,
-					show: true,
-					succeeded: false,
-					message: getApiErrorMessage(error),
-					onClose: () => setAlertOptions({ show: false }),
-				}));
-			}
-		},
+		onSubmit: () => {},
 	});
+
+	const handlePurchase = async () => {
+		await actions.doPurchase({
+			quantity: formik.values.quantity,
+			itemId: data.item.id,
+		});
+
+		formik.resetForm();
+	};
+
+	const handleSell = async () => {
+		await actions.doSell({
+			quantity: formik.values.quantity,
+			itemId: data.item.id,
+		});
+
+		formik.resetForm();
+	};
+
+	const showAlert = state.isSuccess || state.isError;
 
 	return (
 		<>
-			<TheAlert {...alertOptions} />
-			<form onSubmit={formik.handleSubmit} className='w-full'>
-				<div className='form-group mb-2'>
-					<label className='floating-label'>
+			{showAlert && (
+				<TheAlert
+					show
+					succeeded={state.isSuccess}
+					message={state.message}
+					onClose={actions.reset}
+				/>
+			)}
+
+			<form className='w-full'>
+				<div className='grid grid-cols-2 w-full gap-4'>
+					<label className='floating-label col-span-full'>
 						<span>Quantity</span>
 						<input
 							name='quantity'
@@ -69,35 +62,28 @@ function TransactionForm({ data }) {
 					<input
 						name='quantity'
 						type='range'
-						className='range range-xs range-info'
+						className='range range-xs range-info col-span-full w-full'
 						min={0}
-						max='1000'
+						max={1000}
 						step='1'
 						value={formik.values.quantity}
 						onChange={formik.handleChange}
 					/>
-				</div>
-				<div className='grid grid-cols-2 w-full gap-4'>
 					<button
 						type='button'
 						className='btn btn-success btn-soft btn-block'
 						disabled={formik.isSubmitting}
-						onClick={() => {
-							formik.setFieldValue('type', 'BUYING');
-							formik.handleSubmit();
-						}}
+						onClick={handlePurchase}
 					>
-						{formik.isSubmitting ? 'Loading' : 'Buy'}
+						{state.isLoading ? 'Loading' : 'Buy'}
 					</button>
 					<button
 						type='button'
 						className='btn btn-error btn-soft btn-block'
-						onClick={() => {
-							formik.setFieldValue('type', 'SELLING');
-							formik.handleSubmit();
-						}}
+						disabled={formik.isSubmitting}
+						onClick={handleSell}
 					>
-						{formik.isSubmitting ? 'Loading' : 'Sell'}
+						{state.isLoading ? 'Loading' : 'Sell'}
 					</button>
 				</div>
 			</form>
