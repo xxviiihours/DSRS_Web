@@ -1,4 +1,4 @@
-import { api } from '../../../core/api';
+import { api } from '@/core/api';
 
 export const playerApi = api.injectEndpoints({
 	endpoints: (builder) => ({
@@ -21,6 +21,7 @@ export const playerApi = api.injectEndpoints({
 				url: `/players/name/${name}`,
 				method: 'GET',
 			}),
+			extraOptions: { maxRetries: 5 },
 			providesTags: ['Player'],
 		}),
 		registerPlayer: builder.mutation({
