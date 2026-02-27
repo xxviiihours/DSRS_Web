@@ -1,71 +1,38 @@
 import { useFormik } from 'formik';
-import TheModal from '../../../components/TheModal';
-import TheAlert from '../../../components/TheAlert';
-import { useLazyGetPlayerByNameQuery, useRegisterPlayerMutation } from '../api/playerApi';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import { setPlayer } from '../model/playerSlice';
-import { getApiErrorMessage } from '../../../utils/apiHelper';
+import TheAlert from '../../../shared/components/TheAlert';
+import TheModal from '../../../shared/components/TheModal';
+import usePlayerRegistration from '../hooks/usePlayerRegistration';
 
 function PlayerRegisterForm() {
-	const dispatch = useDispatch();
-	const player = useSelector((state) => state.player);
-	const [getPlayerByName] = useLazyGetPlayerByNameQuery();
-	const [registerPlayer] = useRegisterPlayerMutation();
-
-	const [alertOptions, setAlertOptions] = useState({
-		show: false,
-		succeeded: false,
-		message: '',
-		onClose: null,
-	});
+	const { player, state, actions } = usePlayerRegistration();
 
 	const formik = useFormik({
 		initialValues: {
 			name: '',
 		},
 		onSubmit: async (values, { setSubmitting, resetForm }) => {
+			setSubmitting(true);
 			const payload = { ...values, balance: 1000 };
-			try {
-				let player;
+			await actions.doRegister(payload);
 
-				try {
-					player = await getPlayerByName(payload).unwrap();
-				} catch (err) {
-					if (err?.status === 404) {
-						player = await registerPlayer(payload).unwrap();
-
-						setAlertOptions((prev) => ({
-							...prev,
-							show: true,
-							succeeded: true,
-							message: 'Successfully Registered!',
-							onClose: () => setAlertOptions({ show: false }),
-						}));
-					} else {
-						throw err; // real error
-					}
-				}
-
-				dispatch(setPlayer(player));
-			} catch (error) {
-				setAlertOptions((prev) => ({
-					...prev,
-					show: true,
-					succeeded: false,
-					message: getApiErrorMessage(error),
-					onClose: () => setAlertOptions({ show: false }),
-				}));
-			} finally {
-				setSubmitting(false);
-			}
+			resetForm();
+			setSubmitting(false);
 		},
 	});
+
+	const showAlert = state.isSuccess || state.isError;
 
 	if (player) return null;
 	return (
 		<>
-			<TheAlert {...alertOptions} />
+			{showAlert && (
+				<TheAlert
+					show
+					succeeded={state.isSuccess}
+					message={state.message}
+					onClose={actions.reset}
+				/>
+			)}
 			<TheModal show={true} onClose={formik.handleReset}>
 				<h3 className='font-bold text-lg'>Welcome!</h3>
 				<p className='py-4'>What should we call you?</p>
@@ -93,8 +60,8 @@ function PlayerRegisterForm() {
 					</div>
 
 					<div className='form-group mt-4'>
-						<button type='submit' className='btn' disabled={formik.isSubmitting}>
-							{formik.isSubmitting ? 'Loading...' : 'Continue'}
+						<button type='submit' className='btn' disabled={state.isLoading}>
+							{state.isLoading ? 'Loading...' : 'Continue'}
 						</button>
 					</div>
 				</form>
