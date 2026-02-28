@@ -1,13 +1,13 @@
 import { PlayerRegisterForm } from '@/features/player';
+import { usePlayerSync } from '@/shared';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router';
 
 function LoginContent() {
-	const player = useSelector((state) => state.player);
+	const { id } = usePlayerSync();
 
 	// will replace this with the actual auth provider
-	if (!player) {
+	if (!id) {
 		return <PlayerRegisterForm />;
 	}
 
