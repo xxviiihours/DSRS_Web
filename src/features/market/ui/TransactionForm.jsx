@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { TheAlert, useTransaction } from '@/shared';
 
 function TransactionForm({ data }) {
-	const { player, state, actions } = useTransaction();
+	const { transaction, state, actions } = useTransaction({ data });
 
 	const formik = useFormik({
 		initialValues: {
@@ -31,7 +31,6 @@ function TransactionForm({ data }) {
 	};
 
 	const showAlert = state.isSuccess || state.isError;
-
 	return (
 		<>
 			{showAlert && (
@@ -52,7 +51,7 @@ function TransactionForm({ data }) {
 							type='number'
 							className='input input-sm w-30 mb-1'
 							min={0}
-							max={1000}
+							max={transaction.max}
 							value={formik.values.quantity}
 							onChange={formik.handleChange}
 						/>
@@ -63,7 +62,7 @@ function TransactionForm({ data }) {
 						type='range'
 						className='range range-xs range-info col-span-full w-full'
 						min={0}
-						max={1000}
+						max={transaction.max}
 						step='1'
 						value={formik.values.quantity}
 						onChange={formik.handleChange}
@@ -71,18 +70,18 @@ function TransactionForm({ data }) {
 					<button
 						type='button'
 						className='btn btn-success btn-soft btn-block'
-						disabled={formik.isSubmitting}
+						disabled={state.type === 'BUY' && state.isLoading}
 						onClick={handlePurchase}
 					>
-						{state.isLoading ? 'Loading' : 'Buy'}
+						{state.type === 'BUY' ? 'Loading' : 'Buy'}
 					</button>
 					<button
 						type='button'
 						className='btn btn-error btn-soft btn-block'
-						disabled={formik.isSubmitting}
+						disabled={!transaction.canSell || (state.type === 'SELL' && state.isLoading)}
 						onClick={handleSell}
 					>
-						{state.isLoading ? 'Loading' : 'Sell'}
+						{state.type === 'SELL' ? 'Loading' : 'Sell'}
 					</button>
 				</div>
 			</form>

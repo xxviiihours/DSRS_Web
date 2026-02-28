@@ -1,5 +1,5 @@
 import { TransactionForm } from '@/features/market';
-import useItemNavigation, { currencyFormat, TheLoaderInfo } from '@/shared';
+import { useItemNavigation, currencyFormat, TheLoaderInfo } from '@/shared';
 import image from '@/assets/images/fantasy_item_1.png';
 import React, { useRef } from 'react';
 
@@ -72,10 +72,10 @@ function ItemMain({ prices, isFetching }) {
 								<ItemInfo data={price}>
 									<TransactionForm data={price} />
 								</ItemInfo>
+								<ItemNavigationSlider previousAction={prevItem} nextAction={nextItem} />
 							</>
 						)}
 					</div>
-					<ItemNavigationSlider previousAction={prevItem} nextAction={nextItem} />
 				</div>
 			))}
 		</div>
