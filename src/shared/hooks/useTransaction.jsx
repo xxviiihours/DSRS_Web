@@ -1,88 +1,61 @@
 import { usePurchaseItemMutation, useSellItemMutation } from '@/features/market';
-import { useLazyGetPlayerByIdQuery } from '@/features/player';
-import { setPlayer } from '@/features/player/model/playerSlice';
+import { getApiErrorMessage } from '@/shared/utils/apiHelper';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-export const useTransaction = () => {
+export const useTransaction = ({ data }) => {
 	const player = useSelector((state) => state.player);
-	const dispatch = useDispatch();
 
 	const [purchaseItem] = usePurchaseItemMutation();
 	const [sellItem] = useSellItemMutation();
-	const [getPlayerById] = useLazyGetPlayerByIdQuery();
-
 	const [state, setState] = useState({
+		type: '',
 		status: 'idle',
 		message: '',
 	});
 
-	const doPurchase = async ({ quantity, itemId }) => {
+	const executeTransaction = async (trigger, { quantity, itemId }, type, successMessage) => {
 		try {
-			setState({ status: 'loading' });
-			const request = {
-				quantity,
-				itemId,
-				playerId: player.id,
-			};
-
-			await purchaseItem(request).unwrap();
-
-			const updatedPlayer = await getPlayerById({ id: player.id }).unwrap();
-			dispatch(setPlayer(updatedPlayer));
-
-			setState({
-				status: 'success',
-				message: 'Purchase completed!',
-			});
+			setState({ status: 'loading', type });
+			await trigger({ quantity, itemId, playerId: player.id }).unwrap();
+			setState({ status: 'success', message: successMessage });
 		} catch (error) {
-			setState({
-				status: 'error',
-				message: getApiErrorMessage(error),
-			});
+			setState({ status: 'error', message: getApiErrorMessage(error) });
 		}
 	};
 
-	const doSell = async ({ quantity, itemId }) => {
-		try {
-			setState({ status: 'loading' });
-			const request = {
-				quantity,
-				itemId,
-				playerId: player.id,
-			};
+	const doPurchase = async ({ quantity, itemId }) =>
+		await executeTransaction(purchaseItem, { quantity, itemId }, 'BUY', 'Purchase completed!');
 
-			console.log('SOLD:', request);
-			await sellItem(request).unwrap();
-
-			const updatedPlayer = await getPlayerById({ id: player.id }).unwrap();
-			dispatch(setPlayer(updatedPlayer));
-
-			setState({
-				status: 'success',
-				message: 'Transaction complete!',
-			});
-		} catch (error) {
-			setState({
-				status: 'error',
-				message: getApiErrorMessage(error),
-			});
-		}
-	};
+	const doSell = async ({ quantity, itemId }) =>
+		await executeTransaction(sellItem, { quantity, itemId }, 'SELL', 'Transaction completed!');
 
 	const reset = () => {
-		setState((prev) => ({ ...prev, status: 'idle', message: '' }));
+		setState({ type: '', status: 'idle', message: '' });
 	};
 
-	const { status, message } = state;
+	const { type, status, message } = state;
 
 	const isLoading = status === 'loading';
 	const isSuccess = status === 'success';
 	const isError = status === 'error';
 
+	const item = player.inventoryItems.find((i) => i.itemId === data.item.id);
+	const canSell = item !== undefined;
+	const maxPurchase = data.price > 0 ? Number.parseInt(player.balance / data.price) : 0;
+
+	const max = type === '' || type === 'SELL' ? (item?.quantity ?? maxPurchase) : maxPurchase;
+
 	return {
-		player,
+		transaction: {
+			balance: player.balance,
+			maxPurchase,
+			canSell,
+			max,
+			quantity: item?.quantity ?? 0,
+		},
 		state: {
+			type,
 			message,
 			isLoading,
 			isSuccess,
