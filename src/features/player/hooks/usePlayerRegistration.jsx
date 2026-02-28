@@ -26,20 +26,15 @@ const usePlayerRegistration = () => {
 			try {
 				player = await getPlayerByName(payload).unwrap();
 			} catch (err) {
-				if (err?.status !== 404) {
-					setState((prev) => ({
-						...prev,
-						status: 'error',
-						message: getApiErrorMessage(err),
-					}));
-				}
+				if (err?.status !== 404) throw err;
 
 				player = await registerPlayer(payload).unwrap();
-
+				dispatch(setPlayer(player));
 				setState({
 					status: 'success',
 					message: 'Successfully Registered!',
 				});
+				return;
 			}
 
 			dispatch(setPlayer(player));
@@ -50,7 +45,7 @@ const usePlayerRegistration = () => {
 		} catch (error) {
 			setState({
 				status: 'error',
-				message: getApiErrorMessage(err),
+				message: getApiErrorMessage(error),
 			});
 		}
 	};
