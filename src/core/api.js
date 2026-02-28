@@ -8,10 +8,14 @@ const baseQueryWithRetry = retry(
 			api,
 			extraOptions,
 		);
+
 		if (result.error?.status === 401) {
 			retry.fail(result.error, result.meta);
 		}
 		if (result.error?.status === 400) {
+			retry.fail(result.error, result.meta);
+		}
+		if (api.endpoint === 'getPlayerByName' && result.error?.status === 404) {
 			retry.fail(result.error, result.meta);
 		}
 

@@ -21,7 +21,6 @@ export const playerApi = api.injectEndpoints({
 				url: `/players/name/${name}`,
 				method: 'GET',
 			}),
-			extraOptions: { maxRetries: 5 },
 			providesTags: ['Player'],
 		}),
 		registerPlayer: builder.mutation({
