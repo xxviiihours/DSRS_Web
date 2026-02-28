@@ -12,19 +12,18 @@ function HomeContent() {
 	const { data: prices, isFetching } = useInitDailyPricesQuery(
 		player?.id ? { id: player.id } : skipToken,
 	);
+
 	return (
-		<>
-			<BaseLayout>
-				<ContentLayout>
-					<div className='grid grid-rows-3 lg:grid-rows-1 grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-2'>
-						<PriceHistoryChart player={player} item={item} />
-						<ItemMain prices={prices?.dailyPrices} isFetching={isFetching} />
-						<RecentBuyers isFetching={isFetching} />
-						<RecentSellers isFetching={isFetching} />
-					</div>
-				</ContentLayout>
-			</BaseLayout>
-		</>
+		<BaseLayout>
+			<ContentLayout>
+				<div className='grid grid-rows-3 lg:grid-rows-1 grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-2'>
+					<PriceHistoryChart player={player} item={item} />
+					<ItemMain prices={prices?.dailyPrices} isFetching={isFetching} />
+					<RecentBuyers isFetching={isFetching} />
+					<RecentSellers isFetching={isFetching} />
+				</div>
+			</ContentLayout>
+		</BaseLayout>
 	);
 }
 
