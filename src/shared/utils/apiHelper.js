@@ -12,13 +12,12 @@ export const getApiErrorMessage = (result) => {
 		}
 	}
 
-	if (data.title) {
-		return data.title;
-	}
-
 	if (data.detail) return data.detail;
 	if (data.message) return data.message;
 
+	if (data.title) {
+		return data.title;
+	}
 	if (typeof data === 'string') return data;
 
 	return 'Something went wrong. Please try again.';

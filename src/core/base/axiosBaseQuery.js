@@ -13,12 +13,13 @@ export const axiosBaseQuery =
 			});
 
 			return { data: result.data };
-		} catch (axiosError) {
+		} catch (error) {
 			return {
 				error: {
-					status: axiosError.response?.status,
-					data: axiosError.response?.data || axiosError.message,
+					status: error.response?.status,
+					data: error.response?.data || error.message,
 				},
+				meta: { request: error.request, response: error.response },
 			};
 		}
 	};
