@@ -37,6 +37,7 @@ export const playerApi = api.injectEndpoints({
 
 export const {
 	useGetPlayersQuery,
+	useGetPlayerByIdQuery,
 	useLazyGetPlayerByIdQuery,
 	useLazyGetPlayerByNameQuery,
 	useRegisterPlayerMutation,
