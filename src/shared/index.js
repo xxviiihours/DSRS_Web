@@ -11,8 +11,9 @@ export { default as TheMenuDock } from './components/TheMenuDock';
 export { default as TheModal } from './components/TheModal';
 
 // shared hooks
-export { default } from './hooks/useItemNavigation';
+export { default as useItemNavigation } from './hooks/useItemNavigation';
 export { default as useTransaction } from './hooks/useTransaction';
+export { default as usePlayerSync } from './hooks/usePlayerSync';
 
 // shared utils
 export * from './utils/apiHelper';
