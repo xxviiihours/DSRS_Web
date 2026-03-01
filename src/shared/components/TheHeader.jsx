@@ -1,19 +1,30 @@
+import { clearPlayer } from '@/features/player';
+import { currencyFormat } from '@/shared/utils/valueFormatter';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
 function TheHeader() {
+	const dispatch = useDispatch();
 	const player = useSelector((state) => state.player);
 	const item = useSelector((state) => state.item);
 	const navigate = useNavigate();
 
 	const currentItem = player?.inventoryItems.find((p) => p.itemId === item?.id);
 	return (
-		<div className='navbar bg-base-100 shadow-sm flex justify-between'>
-			<div className='flex-none'>
+		<div className='navbar bg-base-100 shadow-sm flex justify-between gap-2'>
+			<div className='flex flex-1'>
 				<a className='btn btn-ghost text-xl' onClick={() => navigate('/')}>
 					Daily Stock Redistribution System
 				</a>
+			</div>
+			<div className='grid content-center'>
+				<span className='text-xs text-info opacity-60 inline-block align-baseline'>
+					Balance
+				</span>
+				<p className='text-info font-semibold slashed-zero tabular-nums font-mono'>
+					{currencyFormat(player?.balance ?? 0)}
+				</p>
 			</div>
 			<div className='flex-none'>
 				<div className='dropdown dropdown-end'>
@@ -45,7 +56,7 @@ function TheHeader() {
 					>
 						<div className='card-body'>
 							<span className='text-lg font-bold'>Quantity: {currentItem?.quantity ?? 0}</span>
-							<span className='text-info'>Balance: ${player?.balance ?? 0}</span>
+							<span className='text-info font-semibold'>Max Limit: 500</span>
 							<div className='card-actions'>
 								<button
 									className='btn btn-primary btn-block'
@@ -80,7 +91,14 @@ function TheHeader() {
 							<a>Settings</a>
 						</li>
 						<li>
-							<a>Logout</a>
+							<a
+								onClick={() => {
+									dispatch(clearPlayer());
+									navigate('/');
+								}}
+							>
+								Logout
+							</a>
 						</li>
 					</ul>
 				</div>
