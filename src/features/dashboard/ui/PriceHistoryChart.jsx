@@ -1,25 +1,10 @@
 import React from 'react';
-import { skipToken } from '@reduxjs/toolkit/query';
-import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts';
-import { useGetDailyPricesByItemQuery } from '@/features/dashboard/api/dashboardApi';
-import { getDaisyUIColor, TheChart, TheLoader } from '@/shared';
+import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
+import { currencyFormat, getDaisyUIColor, TheChart, TheLoader } from '@/shared';
+import { useChartData } from '@/features/dashboard';
 
 function PriceHistoryChart({ item, player }) {
-	const { data, isLoading } = useGetDailyPricesByItemQuery(
-		item?.id && player?.id ? { itemId: item.id, playerId: player.id } : skipToken,
-	);
-	const basePrice = item?.basePrice;
-
-	const chartData = data?.map((item) => {
-		const diff = item.previousPrice - basePrice;
-
-		return {
-			date: item.date,
-			value: diff,
-			originalPrice: item.previousPrice,
-			fill: diff >= 0 ? getDaisyUIColor('--color-success') : getDaisyUIColor('--color-error'),
-		};
-	});
+	const { chart, chartList, isLoading } = useChartData({ item, player });
 
 	return (
 		<TheChart>
@@ -34,7 +19,7 @@ function PriceHistoryChart({ item, player }) {
 						height: '300px',
 					}}
 					responsive
-					data={chartData}
+					data={chartList}
 				>
 					<CartesianGrid
 						stroke={getDaisyUIColor('--color-base-content')}
@@ -43,37 +28,34 @@ function PriceHistoryChart({ item, player }) {
 					<XAxis dataKey='date' stroke={getDaisyUIColor('--color-base-content')} />
 					<YAxis
 						domain={['auto', 'auto']}
-						tickFormatter={(v) => basePrice + v}
+						tickFormatter={(v) => chart.basePrice + v}
 						stroke={getDaisyUIColor('--color-base-content')}
 					/>
-					<Bar
-						dataKey='value'
-						name={'Price Difference'}
-						fill={getDaisyUIColor('--color-base-content')}
-					/>
-					<Legend
-						align='top'
-						wrapperStyle={{
-							backgroundColor: 'transparent',
-							color: '#fff',
-						}}
-					/>
-					<Tooltip
-						cursor={{ fill: 'rgba(255,255,255,0.04)' }}
-						contentStyle={{
-							backgroundColor: getDaisyUIColor('--color-base-200'),
-							border: `1px solid ${getDaisyUIColor('--color-base-200')}`,
-							color: getDaisyUIColor('--color-base-content'),
-						}}
-						wrapperStyle={{
-							width: 'auto',
-							backgroundColor: `${getDaisyUIColor('--color-base-200')}`,
-						}}
-					/>
+					<Bar dataKey='value' fill={getDaisyUIColor('--color-base-content')} />
+
+					<Tooltip cursor={{ fill: 'rgba(255,255,255,0.04)' }} content={CustomTooltip} />
 				</BarChart>
 			)}
 		</TheChart>
 	);
 }
+
+const CustomTooltip = ({ active, payload, label }) => {
+	if (!active || !payload || payload.length === 0) return null;
+
+	const data = payload[0].payload;
+	const isPositive = data.percentage >= 0;
+	const currentPrice = data.currentPrice;
+	return (
+		<div className='bg-base-100 text-base-content px-4 py-2 rounded-2xl'>
+			<div className='text-xs text-base-content mb-1'>{label}</div>
+			<div
+				className={`text-sm font-semibold slashed-zero tabular-nums font-mono ${isPositive ? 'text-green-400' : 'text-red-400'} `}
+			>
+				{currencyFormat(currentPrice)} {isPositive ? '↗︎' : '↘︎'} ({data.percentage}%)
+			</div>
+		</div>
+	);
+};
 
 export default PriceHistoryChart;
