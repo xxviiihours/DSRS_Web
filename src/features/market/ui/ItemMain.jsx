@@ -1,6 +1,6 @@
 import { TransactionForm } from '@/features/market';
 import { useItemNavigation, currencyFormat, TheLoaderInfo } from '@/shared';
-import image from '@/assets/images/fantasy_item_1.png';
+import image from '@/assets/images/fantasy_item_3.png';
 import React, { useRef } from 'react';
 
 function ItemNavigationSlider({ previousAction, nextAction }) {
@@ -22,6 +22,7 @@ function ItemNavigationSlider({ previousAction, nextAction }) {
 }
 
 function ItemInfo({ data, children }) {
+	const isPositive = data.percentage >= 0;
 	return (
 		<>
 			<figure>
@@ -29,13 +30,20 @@ function ItemInfo({ data, children }) {
 			</figure>
 			<div className='card-body'>
 				<h2 className='card-title'>
-					<p className='font-bold'>{currencyFormat(data.price)}</p>
-					{data.state === 0 && <div className='badge badge-success ml-2'>LOW</div>}
-					{data.state === 1 && <div className='badge badge-error ml-2'>HIGH</div>}
+					<p className='stat-value slashed-zero tabular-nums text-4xl'>
+						{currencyFormat(data.price)}{' '}
+					</p>
+					{data.state === 0 && <div className='badge badge-error ml-2'>LOW</div>}
+					{data.state === 1 && <div className='badge badge-success ml-2'>HIGH</div>}
 				</h2>
 				<h3 className='opacity-60'>
 					Base Price:{' '}
-					<span className='line-through'>{currencyFormat(data.item.basePrice)}</span>
+					<span className='line-through slashed-zero tabular-nums font-mono'>
+						{currencyFormat(data.item.basePrice)}
+					</span>{' '}
+					<span className={` text-xs font-sans ${isPositive ? 'text-success' : 'text-error'}`}>
+						{isPositive ? '↗︎' : '↘︎'} ({data.percentage}%)
+					</span>
 				</h3>
 				<h3 className='font-semibold'>{data.item.name}</h3>
 				<p className='italic line-clamp-3'>{data.item.description}</p>
@@ -58,26 +66,26 @@ function ItemMain({ prices, isFetching }) {
 			ref={carouselRef}
 			className='carousel w-full h-100 col-span-full md:col-span-full lg:col-span-2 relative'
 		>
-			{prices?.map((price, index) => (
-				<div
-					key={price.id}
-					id={`slide${index + 1}`}
-					className='carousel-item relative w-full h-full'
-				>
-					<div className='card card-side bg-base-100 w-full h-full'>
-						{isFetching ? (
-							<TheLoaderInfo />
-						) : (
-							<>
+			{isFetching ? (
+				<TheLoaderInfo />
+			) : (
+				<>
+					{prices?.map((price, index) => (
+						<div
+							key={price.id}
+							id={`slide${index + 1}`}
+							className='carousel-item relative w-full h-full '
+						>
+							<div className='card card-side bg-base-100 w-full h-full'>
 								<ItemInfo data={price}>
 									<TransactionForm data={price} />
 								</ItemInfo>
 								<ItemNavigationSlider previousAction={prevItem} nextAction={nextItem} />
-							</>
-						)}
-					</div>
-				</div>
-			))}
+							</div>
+						</div>
+					))}
+				</>
+			)}
 		</div>
 	);
 }
