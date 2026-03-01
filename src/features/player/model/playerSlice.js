@@ -13,8 +13,9 @@ const playerSlice = createSlice({
 	initialState: null,
 	reducers: {
 		setPlayer: (_, action) => action.payload,
+		clearPlayer: (state) => null,
 	},
 });
 
-export const { setPlayer } = playerSlice.actions;
+export const { setPlayer, clearPlayer } = playerSlice.actions;
 export default playerSlice.reducer;
