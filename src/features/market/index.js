@@ -1,7 +1,7 @@
 // components ui
 export { default as TransactionForm } from './ui/TransactionForm';
 export { default as ItemMain } from './ui/ItemMain';
-export { default as ItemList } from './ui/ItemList';
+export { default as ItemMarket } from './ui/ItemMarket';
 
 // hooks
 export { default as useTransaction } from './hooks/useTransaction';
