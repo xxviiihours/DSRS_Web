@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 
-function TheModal({ show, submit = null, onClose, children }) {
+function TheModal({ show, submit = null, onClose, children, size = 'default' }) {
 	return (
 		<dialog id='my_modal_2' className={show ? 'modal modal-open' : 'modal'}>
-			<div className='modal-box h-100 flex flex-col justify-center items-center text-center'>
+			<div
+				className={`modal-box flex flex-col ${size === 'large' ? 'w-11/12 max-w-5xl h-160' : 'h-100 justify-center items-center text-center'}`}
+			>
 				{children}
 			</div>
 
