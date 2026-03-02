@@ -1,3 +1,5 @@
+import { Top20Players } from '@/features/leaderboards';
+import { LeaderboardLayout } from '@/layout';
 import FooterLayout from '@/layout/FooterLayout';
 import HeaderLayout from '@/layout/HeaderLayout';
 import { TheHeader, TheMenuDock } from '@/shared';
@@ -20,9 +22,9 @@ function BaseLayout({ children }) {
 			{children}
 
 			{/* leaderboards panel */}
-			<div className='bg-base-100 row-start-4 col-span-full lg:col-span-1 lg:row-start-2 lg:row-end-3 content-center text-center'>
-				leaderboards
-			</div>
+			<LeaderboardLayout>
+				<Top20Players />
+			</LeaderboardLayout>
 
 			{/* footer */}
 			<FooterLayout />
