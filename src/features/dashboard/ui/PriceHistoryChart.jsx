@@ -4,12 +4,11 @@ import { currencyFormat, getDaisyUIColor, TheChart, TheLoader } from '@/shared';
 import { useChartData } from '@/features/dashboard';
 
 function PriceHistoryChart({ item, player }) {
-	const { chart, chartList, isLoading } = useChartData({ item, player });
-
+	const { chartList, state } = useChartData({ itemId: item?.id, playerId: player.id });
 	return (
 		<TheChart>
 			<h2 className='card-title'>PRICE HISTORY</h2>
-			{isLoading ? (
+			{state.isLoading ? (
 				<TheLoader />
 			) : (
 				<BarChart
@@ -28,7 +27,7 @@ function PriceHistoryChart({ item, player }) {
 					<XAxis dataKey='date' stroke={getDaisyUIColor('--color-base-content')} />
 					<YAxis
 						domain={['auto', 'auto']}
-						tickFormatter={(v) => chart.basePrice + v}
+						tickFormatter={(v) => item.basePrice + v}
 						stroke={getDaisyUIColor('--color-base-content')}
 					/>
 					<Bar dataKey='value' fill={getDaisyUIColor('--color-base-content')} />
