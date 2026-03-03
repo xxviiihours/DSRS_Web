@@ -9,11 +9,12 @@ function Top20Players() {
 	const { data: topPlayers, isLoading } = useGetTop20PlayersByIdQuery(
 		id ? { id: id } : skipToken,
 	);
+	const currentPlayer = topPlayers?.find((p) => p.id === id);
 	return (
 		<>
 			<h2 className='p-4 pb-2 text-xl opacity-60 font-semibold'>Top Ranking Players</h2>
 			<ul className='list bg-base-100 rounded-box shadow-md h-165 overflow-auto'>
-				{topPlayers?.map((player, index) => (
+				{topPlayers?.slice(0, -1).map((player, index) => (
 					<li key={player.id} className='list-row'>
 						<div className='text-4xl font-thin opacity-30 tabular-nums'>
 							{index + 1 < 10 ? `0${index + 1}` : index + 1}
@@ -33,7 +34,23 @@ function Top20Players() {
 					</li>
 				))}
 			</ul>
-			<div className='text-center gap-4 border-base-content/50 border-2 p-4 m-4'>test</div>
+			<div className='gap-4 border-base-content/50 border-2 justify-center grid lg:grid-cols-2 md:grid-cols-2'>
+				<div className='stat'>
+					<div className='stat-title'>
+						<span>Your Rank</span>
+						<span>
+							<span className='text-success text-xs opacity-60'> ↗︎ (20%)</span>
+						</span>
+					</div>
+					<div className='stat-value'>
+						<span className=' text-primary'>#{currentPlayer?.rank}</span>
+					</div>
+				</div>
+				<div className='stat justify-end'>
+					<div className='stat-title'>Account balance</div>
+					<div className='stat-value'>{currencyFormat(currentPlayer?.totalBalance)}</div>
+				</div>
+			</div>
 		</>
 	);
 }
