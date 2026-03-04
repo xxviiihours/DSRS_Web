@@ -1,7 +1,7 @@
 import { PlayerRank, useLeaderboard } from '@/features/leaderboards';
 import { currencyFormat, TheLoaderSmall } from '@/shared';
-import { freeSet } from '@coreui/icons';
-import CIcon from '@coreui/icons-react';
+import { faCrown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
 function Top20Players() {
@@ -38,7 +38,15 @@ function Top20Players() {
 									</div>
 								</div>
 								<div className='list-col-grow	col-end'>
-									<CIcon icon={freeSet.cilStar} className='h-10 w-10' />
+									{player.rank === 1 && (
+										<FontAwesomeIcon icon={faCrown} size='2xl' className='' />
+									)}
+									{player.rank === 2 && (
+										<FontAwesomeIcon icon={faCrown} size='2xl' className='text-primary' />
+									)}
+									{player.rank === 3 && (
+										<FontAwesomeIcon icon={faCrown} size='2xl' className='text-yellow-900' />
+									)}
 								</div>
 							</li>
 						))}
