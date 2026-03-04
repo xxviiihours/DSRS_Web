@@ -4,6 +4,8 @@ import image from '@/assets/images/fantasy_item_4.png';
 import { PriceHistoryChart } from '@/features/dashboard';
 import { useSelector } from 'react-redux';
 import { TransactionForm } from '@/features/market';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowTrendDown, faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
 
 function ItemMarket({ data }) {
 	const player = useSelector((state) => state.player);
@@ -28,7 +30,15 @@ function ItemMarket({ data }) {
 							<span
 								className={`text-xs font-sans text-right ${isPositive ? 'text-success' : 'text-error'}`}
 							>
-								({data.percentage}%)
+								{isPositive ? (
+									<>
+										<FontAwesomeIcon icon={faArrowTrendUp} /> (+{data.percentage}%)
+									</>
+								) : (
+									<>
+										<FontAwesomeIcon icon={faArrowTrendDown} /> ({data.percentage}%)
+									</>
+								)}
 							</span>
 						</p>
 

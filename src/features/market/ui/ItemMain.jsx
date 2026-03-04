@@ -2,6 +2,8 @@ import { TransactionForm } from '@/features/market';
 import { useItemNavigation, currencyFormat, TheLoaderInfo } from '@/shared';
 import image from '@/assets/images/fantasy_item_3.png';
 import React, { useRef } from 'react';
+import { faArrowTrendDown, faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function ItemNavigationSlider({ previousAction, nextAction }) {
 	return (
@@ -42,7 +44,15 @@ function ItemInfo({ data, children }) {
 						{currencyFormat(data.item.basePrice)}
 					</span>{' '}
 					<span className={` text-xs font-sans ${isPositive ? 'text-success' : 'text-error'}`}>
-						{isPositive ? '↗︎' : '↘︎'} ({data.percentage}%)
+						{isPositive ? (
+							<>
+								<FontAwesomeIcon icon={faArrowTrendUp} /> (+{data.percentage}%)
+							</>
+						) : (
+							<>
+								<FontAwesomeIcon icon={faArrowTrendDown} /> ({data.percentage}%)
+							</>
+						)}
 					</span>
 				</h3>
 				<h3 className='font-semibold'>{data.item.name}</h3>
