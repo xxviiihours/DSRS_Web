@@ -2,6 +2,8 @@ import React from 'react';
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
 import { currencyFormat, getDaisyUIColor, TheChart, TheLoader } from '@/shared';
 import { useChartData } from '@/features/dashboard';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowTrendDown, faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
 
 function PriceHistoryChart({ item, player }) {
 	const { chartList, state } = useChartData({ itemId: item?.id, playerId: player.id });
@@ -51,7 +53,16 @@ const CustomTooltip = ({ active, payload, label }) => {
 			<div
 				className={`text-sm font-semibold slashed-zero tabular-nums font-mono ${isPositive ? 'text-green-400' : 'text-red-400'} `}
 			>
-				{currencyFormat(currentPrice)} {isPositive ? '↗︎' : '↘︎'} ({data.percentage}%)
+				{currencyFormat(currentPrice)}{' '}
+				{isPositive ? (
+					<>
+						<FontAwesomeIcon icon={faArrowTrendUp} /> (+{data.percentage}%)
+					</>
+				) : (
+					<>
+						<FontAwesomeIcon icon={faArrowTrendDown} /> ({data.percentage}%)
+					</>
+				)}
 			</div>
 		</div>
 	);
