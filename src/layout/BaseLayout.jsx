@@ -1,8 +1,8 @@
 import { Top20Players } from '@/features/leaderboards';
-import { LeaderboardLayout } from '@/layout';
+import { LeaderboardLayout, SidebarLayout } from '@/layout';
 import FooterLayout from '@/layout/FooterLayout';
 import HeaderLayout from '@/layout/HeaderLayout';
-import { TheHeader, TheMenuDock } from '@/shared';
+import { TheHeader, TheMenuDock, TheTab } from '@/shared';
 import React from 'react';
 
 function BaseLayout({ children }) {
@@ -14,9 +14,9 @@ function BaseLayout({ children }) {
 			</HeaderLayout>
 
 			{/* sidebar */}
-			<div className='bg-base-100 row-start-3 col-span-full lg:col-span-1 lg:row-start-2 content-center text-center'>
-				friend lists
-			</div>
+			<SidebarLayout>
+				<TheTab />
+			</SidebarLayout>
 
 			{/* Main Content renders here based on Active page */}
 			{children}
