@@ -1,5 +1,6 @@
 // component ui
 export { default as Player } from './ui/Player';
+export { default as PlayerList } from './ui/PlayerList';
 export { default as PlayerRegisterForm } from './ui/PlayerRegisterForm';
 // hooks
 export { default as usePlayerRegistration } from './hooks/usePlayerRegistration';
