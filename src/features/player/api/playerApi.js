@@ -3,10 +3,14 @@ import { api } from '@/core/api';
 export const playerApi = api.injectEndpoints({
 	endpoints: (builder) => ({
 		getPlayers: builder.query({
-			query: () => ({
-				url: '/players',
-				method: 'GET',
-			}),
+			query: (params = {}) => {
+				const { query } = params;
+
+				return {
+					url: `/players${query ? `?query=${query}` : ''}`,
+					method: 'GET',
+				};
+			},
 			providesTags: ['Players'],
 		}),
 		getPlayerById: builder.query({
@@ -36,6 +40,7 @@ export const playerApi = api.injectEndpoints({
 
 export const {
 	useGetPlayersQuery,
+	useLazyGetPlayersQuery,
 	useGetPlayerByIdQuery,
 	useLazyGetPlayerByIdQuery,
 	useLazyGetPlayerByNameQuery,
