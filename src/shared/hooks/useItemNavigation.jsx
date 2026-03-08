@@ -2,7 +2,7 @@ import { setItem } from '@/features/market';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-export const useItemNavigation = ({ data, carouselRef }) => {
+const useItemNavigation = ({ data, carouselRef }) => {
 	const dispatch = useDispatch();
 
 	const [currentSlide, setCurrentSlide] = useState(0);

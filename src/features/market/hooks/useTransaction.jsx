@@ -3,7 +3,7 @@ import { getApiErrorMessage } from '@/shared/utils/apiHelper';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-export const useTransaction = ({ data }) => {
+const useTransaction = ({ data }) => {
 	const player = useSelector((state) => state.player);
 
 	const [purchaseItem] = usePurchaseItemMutation();

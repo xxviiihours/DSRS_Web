@@ -15,3 +15,7 @@ svg:focus {
 .recharts-rectangle:focus {
 	stroke: none !important;
 }
+
+.left-scrollbar > * {
+	direction: ltr;
+}
