@@ -7,7 +7,7 @@ const useChartData = ({ itemId, playerId }) => {
 	const { data, isLoading } = useGetDailyPricesByItemQuery(
 		itemId && playerId ? { itemId: itemId, playerId: playerId } : skipToken,
 	);
-	const [chartList, setChartList] = useState([]);
+	const [chartDataSet, setChartData] = useState([]);
 
 	useEffect(() => {
 		if (data) {
@@ -24,12 +24,12 @@ const useChartData = ({ itemId, playerId }) => {
 						diff >= 0 ? getDaisyUIColor('--color-success') : getDaisyUIColor('--color-error'),
 				};
 			});
-			setChartList(chartData);
+			setChartData(chartData);
 		}
-	}, [data, isLoading, setChartList]);
+	}, [data, isLoading, setChartData]);
 
 	return {
-		chartList,
+		chartDataSet,
 		state: {
 			isLoading,
 		},

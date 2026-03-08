@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowTrendDown, faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
 
 function PriceHistoryChart({ item, player }) {
-	const { chartList, state } = useChartData({ itemId: item?.id, playerId: player.id });
+	const { chartDataSet, state } = useChartData({ itemId: item?.id, playerId: player.id });
 	return (
 		<TheChart>
 			<h2 className='card-title'>PRICE HISTORY</h2>
@@ -20,7 +20,7 @@ function PriceHistoryChart({ item, player }) {
 						height: '300px',
 					}}
 					responsive
-					data={chartList}
+					data={chartDataSet}
 				>
 					<CartesianGrid
 						stroke={getDaisyUIColor('--color-base-content')}

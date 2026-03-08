@@ -56,7 +56,9 @@ function TheHeader() {
 					>
 						<div className='card-body'>
 							<span className='text-lg font-bold'>Quantity: {currentItem?.quantity ?? 0}</span>
-							<span className='text-info font-semibold'>Max Limit: 500</span>
+							<span className='text-info font-semibold'>
+								Purchase Limit: {player.purchaseLimit}/100
+							</span>
 							<div className='card-actions'>
 								<button
 									className='btn btn-primary btn-block'

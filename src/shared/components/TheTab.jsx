@@ -1,19 +1,11 @@
 import { FriendList } from '@/features/social';
-import {
-	faAdd,
-	faAddressBook,
-	faAddressCard,
-	faSearch,
-	faUserAlt,
-	faUserFriends,
-	faUserGroup,
-} from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faUserAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
 function TheTab() {
 	return (
-		<div className='tabs tabs-lift h-200 overflow-auto'>
+		<div className='tabs tabs-lift'>
 			<label className='tab'>
 				<input type='radio' name='my_tabs_4' defaultChecked />
 				<FontAwesomeIcon icon={faUserFriends} />
