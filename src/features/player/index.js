@@ -4,6 +4,7 @@ export { default as PlayerList } from './ui/PlayerList';
 export { default as PlayerRegisterForm } from './ui/PlayerRegisterForm';
 // hooks
 export { default as usePlayerRegistration } from './hooks/usePlayerRegistration';
+export { default as usePlayerSearch } from './hooks/usePlayerSearch';
 // model slice
 export { default as playerReducer } from './model/playerSlice';
 export * from './model/playerSlice';
