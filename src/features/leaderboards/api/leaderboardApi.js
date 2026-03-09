@@ -7,7 +7,7 @@ export const leaderboardApi = api.injectEndpoints({
 				url: `/leaderboards/top20/${id}`,
 				method: 'GET',
 			}),
-			providesTags: ['Player'],
+			providesTags: ['Leaderboards'],
 		}),
 	}),
 });

@@ -15,7 +15,7 @@ export const marketApi = api.injectEndpoints({
 				method: 'POST',
 				data: body,
 			}),
-			invalidatesTags: ['Players', 'Inventory', 'Player'],
+			invalidatesTags: ['Leaderboards', 'Inventory', 'Player'],
 		}),
 		sellItem: builder.mutation({
 			query: ({ playerId, ...body }) => ({
@@ -23,7 +23,7 @@ export const marketApi = api.injectEndpoints({
 				method: 'PUT',
 				data: body,
 			}),
-			invalidatesTags: ['Players', 'Inventory', 'Player'],
+			invalidatesTags: ['Leaderboards', 'Inventory', 'Player'],
 		}),
 	}),
 });
