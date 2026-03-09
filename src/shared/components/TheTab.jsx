@@ -1,13 +1,9 @@
-import { PlayerList } from '@/features/player';
-import { FriendList, FriendSearchForm, FriendSearchList } from '@/features/social';
-import { useSocialNavigation } from '@/shared';
+import { FriendList, FriendSearchList } from '@/features/social';
 import { faSearch, faUserAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
 function TheTab() {
-	const { data, state, actions } = useSocialNavigation();
-
 	return (
 		<div className='tabs tabs-lift'>
 			<label className='tab'>
@@ -26,17 +22,12 @@ function TheTab() {
 			<div className='tab-content bg-base-100 p-6'>Tab content 2</div>
 
 			<label className='tab'>
-				<input type='radio' name='my_tabs_4' onClick={() => actions.doLoadOtherPlayers()} />
+				<input type='radio' name='my_tabs_4' />
 				<FontAwesomeIcon icon={faSearch} />
 				Add Friends
 			</label>
 			<div className='tab-content bg-base-100 p-6'>
-				<FriendSearchList
-					otherPlayers={data.otherPlayers}
-					isUnitialized={state.isUninitialized}
-					isLoading={state.isOtherPlayersLoading}
-					doSearch={actions.doLoadOtherPlayers}
-				/>
+				<FriendSearchList />
 			</div>
 		</div>
 	);

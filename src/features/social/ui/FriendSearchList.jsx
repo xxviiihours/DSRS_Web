@@ -1,13 +1,16 @@
+import { usePlayerSearch } from '@/features/player';
 import { FriendSearchForm } from '@/features/social';
 import { TheLoaderSmall } from '@/shared';
 import React from 'react';
 
-function FriendSearchList({ otherPlayers, isUnitialized, isLoading, doSearch }) {
+function FriendSearchList() {
+	const { data, playerActions, playerState } = usePlayerSearch();
+
 	return (
 		<>
-			<FriendSearchForm search={doSearch} />
+			<FriendSearchForm search={playerActions.doSearchPlayers} />
 			<div className='h-165 overflow-auto left-scrollbar'>
-				{isUnitialized || isLoading ? (
+				{playerState.isUninitialized || playerState.isLoading ? (
 					<>
 						{Array.from({ length: 10 }).map((_, index) => (
 							<TheLoaderSmall key={index + 1} />
@@ -15,7 +18,7 @@ function FriendSearchList({ otherPlayers, isUnitialized, isLoading, doSearch }) 
 					</>
 				) : (
 					<>
-						{otherPlayers?.map((otherPlayer) => (
+						{data.otherPlayers?.map((otherPlayer) => (
 							<li key={otherPlayer.id} className='list-row grid grid-cols-5 gap-4 p-2 '>
 								<div className='col-span-1'>
 									<div className='flex'>

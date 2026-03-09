@@ -1,4 +1,4 @@
-import { useGetPlayersQuery, useLazyGetPlayersQuery } from '@/features/player';
+import { useLazyGetPlayersQuery } from '@/features/player';
 import { getApiErrorMessage } from '@/shared/utils/apiHelper';
 import React from 'react';
 

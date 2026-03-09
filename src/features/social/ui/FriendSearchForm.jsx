@@ -1,12 +1,9 @@
-import { useLazyGetPlayersQuery } from '@/features/player';
-import { getApiErrorMessage } from '@/shared';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useFormik } from 'formik';
 import React from 'react';
 
 function FriendSearchForm({ search }) {
-	const [getPlayers, { isLoading }] = useLazyGetPlayersQuery();
 	const formik = useFormik({
 		initialValues: {
 			search: '',
@@ -18,8 +15,8 @@ function FriendSearchForm({ search }) {
 
 	return (
 		<form onSubmit={formik.handleSubmit}>
-			<div className='join'>
-				<label className='input mb-4'>
+			<div className='join mb-4 w-full'>
+				<label className='input'>
 					<FontAwesomeIcon icon={faSearch} />
 					<input
 						type='search'
