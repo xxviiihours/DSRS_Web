@@ -86,7 +86,7 @@ function TheHeader() {
 						<li>
 							<a className='justify-between'>
 								Profile
-								<span className='badge'>New</span>
+								<span className='badge badge-secondary'>{player.name}</span>
 							</a>
 						</li>
 						<li>

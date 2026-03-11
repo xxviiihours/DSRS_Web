@@ -6,7 +6,7 @@ function FriendList() {
 		<>
 			<FriendSearchForm />
 			<div className='h-165 overflow-auto'>
-				{Array.from({ length: 100 }).map((_, index) => (
+				{Array.from({ length: 0 }).map((_, index) => (
 					<li key={index + 1} className='list-row grid grid-cols-5 gap-4 p-2 '>
 						<div className='col-span-1'>
 							<div className='flex'>
