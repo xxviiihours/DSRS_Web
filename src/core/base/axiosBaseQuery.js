@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const axiosBaseQuery =
-	({ baseUrl } = { baseUrl: '' }) =>
+	({ baseUrl }) =>
 	async ({ url, method, data, params, headers }) => {
 		try {
 			const result = await axios({
@@ -10,6 +10,7 @@ export const axiosBaseQuery =
 				data,
 				params,
 				headers,
+				withCredentials: true,
 			});
 
 			return { data: result.data };

@@ -3,7 +3,7 @@ import { axiosBaseQuery } from './base/axiosBaseQuery';
 
 const baseQueryWithRetry = retry(
 	async (args, api, extraOptions) => {
-		const result = await axiosBaseQuery({ baseUrl: 'http://localhost:5223' })(
+		const result = await axiosBaseQuery({ baseUrl: 'https://localhost:44387' })(
 			args,
 			api,
 			extraOptions,
