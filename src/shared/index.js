@@ -7,6 +7,7 @@ export { default as TheHeader } from './components/TheHeader';
 export { default as TheLoader } from './components/TheLoader';
 export { default as TheLoaderInfo } from './components/TheLoaderInfo';
 export { default as TheLoaderSmall } from './components/TheLoaderSmall';
+export { default as TheLoaderDefault } from './components/TheLoaderDefault';
 export { default as TheMenuDock } from './components/TheMenuDock';
 export { default as TheModal } from './components/TheModal';
 export { default as TheTab } from './components/TheTab';
