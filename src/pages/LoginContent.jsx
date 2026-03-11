@@ -1,13 +1,13 @@
 import { PlayerRegisterForm } from '@/features/player';
-import { usePlayerSync } from '@/shared';
+import { useAuthProvider } from '@/providers';
 import React from 'react';
 import { Outlet } from 'react-router';
 
 function LoginContent() {
-	const { id } = usePlayerSync();
+	const { player } = useAuthProvider();
 
 	// will replace this with the actual auth provider
-	if (!id) {
+	if (!player) {
 		return <PlayerRegisterForm />;
 	}
 
