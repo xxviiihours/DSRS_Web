@@ -1,3 +1,4 @@
+import { LoginForm } from '@/features/Account';
 import { PlayerRegisterForm } from '@/features/player';
 import { useAuthProvider } from '@/providers';
 import React from 'react';
@@ -8,7 +9,7 @@ function LoginContent() {
 
 	// will replace this with the actual auth provider
 	if (!player) {
-		return <PlayerRegisterForm />;
+		return <LoginForm />;
 	}
 
 	return <Outlet />;
