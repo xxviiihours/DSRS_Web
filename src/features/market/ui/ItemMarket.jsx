@@ -52,7 +52,7 @@ function ItemMarket({ data }) {
 			<TheModal show={show} onClose={() => setShow(false)} size='large'>
 				<PriceHistoryChart player={player} item={data.item} />
 				<div className='divider'></div>
-				<div className='modal-action'>
+				<div className='modal-action w-full'>
 					<TransactionForm data={data} />
 				</div>
 			</TheModal>

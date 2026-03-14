@@ -1,6 +1,5 @@
 import { useGetTop20PlayersByIdQuery } from '@/features/leaderboards/api/leaderboardApi';
 import { skipToken } from '@reduxjs/toolkit/query';
-import React from 'react';
 import { useSelector } from 'react-redux';
 
 const useLeaderboard = () => {

@@ -1,6 +1,7 @@
 import { clearPlayer } from '@/features/player';
+import { usePlayerSync } from '@/shared';
 import { currencyFormat } from '@/shared/utils/valueFormatter';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
@@ -57,7 +58,7 @@ function TheHeader() {
 						<div className='card-body'>
 							<span className='text-lg font-bold'>Quantity: {currentItem?.quantity ?? 0}</span>
 							<span className='text-info font-semibold'>
-								Purchase Limit: {player.purchaseLimit}/100
+								Purchase Limit: {player?.purchaseLimit ?? 0}/100
 							</span>
 							<div className='card-actions'>
 								<button
@@ -86,7 +87,7 @@ function TheHeader() {
 						<li>
 							<a className='justify-between'>
 								Profile
-								<span className='badge badge-secondary'>{player.name}</span>
+								<span className='badge badge-secondary'>{player?.name}</span>
 							</a>
 						</li>
 						<li>
