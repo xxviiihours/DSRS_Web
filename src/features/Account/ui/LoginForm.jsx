@@ -1,3 +1,4 @@
+import useGuestLogin from '@/features/Account/hooks/useGuestLogin';
 import {
 	confirmPasswordValidator,
 	emailValidator,
@@ -16,6 +17,7 @@ const loginValidationScheme = yup.object({
 });
 
 function LoginForm() {
+	const { state, actions } = useGuestLogin();
 	const formik = useFormik({
 		initialValues: {
 			email: '',
@@ -26,27 +28,23 @@ function LoginForm() {
 
 		onSubmit: async (values, { setSubmitting, resetForm }) => {
 			setSubmitting(true);
-			const payload = { ...values, balance: 1000 };
-			await actions.doRegister(payload);
-
-			resetForm();
-			setSubmitting(false);
 		},
 	});
 
+	const showAlert = state.isSuccess || state.isError;
+
 	return (
 		<>
-			{/* {showAlert && (
+			{showAlert && (
 				<TheAlert
 					show
 					succeeded={state.isSuccess}
 					message={state.message}
 					onClose={actions.reset}
 				/>
-			)} */}
+			)}
 			<TheModal show={true} onClose={formik.handleReset}>
 				<h1 className='font-bold text-lg py-10'>Welcome!</h1>
-				{/* <p className='py-4'>What should we call you?</p> */}
 
 				<form
 					onSubmit={formik.handleSubmit}
@@ -118,9 +116,13 @@ function LoginForm() {
 						</label>
 					</div>
 					<div className='form-group w-75 flex flex-col items-end'>
-						<a className='link link-hover text-right text-sm italic px-4 text-info'>
-							Continue as guest
-						</a>
+						<button
+							type='button'
+							className='btn btn-link btn-xs text-right text-sm italic px-4 text-info'
+							onClick={() => actions.doGuestLogin()}
+						>
+							Login as guest
+						</button>
 					</div>
 					<div className='form-group w-full'>
 						<button type='submit' className='btn btn-block w-75' disabled={true}>
