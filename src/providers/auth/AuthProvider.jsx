@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
 	const doInitAuthentication = async () => {
 		try {
 			const result = await initAuthentication().unwrap();
-			dispatch(setPlayer(result));
+			dispatch(setPlayer(result.player));
 		} catch (err) {
 		} finally {
 			setLoading(false);

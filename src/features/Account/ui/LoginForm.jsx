@@ -3,7 +3,6 @@ import {
 	confirmPasswordValidator,
 	emailValidator,
 	passwordValidator,
-	TheAlert,
 	TheModal,
 } from '@/shared';
 import { useFormik } from 'formik';
@@ -18,6 +17,7 @@ const loginValidationScheme = yup.object({
 
 function LoginForm() {
 	const { state, actions } = useGuestLogin();
+
 	const formik = useFormik({
 		initialValues: {
 			email: '',
@@ -31,18 +31,12 @@ function LoginForm() {
 		},
 	});
 
-	const showAlert = state.isSuccess || state.isError;
+	const handleGuestLogin = async () => {
+		await actions.doGuestLogin();
+	};
 
 	return (
 		<>
-			{showAlert && (
-				<TheAlert
-					show
-					succeeded={state.isSuccess}
-					message={state.message}
-					onClose={actions.reset}
-				/>
-			)}
 			<TheModal show={true} onClose={formik.handleReset}>
 				<h1 className='font-bold text-lg py-10'>Welcome!</h1>
 
@@ -119,19 +113,46 @@ function LoginForm() {
 						<button
 							type='button'
 							className='btn btn-link btn-xs text-right text-sm italic px-4 text-info'
-							onClick={() => actions.doGuestLogin()}
+							onClick={handleGuestLogin}
+							disabled={state.isLoading}
 						>
-							Login as guest
+							{state.isLoading ? (
+								<>
+									<span className='loading loading-dots loading-sm' /> Creating...
+								</>
+							) : (
+								'Login as guest'
+							)}
 						</button>
 					</div>
 					<div className='form-group w-full'>
-						<button type='submit' className='btn btn-block w-75' disabled={true}>
-							{true ? 'Loading...' : 'Continue'}
+						<button
+							type='submit'
+							className='btn btn-block w-75  btn-primary'
+							disabled={formik.isSubmitting}
+						>
+							{formik.isSubmitting ? (
+								<>
+									<span className='loading loading-spinner loading-sm' /> Logging in...
+								</>
+							) : (
+								'Login'
+							)}
 						</button>
 					</div>
 					<div className='form-group w-full'>
-						<button type='button' className='btn btn-block w-75' disabled={true}>
-							{true ? 'Loading...' : 'Continue'}
+						<button
+							type='button'
+							className='btn btn-block w-75 btn-soft'
+							disabled={formik.isSubmitting}
+						>
+							{true ? (
+								<>
+									<span className='loading loading-spinner loading-sm' /> Loading...
+								</>
+							) : (
+								'Sign up'
+							)}
 						</button>
 					</div>
 				</form>

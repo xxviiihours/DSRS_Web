@@ -4,7 +4,6 @@ import {
 	emailValidator,
 	nameValidator,
 	passwordValidator,
-	TheAlert,
 	TheModal,
 } from '@/shared';
 import { useFormik } from 'formik';
@@ -37,19 +36,8 @@ function PlayerRegisterForm() {
 		},
 	});
 
-	const showAlert = state.isSuccess || state.isError;
-
-	// if (player) return null;
 	return (
 		<>
-			{showAlert && (
-				<TheAlert
-					show
-					succeeded={state.isSuccess}
-					message={state.message}
-					onClose={actions.reset}
-				/>
-			)}
 			<TheModal show={true} onClose={formik.handleReset}>
 				<h3 className='font-bold text-lg'>Welcome!</h3>
 				<p className='py-4'>What should we call you?</p>

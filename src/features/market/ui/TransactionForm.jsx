@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useFormik } from 'formik';
-import { TheAlert } from '@/shared';
 import { useTransaction } from '@/features/market';
 
 function TransactionForm({ data }) {
@@ -31,18 +30,8 @@ function TransactionForm({ data }) {
 		formik.resetForm();
 	};
 
-	const showAlert = state.isSuccess || state.isError;
 	return (
 		<>
-			{showAlert && (
-				<TheAlert
-					show
-					succeeded={state.isSuccess}
-					message={state.message}
-					onClose={actions.reset}
-				/>
-			)}
-
 			<form className='w-full'>
 				<div className='grid grid-cols-2 w-full gap-4'>
 					<label className='floating-label col-span-full'>
@@ -71,18 +60,18 @@ function TransactionForm({ data }) {
 					<button
 						type='button'
 						className='btn btn-success btn-soft btn-block'
-						disabled={state.type === 'BUY' && state.isLoading}
+						disabled={state.purchaseLoading}
 						onClick={handlePurchase}
 					>
-						{state.type === 'BUY' ? 'Loading' : 'Buy'}
+						{state.purchaseLoading ? 'Loading' : 'Buy'}
 					</button>
 					<button
 						type='button'
 						className='btn btn-error btn-soft btn-block'
-						disabled={!transaction.canSell || (state.type === 'SELL' && state.isLoading)}
+						disabled={!transaction.canSell || state.sellLoading}
 						onClick={handleSell}
 					>
-						{state.type === 'SELL' ? 'Loading' : 'Sell'}
+						{state.sellLoading ? 'Loading' : 'Sell'}
 					</button>
 				</div>
 			</form>
