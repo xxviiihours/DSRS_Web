@@ -22,3 +22,6 @@ export * from './utils/apiHelper';
 export * from './utils/colorHelper';
 export * from './utils/valueFormatter';
 export * from './utils/inputValidationHelper';
+
+export { default as alertReducer } from './models/alertSlice';
+export * from './models/alertSlice';
