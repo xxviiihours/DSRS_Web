@@ -4,10 +4,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const usePlayerSync = () => {
-	const playerId = useSelector((state) => state.player?.id);
+	const id = useSelector((state) => state.player?.id);
 	const dispatch = useDispatch();
 	const { data: updatedPlayer, isFetching } = useGetPlayerByIdQuery(
-		playerId ? { id: playerId } : skipToken,
+		id ? { id: id } : skipToken,
 	);
 
 	useEffect(() => {
@@ -17,7 +17,7 @@ const usePlayerSync = () => {
 	}, [updatedPlayer]);
 
 	return {
-		id: playerId,
+		id,
 		data: updatedPlayer,
 		state: {
 			isFetching,
