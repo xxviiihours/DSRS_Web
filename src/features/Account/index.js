@@ -1,5 +1,5 @@
 export { default as LoginForm } from './ui/LoginForm';
 
-export { default as useGuestLogin } from './hooks/useGuestLogin';
+export { default as useAccountLogin } from './hooks/useAccountLogin';
 
 export * from './api/accountApi';
