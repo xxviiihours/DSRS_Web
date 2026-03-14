@@ -7,16 +7,9 @@ export const authApi = api.injectEndpoints({
 				url: `/auth/init`,
 				method: 'GET',
 			}),
-			providesTags: ['Auth'],
-		}),
-		guestLogin: builder.mutation({
-			query: () => ({
-				url: `/auth/guest`,
-				method: 'POST',
-			}),
-			providesTags: ['GuestLogin'],
+			providesTags: ['Player'],
 		}),
 	}),
 });
 
-export const { useLazyInitAuthenticationQuery, useGuestLoginMutation } = authApi;
+export const { useLazyInitAuthenticationQuery } = authApi;

@@ -1,9 +1,8 @@
 import { setPlayer } from '@/features/player';
+import { AuthContext } from '@/providers';
 import { useLazyInitAuthenticationQuery } from '@/providers/auth/api/authApi';
-import { createContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
 	const player = useSelector((state) => state.player);
@@ -17,7 +16,6 @@ export const AuthProvider = ({ children }) => {
 			const result = await initAuthentication().unwrap();
 			dispatch(setPlayer(result));
 		} catch (err) {
-			console.error('Auth init failed', err);
 		} finally {
 			setLoading(false);
 		}
