@@ -7,9 +7,17 @@ export const accountApi = api.injectEndpoints({
 				url: `/auth/guest`,
 				method: 'POST',
 			}),
-			providesTags: ['Player'],
+			invalidatesTags: ['Player'],
+		}),
+		userLogin: builder.mutation({
+			query: (body) => ({
+				url: '/auth/login',
+				method: 'POST',
+				data: body,
+			}),
+			invalidatesTags: ['Player'],
 		}),
 	}),
 });
 
-export const { useGuestLoginMutation } = accountApi;
+export const { useGuestLoginMutation, useUserLoginMutation } = accountApi;
