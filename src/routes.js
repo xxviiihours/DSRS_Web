@@ -2,27 +2,36 @@ import { createBrowserRouter } from 'react-router';
 import { lazy } from 'react';
 
 const LoginContent = lazy(() => import('./pages/LoginContent'));
-const HomeComponent = lazy(() => import('./pages/HomeContent'));
-const InventoryComponent = lazy(() => import('./pages/InventoryContent'));
-const PlayerComponent = lazy(() => import('./pages/PlayerContent'));
+
+const AuthGuard = lazy(() => import('./guards/AuthGuard'));
+const HomeContent = lazy(() => import('./pages/HomeContent'));
+const InventoryContent = lazy(() => import('./pages/InventoryContent'));
+const PlayerContent = lazy(() => import('./pages/PlayerContent'));
 
 export const routes = createBrowserRouter([
 	{
-		path: '/',
+		path: '/login',
 		Component: LoginContent,
+	},
+	{
+		Component: AuthGuard,
 		children: [
 			{
 				path: '/',
 				index: true,
-				Component: HomeComponent,
+				Component: HomeContent,
+			},
+			{
+				path: '/home',
+				Component: HomeContent,
 			},
 			{
 				path: '/inventory',
-				Component: InventoryComponent,
+				Component: InventoryContent,
 			},
 			{
 				path: '/player',
-				Component: PlayerComponent,
+				Component: PlayerContent,
 			},
 		],
 	},
