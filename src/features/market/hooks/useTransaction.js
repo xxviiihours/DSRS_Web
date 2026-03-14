@@ -1,26 +1,24 @@
 import { usePurchaseItemMutation, useSellItemMutation } from '@/features/market';
+import { showAlert } from '@/shared';
 import { getApiErrorMessage } from '@/shared/utils/apiHelper';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const useTransaction = ({ data }) => {
 	const player = useSelector((state) => state.player);
-
-	const [purchaseItem] = usePurchaseItemMutation();
-	const [sellItem] = useSellItemMutation();
-	const [state, setState] = useState({
-		type: '',
-		status: 'idle',
-		message: '',
-	});
+	const dispatch = useDispatch();
+	const [purchaseItem, { isLoading: purchaseLoading, isError: purchaseError }] =
+		usePurchaseItemMutation();
+	const [sellItem, { isLoading: sellLoading, isError: sellError }] = useSellItemMutation();
+	const [type, setType] = useState('');
 
 	const executeTransaction = async (trigger, { quantity, itemId }, type, successMessage) => {
 		try {
-			setState({ status: 'loading', type });
+			setType(type);
 			await trigger({ quantity, itemId, playerId: player.id }).unwrap();
-			setState({ status: 'success', message: successMessage });
+			dispatch(showAlert({ message: successMessage, succeeded: true }));
 		} catch (error) {
-			setState({ status: 'error', message: getApiErrorMessage(error) });
+			dispatch(showAlert({ message: getApiErrorMessage(error), succeeded: false }));
 		}
 	};
 
@@ -29,16 +27,6 @@ const useTransaction = ({ data }) => {
 
 	const doSell = async ({ quantity, itemId }) =>
 		await executeTransaction(sellItem, { quantity, itemId }, 'SELL', 'Transaction completed!');
-
-	const reset = () => {
-		setState({ type: '', status: 'idle', message: '' });
-	};
-
-	const { type, status, message } = state;
-
-	const isLoading = status === 'loading';
-	const isSuccess = status === 'success';
-	const isError = status === 'error';
 
 	const item = player.inventoryItems.find((i) => i.itemId === data.item.id);
 	const canSell = item !== undefined;
@@ -55,16 +43,14 @@ const useTransaction = ({ data }) => {
 			quantity: item?.quantity ?? 0,
 		},
 		state: {
-			type,
-			message,
-			isLoading,
-			isSuccess,
-			isError,
+			purchaseLoading,
+			purchaseError,
+			sellLoading,
+			sellError,
 		},
 		actions: {
 			doPurchase,
 			doSell,
-			reset,
 		},
 	};
 };
