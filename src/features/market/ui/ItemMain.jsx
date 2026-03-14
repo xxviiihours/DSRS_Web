@@ -1,4 +1,4 @@
-import { TransactionForm } from '@/features/market';
+import { TransactionForm, useInitDailyPricesQuery } from '@/features/market';
 import { useItemNavigation, currencyFormat, TheLoaderInfo } from '@/shared';
 import image from '@/assets/images/fantasy_item_3.png';
 import React, { useRef } from 'react';
@@ -63,11 +63,15 @@ function ItemInfo({ data, children }) {
 	);
 }
 
-function ItemMain({ prices, isFetching }) {
+function ItemMain({ player }) {
 	const carouselRef = useRef(null);
 
+	const { data, isLoading, isUninitialized } = useInitDailyPricesQuery(
+		player?.id ? { id: player.id } : skipToken,
+	);
+
 	const { nextItem, prevItem } = useItemNavigation({
-		data: prices,
+		data: data?.dailyPrices,
 		carouselRef,
 	});
 
@@ -76,11 +80,11 @@ function ItemMain({ prices, isFetching }) {
 			ref={carouselRef}
 			className='carousel w-full h-100 col-span-full md:col-span-full lg:col-span-2 relative'
 		>
-			{isFetching ? (
+			{isLoading || isUninitialized ? (
 				<TheLoaderInfo />
 			) : (
 				<>
-					{prices?.map((price, index) => (
+					{data?.dailyPrices?.map((price, index) => (
 						<div
 							key={price.id}
 							id={`slide${index + 1}`}

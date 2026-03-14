@@ -1,19 +1,23 @@
 import { InventoryItem } from '@/features/inventory';
 import { ItemMarket, useInitDailyPricesQuery } from '@/features/market';
 import { BaseLayout, ContentLayout } from '@/layout';
+import { skipToken } from '@reduxjs/toolkit/query';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
 function InventoryContent() {
-	const { id, inventoryItems } = useSelector((state) => state.player);
-	const { data, isFetching } = useInitDailyPricesQuery(id ? { id: id } : skipToken);
+	const player = useSelector((state) => state.player);
+	const { data } = useInitDailyPricesQuery(player?.id ? { id: player?.id } : skipToken);
+
 	return (
 		<BaseLayout>
 			<ContentLayout>
 				<div className='divider font-bold'>Inventory</div>
 				<div className='grid lg:grid-rows-1 grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 md:h-115 lg:h-110'>
-					{inventoryItems.length > 0 ? (
-						inventoryItems.map((item, index) => <InventoryItem key={index} data={item} />)
+					{player?.inventoryItems.length > 0 ? (
+						player?.inventoryItems.map((item, index) => (
+							<InventoryItem key={index} data={item} />
+						))
 					) : (
 						<div className='grid col-span-full text-center h-115 content-center'>
 							<h6>NO ITEMS AVAILABLE</h6>
