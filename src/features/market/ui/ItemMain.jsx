@@ -90,7 +90,7 @@ function ItemMain({ player }) {
 							id={`slide${index + 1}`}
 							className='carousel-item relative w-full h-full '
 						>
-							<div className='card card-side bg-base-100 w-full h-full'>
+							<div className='card card-side bg-base-100 border-2 border-base-300 w-full h-full'>
 								<ItemInfo data={price}>
 									<TransactionForm data={price} />
 								</ItemInfo>

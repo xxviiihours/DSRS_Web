@@ -5,7 +5,7 @@ import React from 'react';
 
 function TheTab() {
 	return (
-		<div className='tabs tabs-lift'>
+		<div className='tabs tabs-border'>
 			<label className='tab'>
 				<input type='radio' name='my_tabs_4' defaultChecked />
 				<FontAwesomeIcon icon={faUserFriends} />

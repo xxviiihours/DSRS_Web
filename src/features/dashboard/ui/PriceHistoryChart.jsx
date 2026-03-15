@@ -17,7 +17,7 @@ function PriceHistoryChart({ item, player }) {
 					style={{
 						width: '100%',
 						aspectRatio: 1.718,
-						height: '300px',
+						height: '380px',
 					}}
 					responsive
 					data={chartDataSet}

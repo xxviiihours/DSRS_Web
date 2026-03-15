@@ -18,7 +18,7 @@ function ItemMarket({ data }) {
 					setShow(true);
 				}}
 			>
-				<div className='card w-auto bg-base-100 card-xs shadow-sm'>
+				<div className='card w-auto bg-base-100 border-2 border-base-300 card-xs shadow-sm'>
 					<figure>
 						<img src={image} className='w-100' alt='Shoes' />
 					</figure>

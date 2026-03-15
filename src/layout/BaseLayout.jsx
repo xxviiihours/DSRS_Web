@@ -7,7 +7,7 @@ import React from 'react';
 
 function BaseLayout({ children }) {
 	return (
-		<div className='bg-base-200 grid grid-cols-3 lg:grid-cols-5 auto-rows-max  gap-2'>
+		<div className='bg-base-100 grid grid-cols-3 lg:grid-cols-5 auto-rows-max  gap-2'>
 			{/* header */}
 			<HeaderLayout>
 				<TheHeader />

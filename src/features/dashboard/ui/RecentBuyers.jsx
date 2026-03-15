@@ -3,7 +3,7 @@ import React from 'react';
 
 function RecentBuyers({ buyers, isFetching = true }) {
 	return (
-		<div className='card bg-base-100 col-span-1 md:col-span-2 lg:col-span-1 shadow-sm w-auto content-center'>
+		<div className='card bg-base-100 border-2 border-base-300 col-span-1 md:col-span-2 lg:col-span-1 shadow-sm w-auto content-center'>
 			<div className='card-body p-0 pt-4'>
 				<h2 className='card-title justify-center mb-4'>RECENT BUYERS</h2>
 				{isFetching ? (
