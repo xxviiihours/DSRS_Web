@@ -28,7 +28,7 @@ const useTransaction = ({ data }) => {
 	const doSell = async ({ quantity, itemId }) =>
 		await executeTransaction(sellItem, { quantity, itemId }, 'SELL', 'Transaction completed!');
 
-	const item = player.inventoryItems.find((i) => i.itemId === data.item.id);
+	const item = player.inventoryItems.find((i) => i.itemId === data?.item?.id);
 	const canSell = item !== undefined;
 	const maxPurchase = data.price > 0 ? Number.parseInt(player.balance / data.price) : 0;
 

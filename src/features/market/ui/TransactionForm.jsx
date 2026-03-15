@@ -2,7 +2,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { useTransaction } from '@/features/market';
 
-function TransactionForm({ data }) {
+function TransactionForm({ data, type = 'default' }) {
 	const { transaction, state, actions } = useTransaction({ data });
 
 	const formik = useFormik({
@@ -39,7 +39,7 @@ function TransactionForm({ data }) {
 						<input
 							name='quantity'
 							type='number'
-							className='input input-sm w-30 mb-1'
+							className='input input-xs w-30 mb-1'
 							min={0}
 							max={transaction.max}
 							value={formik.values.quantity}
@@ -57,22 +57,37 @@ function TransactionForm({ data }) {
 						value={formik.values.quantity}
 						onChange={formik.handleChange}
 					/>
-					<button
-						type='button'
-						className='btn btn-success btn-soft btn-block'
-						disabled={state.purchaseLoading}
-						onClick={handlePurchase}
-					>
-						{state.purchaseLoading ? 'Loading' : 'Buy'}
-					</button>
-					<button
-						type='button'
-						className='btn btn-error btn-soft btn-block'
-						disabled={!transaction.canSell || state.sellLoading}
-						onClick={handleSell}
-					>
-						{state.sellLoading ? 'Loading' : 'Sell'}
-					</button>
+					{type === 'default' && (
+						<>
+							<button
+								type='button'
+								className='btn btn-success btn-soft btn-block btn-sm'
+								disabled={state.purchaseLoading}
+								onClick={handlePurchase}
+							>
+								{state.purchaseLoading ? 'Loading' : 'Buy'}
+							</button>
+							<button
+								type='button'
+								className='btn btn-error btn-soft btn-block btn-sm'
+								disabled={!transaction.canSell || state.sellLoading}
+								onClick={handleSell}
+							>
+								{state.sellLoading ? 'Loading' : 'Sell'}
+							</button>
+						</>
+					)}
+
+					{type === 'sell-only' && (
+						<button
+							type='button'
+							className='btn btn-info btn-soft btn-block btn-sm col-span-full'
+							disabled={!transaction.canSell || state.sellLoading}
+							onClick={handleSell}
+						>
+							{state.sellLoading ? 'Selling...' : 'Sell this item'}
+						</button>
+					)}
 				</div>
 			</form>
 		</>
