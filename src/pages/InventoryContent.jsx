@@ -1,23 +1,20 @@
-import { InventoryItem } from '@/features/inventory';
-import { ItemMarket, useInitDailyPricesQuery } from '@/features/market';
+import { InventoryItem, useCalculateItem } from '@/features/inventory';
+import { ItemMarket } from '@/features/market';
 import { BaseLayout, ContentLayout } from '@/layout';
-import { skipToken } from '@reduxjs/toolkit/query';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
 function InventoryContent() {
 	const player = useSelector((state) => state.player);
-	const { data } = useInitDailyPricesQuery(player?.id ? { id: player?.id } : skipToken);
+	const { data, isLoading } = useCalculateItem({ id: player.id });
 
 	return (
 		<BaseLayout>
 			<ContentLayout>
 				<div className='divider font-bold'>Inventory</div>
-				<div className='grid lg:grid-rows-1 grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 md:h-115 lg:h-110'>
-					{player?.inventoryItems.length > 0 ? (
-						player?.inventoryItems.map((item, index) => (
-							<InventoryItem key={index} data={item} />
-						))
+				<div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4'>
+					{data.itemDetails.length > 0 ? (
+						data.itemDetails.map((item, index) => <InventoryItem key={index} data={item} />)
 					) : (
 						<div className='grid col-span-full text-center h-115 content-center'>
 							<h6>NO ITEMS AVAILABLE</h6>
@@ -26,7 +23,7 @@ function InventoryContent() {
 				</div>
 				<div className='divider font-bold'>Market</div>
 				<div className='grid grid-rows-1 lg:grid-rows-1 grid-cols-1 md:grid-cols-6 lg:grid-cols-6 gap-2'>
-					{data?.dailyPrices?.map((dailyPrice, index) => (
+					{data.marketDetails?.map((dailyPrice, index) => (
 						<ItemMarket key={index} data={dailyPrice} />
 					))}
 				</div>
