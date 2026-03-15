@@ -1,6 +1,6 @@
 import { PlayerRank, useLeaderboard } from '@/features/leaderboards';
 import { currencyFormat, TheLoaderSmall } from '@/shared';
-import { faCrown } from '@fortawesome/free-solid-svg-icons';
+import { faCrown, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
@@ -8,8 +8,11 @@ function Top20Players() {
 	const { currentPlayer, topPlayers, state } = useLeaderboard();
 	return (
 		<>
-			<h2 className='p-4 pb-2 text-xl opacity-60 font-semibold'>Top #20 Ranking Players</h2>
-			<ul className='list bg-base-100 rounded-box shadow-md h-165 overflow-auto'>
+			<h2 className='px-4 py-4 text-xl font-semibold'>
+				<FontAwesomeIcon icon={faTrophy} /> Global Leaderboard
+			</h2>
+			<span className='px-4 pb-4 text-xs opacity-60'>Top ranking players by balance</span>
+			<ul className='list bg-base-100 rounded-box shadow-md max-h-168 overflow-auto'>
 				{state.isLoading ? (
 					<>
 						{Array.from({ length: 10 }).map((_, index) => (
