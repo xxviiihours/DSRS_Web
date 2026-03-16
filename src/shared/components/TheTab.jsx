@@ -5,7 +5,7 @@ import React from 'react';
 
 function TheTab() {
 	return (
-		<div className='tabs tabs-border'>
+		<div className='tabs tabs-border h-auto'>
 			<label className='tab'>
 				<input type='radio' name='my_tabs_4' defaultChecked />
 				<FontAwesomeIcon icon={faUserFriends} />
@@ -26,7 +26,7 @@ function TheTab() {
 				<FontAwesomeIcon icon={faSearch} />
 				Add Friends
 			</label>
-			<div className='tab-content bg-base-100 p-6'>
+			<div className='tab-content bg-base-100 p-2'>
 				<FriendSearchList />
 			</div>
 		</div>

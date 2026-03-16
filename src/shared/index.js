@@ -11,6 +11,7 @@ export { default as TheLoaderDefault } from './components/TheLoaderDefault';
 export { default as TheMenuDock } from './components/TheMenuDock';
 export { default as TheModal } from './components/TheModal';
 export { default as TheTab } from './components/TheTab';
+export { default as TheTabContainer } from './components/TheTabContainer';
 
 // shared hooks
 export { default as useItemNavigation } from './hooks/useItemNavigation';
