@@ -9,7 +9,7 @@ function FriendSearchList() {
 	return (
 		<>
 			<FriendSearchForm search={playerActions.doSearchPlayers} />
-			<div className='h-165 overflow-auto left-scrollbar'>
+			<div className='h-165 overflow-y-auto scrollbar-auto-hide'>
 				{playerState.isUninitialized || playerState.isLoading ? (
 					<>
 						{Array.from({ length: 10 }).map((_, index) => (

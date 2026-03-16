@@ -19,7 +19,7 @@ function TheHeader() {
 	const currentItem = player?.inventoryItems.find((p) => p.itemId === item?.id);
 
 	return (
-		<div className='navbar bg-base-100 border-2 border-base-300 flex justify-between gap-2'>
+		<div className=' bg-base-100 border-2 border-base-300 flex justify-between p-1'>
 			<div className='flex flex-1'>
 				<a className='btn btn-ghost text-xl' onClick={() => navigate('/')}>
 					Daily Stock Redistribution System
