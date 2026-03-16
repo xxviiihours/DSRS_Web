@@ -16,6 +16,7 @@ export { default as TheTab } from './components/TheTab';
 export { default as useItemNavigation } from './hooks/useItemNavigation';
 export { default as usePlayerSync } from './hooks/usePlayerSync';
 export { default as useSocialNavigation } from './hooks/useSocialNavigation';
+export { default as useThemeObserver } from './hooks/useThemeObserver';
 
 // shared utils
 export * from './utils/apiHelper';
