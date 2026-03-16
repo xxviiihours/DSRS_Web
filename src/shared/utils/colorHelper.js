@@ -1,8 +1,7 @@
 export const getDaisyUIColor = (colorName) => {
-	if (typeof window !== 'undefined') {
-		// Access the color variable from the document's computed style
-		const color = getComputedStyle(document.documentElement).getPropertyValue(colorName);
-		return color ? color.trim() : '#000000'; // Default to black if not found
-	}
-	return '#000000';
+	if (typeof window === 'undefined') return '#000000';
+
+	return (
+		getComputedStyle(document.documentElement).getPropertyValue(colorName).trim() || '#000000'
+	);
 };
