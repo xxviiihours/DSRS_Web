@@ -1,11 +1,18 @@
 import React from 'react';
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
-import { currencyFormat, getDaisyUIColor, TheChart, TheLoader } from '@/shared';
+import {
+	currencyFormat,
+	getDaisyUIColor,
+	TheChart,
+	TheLoader,
+	useThemeObserver,
+} from '@/shared';
 import { useChartData } from '@/features/dashboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowTrendDown, faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
 
 function PriceHistoryChart({ item, player }) {
+	useThemeObserver();
 	const { chartDataSet, state } = useChartData({ itemId: item?.id, playerId: player.id });
 	return (
 		<TheChart>
@@ -24,9 +31,14 @@ function PriceHistoryChart({ item, player }) {
 				>
 					<CartesianGrid
 						stroke={getDaisyUIColor('--color-base-content')}
+						// stroke={primary}
 						strokeDasharray='5 5'
 					/>
-					<XAxis dataKey='date' stroke={getDaisyUIColor('--color-base-content')} />
+					<XAxis
+						dataKey='date'
+						stroke={getDaisyUIColor('--color-base-content')}
+						// stroke={primary}
+					/>
 					<YAxis
 						domain={['auto', 'auto']}
 						tickFormatter={(v) => item.basePrice + v}
