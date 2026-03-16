@@ -20,8 +20,6 @@ const useChartData = ({ itemId, playerId }) => {
 					originalPrice: item.basePrice,
 					currentPrice: item.previousPrice,
 					percentage: item.percentage,
-					fill:
-						diff >= 0 ? getDaisyUIColor('--color-success') : getDaisyUIColor('--color-error'),
 				};
 			});
 			setChartData(chartData);

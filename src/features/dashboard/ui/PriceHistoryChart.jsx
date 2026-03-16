@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, Rectangle, Tooltip, XAxis, YAxis } from 'recharts';
 import {
 	currencyFormat,
 	getDaisyUIColor,
@@ -24,7 +24,7 @@ function PriceHistoryChart({ item, player }) {
 					style={{
 						width: '100%',
 						aspectRatio: 1.718,
-						height: '380px',
+						height: '345px',
 					}}
 					responsive
 					data={chartDataSet}
@@ -44,14 +44,20 @@ function PriceHistoryChart({ item, player }) {
 						tickFormatter={(v) => item.basePrice + v}
 						stroke={getDaisyUIColor('--color-base-content')}
 					/>
-					<Bar dataKey='value' fill={getDaisyUIColor('--color-base-content')} />
+					<Bar dataKey='value' shape={customBarShape} />
 
-					<Tooltip cursor={{ fill: 'rgba(255,255,255,0.04)' }} content={CustomTooltip} />
+					<Tooltip cursor={false} content={CustomTooltip} />
 				</BarChart>
 			)}
 		</TheChart>
 	);
 }
+
+const customBarShape = (props) => {
+	const fill =
+		props.value >= 0 ? getDaisyUIColor('--color-success') : getDaisyUIColor('--color-error');
+	return <Rectangle {...props} fill={fill} />;
+};
 
 const CustomTooltip = ({ active, payload, label }) => {
 	if (!active || !payload || payload.length === 0) return null;
@@ -60,7 +66,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 	const isPositive = data.percentage >= 0;
 	const currentPrice = data.currentPrice;
 	return (
-		<div className='bg-base-100 text-base-content px-4 py-2 rounded-2xl'>
+		<div className='bg-base-200 px-4 py-2 rounded-2xl'>
 			<div className='text-xs text-base-content mb-1'>{label}</div>
 			<div
 				className={`text-sm font-semibold slashed-zero tabular-nums font-mono ${isPositive ? 'text-green-400' : 'text-red-400'} `}
