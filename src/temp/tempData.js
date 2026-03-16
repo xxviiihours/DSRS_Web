@@ -75,3 +75,33 @@ export const prototypeData = [
 		date: '2026-02-11',
 	},
 ];
+
+export const generatePerformanceData = () => {
+	const data = [];
+	let balance = 10000;
+
+	for (let i = 30; i >= 0; i--) {
+		const date = new Date();
+		date.setDate(date.getDate() - i);
+
+		const change = (Math.random() - 0.4) * 500;
+		balance = Math.max(5000, balance + change);
+
+		data.push({
+			date: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+			balance: Math.floor(balance),
+			profit: Math.floor(change),
+		});
+	}
+
+	return data;
+};
+
+export const generateWeeklyActivity = () => {
+	const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+	return days.map((day) => ({
+		day,
+		trades: Math.floor(Math.random() * 20) + 5,
+		profit: Math.floor(Math.random() * 1000) - 300,
+	}));
+};
