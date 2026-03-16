@@ -1,18 +1,18 @@
 import { PlayerRank, useLeaderboard } from '@/features/leaderboards';
 import { currencyFormat, TheLoaderSmall } from '@/shared';
-import { faCrown, faTrophy } from '@fortawesome/free-solid-svg-icons';
+import { faCrown, faMedal, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
 function Top20Players() {
 	const { currentPlayer, topPlayers, state } = useLeaderboard();
 	return (
-		<>
+		<div className=''>
 			<h2 className='px-4 py-4 text-xl font-semibold'>
 				<FontAwesomeIcon icon={faTrophy} /> Global Leaderboard
 			</h2>
 			<span className='px-4 pb-4 text-xs opacity-60'>Top ranking players by balance</span>
-			<ul className='list bg-base-100 rounded-box shadow-md max-h-168 overflow-auto'>
+			<ul className='list bg-base-100 rounded-box shadow-md max-h-159 overflow-auto'>
 				{state.isLoading ? (
 					<>
 						{Array.from({ length: 10 }).map((_, index) => (
@@ -42,13 +42,13 @@ function Top20Players() {
 								</div>
 								<div className='list-col-grow	col-end'>
 									{player.rank === 1 && (
-										<FontAwesomeIcon icon={faCrown} size='2xl' className='' />
+										<FontAwesomeIcon icon={faCrown} size='2xl' className='text-yellow-200' />
 									)}
 									{player.rank === 2 && (
-										<FontAwesomeIcon icon={faCrown} size='2xl' className='text-primary' />
+										<FontAwesomeIcon icon={faMedal} size='2xl' className='text-white' />
 									)}
 									{player.rank === 3 && (
-										<FontAwesomeIcon icon={faCrown} size='2xl' className='text-yellow-900' />
+										<FontAwesomeIcon icon={faMedal} size='2xl' className='text-amber-800' />
 									)}
 								</div>
 							</li>
@@ -57,7 +57,7 @@ function Top20Players() {
 				)}
 			</ul>
 			{state.isLoading ? <TheLoaderSmall /> : <PlayerRank currentPlayer={currentPlayer} />}
-		</>
+		</div>
 	);
 }
 

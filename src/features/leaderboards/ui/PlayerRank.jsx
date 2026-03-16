@@ -14,9 +14,9 @@ function PlayerRank({ currentPlayer }) {
 					</span>
 				</div>
 				<div className='stat-value'>
-					<span className='text-primary'>#{currentPlayer?.rank}</span>
+					<span className='text-base-content'>#{currentPlayer?.rank}</span>
 				</div>
-				<span className='text-xs opacity-60 italic text-primary'>Keep trading!</span>
+				<span className='text-xs opacity-60 italic text-base-content'>Keep trading!</span>
 			</div>
 			<div className='stat justify-end'>
 				<div className='stat-title'>Account balance</div>

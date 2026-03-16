@@ -13,7 +13,7 @@ import React from 'react';
 function PlayerStats({ player, value }) {
 	return (
 		<>
-			<div className='stat bg-base-300 col-span-1 rounded-2xl'>
+			<div className='stat bg-base-100 col-span-1 rounded-2xl'>
 				<div className='stat-figure text-info'>
 					<FontAwesomeIcon icon={faSackDollar} size='2xl' />
 				</div>
@@ -23,7 +23,7 @@ function PlayerStats({ player, value }) {
 					<FontAwesomeIcon icon={faArrowTrendDown} /> 90 (14%)
 				</div>
 			</div>
-			<div className='stat bg-base-300 col-span-1 rounded-2xl'>
+			<div className='stat bg-base-100 col-span-1 rounded-2xl'>
 				<div className='stat-figure text-info'>
 					<FontAwesomeIcon icon={faMoneyBillTrendUp} size='2xl' />
 				</div>
@@ -31,7 +31,7 @@ function PlayerStats({ player, value }) {
 				<div className='stat-value'>{currencyFormat(player?.balance)}</div>
 				<div className='stat-desc'>from past 7 sales</div>
 			</div>
-			<div className='stat bg-base-300 col-span-1 rounded-2xl'>
+			<div className='stat bg-base-100 col-span-1 rounded-2xl'>
 				<div className='stat-figure text-info'>
 					<FontAwesomeIcon icon={faBoxesStacked} size='2xl' />
 				</div>
@@ -41,7 +41,7 @@ function PlayerStats({ player, value }) {
 					<FontAwesomeIcon icon={faArrowTrendUp} /> 90 (14%) unrealized
 				</div>
 			</div>
-			<div className='stat bg-base-300 col-span-1 rounded-2xl'>
+			<div className='stat bg-base-100 col-span-1 rounded-2xl'>
 				<div className='stat-figure text-info'>
 					<FontAwesomeIcon icon={faMedal} size='2xl' />
 				</div>
