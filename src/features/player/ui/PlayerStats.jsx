@@ -47,7 +47,7 @@ function PlayerStats({ player, value }) {
 				</div>
 				<div className='stat-title'>Achievements</div>
 				<div className='stat-value'>4/10</div>
-				<div className='stat-desc text-purple-300 opacity-60'>(66%) completed</div>
+				<div className='stat-desc text-purple-500 opacity-60'>(66%) completed</div>
 			</div>
 		</>
 	);

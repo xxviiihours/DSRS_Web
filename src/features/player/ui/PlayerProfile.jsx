@@ -5,8 +5,7 @@ import React from 'react';
 
 function Player({ player }) {
 	const { currentPlayer } = useLeaderboard();
-	console.log(player);
-	console.log(currentPlayer);
+
 	return (
 		<div className='col-span-full h-50'>
 			<div className='card bg-base-100 w-full h-full shadow-sm image-full relative'>
@@ -24,15 +23,15 @@ function Player({ player }) {
 						</div>
 					</div>
 					<div className='content-center p-2 pl-5 grid'>
-						<h2 className='card-title font-bold text-xl'>{player.name}</h2>
-						<span className='font-semibold text-xs'>Member since Jan 2026 </span>
+						<h2 className='card-title font-bold text-xl text-white'>{player.name}</h2>
+						<span className={'font-semibold text-xs  text-white'}>Member since Jan 2026 </span>
 					</div>
 					<div className='flex absolute bottom-1 left-33 gap-5'>
-						<p className='font-semibold text-xs'>
+						<p className='font-semibold text-xs  text-info'>
 							Rank: <span className='font-bold text-white'> #{currentPlayer?.rank}</span>
 						</p>
 
-						<p className='font-semibold text-xs'>
+						<p className='font-semibold text-xs text-info'>
 							Total trades: <span className='font-bold text-white'>15</span>
 						</p>
 					</div>

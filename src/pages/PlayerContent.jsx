@@ -1,7 +1,7 @@
 import { InventoryItem, useCalculateItem } from '@/features/inventory';
 import { PlayerProfile, PlayerStats } from '@/features/player';
 import { BaseLayout, ContentLayout } from '@/layout';
-import { currencyFormat } from '@/shared';
+import { currencyFormat, TheLoaderDefault } from '@/shared';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -27,16 +27,23 @@ function PlayerContent() {
 							<div className='tab-content bg-base-100 p-2 overflow-auto  h-150'>Overview</div>
 							<input type='radio' name='my_tabs_6' className='tab' aria-label='Inventory' />
 							<div className='tab-content bg-base-100 p-4'>
-								<h3 className='font-bold'>Your Inventory</h3>
-								<span className='font-bold text-xs opacity-60'>
-									{data.itemDetails.length} {data.itemDetails.length > 1 ? 'Items' : 'Item'} -
-									Total value: {currencyFormat(data.inventoryValue)}
-								</span>
-								<div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-4 grid-rows-1'>
-									{data.itemDetails.map((inventory) => (
-										<InventoryItem key={inventory.id} data={inventory} />
-									))}
-								</div>
+								{isLoading ? (
+									<TheLoaderDefault />
+								) : (
+									<>
+										<h3 className='font-bold'>Your Inventory</h3>
+										<span className='font-bold text-xs opacity-60'>
+											{data.itemDetails.length}{' '}
+											{data.itemDetails.length > 1 ? 'Items' : 'Item'} - Total value:{' '}
+											{currencyFormat(data.inventoryValue)}
+										</span>
+										<div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-4 grid-rows-1'>
+											{data.itemDetails.map((inventory, index) => (
+												<InventoryItem key={index + 1} data={inventory} />
+											))}
+										</div>
+									</>
+								)}
 							</div>
 
 							<input

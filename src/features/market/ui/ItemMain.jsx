@@ -56,7 +56,7 @@ function ItemInfo({ data, children }) {
 					</span>
 				</h3>
 				<h3 className='font-semibold'>{data.item.name}</h3>
-				<p className='italic line-clamp-3'>{data.item.description}</p>
+				<p className='italic line-clamp-3 opacity-60 text-xs'>{data.item.description}</p>
 				<div className='card-actions justify-between mt-4'>{children}</div>
 			</div>
 		</>
