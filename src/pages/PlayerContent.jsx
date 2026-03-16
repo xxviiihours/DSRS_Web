@@ -1,7 +1,8 @@
-import { InventoryItem, useCalculateItem } from '@/features/inventory';
+import { BalancePerformance, WeeklyActivities } from '@/features/dashboard';
+import { Inventory, useCalculateItem } from '@/features/inventory';
 import { PlayerProfile, PlayerStats } from '@/features/player';
 import { BaseLayout, ContentLayout } from '@/layout';
-import { currencyFormat, TheLoaderDefault } from '@/shared';
+import { TheLoaderDefault, TheTab, TheTabContainer } from '@/shared';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -16,7 +17,7 @@ function PlayerContent() {
 					<PlayerProfile player={player} />
 					<PlayerStats player={player} value={data.inventoryValue} />
 					<div className='col-span-full'>
-						<div className='tabs tabs-border'>
+						<div className='tabs tabs-lift'>
 							<input
 								type='radio'
 								name='my_tabs_6'
@@ -24,27 +25,24 @@ function PlayerContent() {
 								aria-label='Overview'
 								defaultChecked
 							/>
-							<div className='tab-content bg-base-100 p-2 overflow-auto  h-150'>Overview</div>
+							<TheTabContainer>
+								<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2'>
+									<div>
+										<BalancePerformance />
+									</div>
+									<div>
+										<WeeklyActivities />
+									</div>
+								</div>
+							</TheTabContainer>
 							<input type='radio' name='my_tabs_6' className='tab' aria-label='Inventory' />
-							<div className='tab-content bg-base-100 p-4'>
+							<TheTabContainer>
 								{isLoading ? (
 									<TheLoaderDefault />
 								) : (
-									<>
-										<h3 className='font-bold'>Your Inventory</h3>
-										<span className='font-bold text-xs opacity-60'>
-											{data.itemDetails.length}{' '}
-											{data.itemDetails.length > 1 ? 'Items' : 'Item'} - Total value:{' '}
-											{currencyFormat(data.inventoryValue)}
-										</span>
-										<div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-4 grid-rows-1'>
-											{data.itemDetails.map((inventory, index) => (
-												<InventoryItem key={index + 1} data={inventory} />
-											))}
-										</div>
-									</>
+									<Inventory items={data.itemDetails} value={data.inventoryValue} />
 								)}
-							</div>
+							</TheTabContainer>
 
 							<input
 								type='radio'
@@ -52,18 +50,14 @@ function PlayerContent() {
 								className='tab'
 								aria-label='Trade History'
 							/>
-							<div className='tab-content bg-base-100 p-6 overflow-auto h-108'>
-								Tab content 3
-							</div>
+							<TheTabContainer>Trade History</TheTabContainer>
 							<input
 								type='radio'
 								name='my_tabs_6'
 								className='tab'
 								aria-label='Recent Activities'
 							/>
-							<div className='tab-content bg-base-100 p-6 overflow-auto h-108'>
-								Recent Activities
-							</div>
+							<TheTabContainer>Recent Activities</TheTabContainer>
 						</div>
 					</div>
 				</div>
