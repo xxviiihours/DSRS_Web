@@ -10,6 +10,7 @@ export { default as TheLoaderSmall } from './components/TheLoaderSmall';
 export { default as TheLoaderDefault } from './components/TheLoaderDefault';
 export { default as TheMenuDock } from './components/TheMenuDock';
 export { default as TheModal } from './components/TheModal';
+export { default as TheSearchForm } from './components/TheSearchForm';
 export { default as TheTab } from './components/TheTab';
 export { default as TheTabContainer } from './components/TheTabContainer';
 
