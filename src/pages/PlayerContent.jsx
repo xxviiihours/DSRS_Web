@@ -1,8 +1,10 @@
 import { BalancePerformance, WeeklyActivities } from '@/features/dashboard';
+import RecentActivity from '@/features/dashboard/ui/RecentActivity';
 import { Inventory, useCalculateItem } from '@/features/inventory';
 import { PlayerProfile, PlayerStats } from '@/features/player';
 import { BaseLayout, ContentLayout } from '@/layout';
-import { TheLoaderDefault, TheTab, TheTabContainer } from '@/shared';
+import { TheLoaderDefault, TheTabContainer } from '@/shared';
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -12,7 +14,7 @@ function PlayerContent() {
 	return (
 		<BaseLayout>
 			<ContentLayout>
-				<div className='grid  grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4'>
+				<div className='grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4'>
 					{/* Profile cover - image - name  */}
 					<PlayerProfile player={player} />
 					<PlayerStats player={player} value={data.inventoryValue} />
@@ -27,14 +29,12 @@ function PlayerContent() {
 							/>
 							<TheTabContainer>
 								<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2'>
-									<div>
-										<BalancePerformance />
-									</div>
-									<div>
-										<WeeklyActivities />
-									</div>
+									<BalancePerformance />
+									<WeeklyActivities />
+									<RecentActivity />
 								</div>
 							</TheTabContainer>
+
 							<input type='radio' name='my_tabs_6' className='tab' aria-label='Inventory' />
 							<TheTabContainer>
 								{isLoading ? (
@@ -51,13 +51,6 @@ function PlayerContent() {
 								aria-label='Trade History'
 							/>
 							<TheTabContainer>Trade History</TheTabContainer>
-							<input
-								type='radio'
-								name='my_tabs_6'
-								className='tab'
-								aria-label='Recent Activities'
-							/>
-							<TheTabContainer>Recent Activities</TheTabContainer>
 						</div>
 					</div>
 				</div>
