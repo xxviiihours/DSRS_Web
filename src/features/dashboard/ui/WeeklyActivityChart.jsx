@@ -3,7 +3,7 @@ import { generateWeeklyActivity } from '@/temp/tempData';
 import React from 'react';
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
 
-function WeeklyActivities() {
+function WeeklyActivityChart() {
 	useThemeObserver();
 	const weeklyActivity = generateWeeklyActivity();
 	return (
@@ -55,4 +55,4 @@ const CustomTooltip = ({ active, payload, label }) => {
 	);
 };
 
-export default WeeklyActivities;
+export default WeeklyActivityChart;

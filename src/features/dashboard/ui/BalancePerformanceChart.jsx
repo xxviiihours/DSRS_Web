@@ -3,7 +3,7 @@ import { generatePerformanceData } from '@/temp/tempData';
 import React from 'react';
 import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
 
-function BalancePerformance() {
+function BalancePerformanceChart() {
 	useThemeObserver();
 	const performanceData = generatePerformanceData();
 
@@ -69,4 +69,4 @@ const CustomTooltip = ({ active, payload, label }) => {
 	);
 };
 
-export default BalancePerformance;
+export default BalancePerformanceChart;
