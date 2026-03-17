@@ -8,7 +8,7 @@ function BalancePerformance() {
 	const performanceData = generatePerformanceData();
 
 	return (
-		<>
+		<div className='p-3'>
 			<div className='mb-4'>
 				<h3 className='font-bold'>Balance Performance</h3>
 				<span className='font-bold text-xs opacity-60'>Last 30 days</span>
@@ -53,7 +53,7 @@ function BalancePerformance() {
 					/>
 				</AreaChart>
 			</TheChart>
-		</>
+		</div>
 	);
 }
 

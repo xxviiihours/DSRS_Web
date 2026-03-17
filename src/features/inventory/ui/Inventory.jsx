@@ -4,7 +4,7 @@ import React from 'react';
 
 function Inventory({ items, value }) {
 	return (
-		<>
+		<div className='p-3'>
 			<h3 className='font-bold'>Your Inventory</h3>
 			<span className='font-bold text-xs opacity-60'>
 				{items.length} {items.length > 1 ? 'Items' : 'Item'} - Total value:{' '}
@@ -15,7 +15,7 @@ function Inventory({ items, value }) {
 					<InventoryItem key={index + 1} data={item} />
 				))}
 			</div>
-		</>
+		</div>
 	);
 }
 

@@ -7,7 +7,7 @@ function WeeklyActivities() {
 	useThemeObserver();
 	const weeklyActivity = generateWeeklyActivity();
 	return (
-		<>
+		<div className='p-3'>
 			<div className='mb-4'>
 				<h3 className='font-bold'>Weekly Activity</h3>
 				<span className='font-bold text-xs opacity-60'>Trades per day</span>
@@ -39,7 +39,7 @@ function WeeklyActivities() {
 					<Bar dataKey='trades' fill='#60A5FA' radius={[8, 8, 0, 0]} />
 				</BarChart>
 			</TheChart>
-		</>
+		</div>
 	);
 }
 
