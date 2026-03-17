@@ -1,5 +1,9 @@
-import { BalancePerformance, WeeklyActivities } from '@/features/dashboard';
-import RecentActivity from '@/features/dashboard/ui/RecentActivity';
+import {
+	BalancePerformanceChart,
+	RecentActivity,
+	TradeHistory,
+	WeeklyActivityChart,
+} from '@/features/dashboard';
 import { Inventory, useCalculateItem } from '@/features/inventory';
 import { PlayerProfile, PlayerStats } from '@/features/player';
 import { BaseLayout, ContentLayout } from '@/layout';
@@ -29,8 +33,8 @@ function PlayerContent() {
 							/>
 							<TheTabContainer>
 								<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2'>
-									<BalancePerformance />
-									<WeeklyActivities />
+									<BalancePerformanceChart />
+									<WeeklyActivityChart />
 									<RecentActivity />
 								</div>
 							</TheTabContainer>
@@ -50,7 +54,9 @@ function PlayerContent() {
 								className='tab'
 								aria-label='Trade History'
 							/>
-							<TheTabContainer>Trade History</TheTabContainer>
+							<TheTabContainer>
+								<TradeHistory />
+							</TheTabContainer>
 						</div>
 					</div>
 				</div>
