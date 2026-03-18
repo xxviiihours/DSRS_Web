@@ -1,22 +1,26 @@
-import { clearPlayer } from '@/features/player';
-import { useThemeProvider } from '@/providers';
+import { useAuthProvider, useThemeProvider } from '@/providers';
 import { currencyFormat } from '@/shared/utils/valueFormatter';
 import { faCartShopping, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
 function TheHeader() {
-	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const player = useSelector((state) => state.player);
 	const item = useSelector((state) => state.item);
 
 	const { theme, changeTheme } = useThemeProvider();
+	const { actions } = useAuthProvider();
 
 	const currentItem = player?.inventoryItems.find((p) => p.itemId === item?.id);
+
+	const handleLogout = async () => {
+		const result = await actions.doLogout();
+		if (result.succeeded) navigate('/login', { replace: true });
+	};
 
 	return (
 		<div className=' bg-base-100 border-2 border-base-300 flex justify-between p-1'>
@@ -98,14 +102,7 @@ function TheHeader() {
 							<a>Settings</a>
 						</li>
 						<li>
-							<a
-								onClick={() => {
-									dispatch(clearPlayer());
-									navigate('/');
-								}}
-							>
-								Logout
-							</a>
+							<a onClick={handleLogout}>Logout</a>
 						</li>
 					</ul>
 				</div>
