@@ -4,10 +4,11 @@ import React from 'react';
 import { Navigate, Outlet } from 'react-router';
 
 function AuthGuard() {
-	const { player, loading } = useAuthProvider();
-	if (loading) return <TheLoaderDefault />;
+	const { data, state } = useAuthProvider();
 
-	if (!player) return <Navigate to={'/login'} replace />;
+	if (!state.isReady) return <TheLoaderDefault />;
+
+	if (!data.player) return <Navigate to={'/login'} replace />;
 
 	return <Outlet />;
 }
