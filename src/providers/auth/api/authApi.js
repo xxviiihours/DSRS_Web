@@ -9,7 +9,33 @@ export const authApi = api.injectEndpoints({
 			}),
 			providesTags: ['Player'],
 		}),
+		guestLogin: builder.mutation({
+			query: () => ({
+				url: `/auth/guest`,
+				method: 'POST',
+			}),
+			invalidatesTags: ['Player'],
+		}),
+		userLogin: builder.mutation({
+			query: (body) => ({
+				url: '/auth/login',
+				method: 'POST',
+				data: body,
+			}),
+			invalidatesTags: ['Player'],
+		}),
+		logout: builder.mutation({
+			query: () => ({
+				url: '/auth/logout',
+				method: 'POST',
+			}),
+		}),
 	}),
 });
 
-export const { useLazyInitAuthenticationQuery } = authApi;
+export const {
+	useLazyInitAuthenticationQuery,
+	useGuestLoginMutation,
+	useUserLoginMutation,
+	useLogoutMutation,
+} = authApi;

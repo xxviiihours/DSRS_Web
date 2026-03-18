@@ -2,22 +2,16 @@ import { api } from '@/core/api';
 
 export const accountApi = api.injectEndpoints({
 	endpoints: (builder) => ({
-		guestLogin: builder.mutation({
-			query: () => ({
-				url: `/auth/guest`,
-				method: 'POST',
-			}),
-			invalidatesTags: ['Player'],
-		}),
-		userLogin: builder.mutation({
+		registerAccount: builder.mutation({
 			query: (body) => ({
-				url: '/auth/login',
+				url: '/accounts/register',
 				method: 'POST',
 				data: body,
 			}),
 			invalidatesTags: ['Player'],
 		}),
+		// upgradeAccount: builder.mutation()
 	}),
 });
 
-export const { useGuestLoginMutation, useUserLoginMutation } = accountApi;
+export const { useRegisterAccountMutation } = accountApi;
