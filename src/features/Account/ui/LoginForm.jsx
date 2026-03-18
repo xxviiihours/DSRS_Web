@@ -1,7 +1,8 @@
-import useAccountLogin from '@/features/Account/hooks/useAccountLogin';
+import { useAuthProvider } from '@/providers';
 import { nameValidator, passwordValidator, TheModal } from '@/shared';
 import { useFormik } from 'formik';
 import React from 'react';
+import { useNavigate } from 'react-router';
 import * as yup from 'yup';
 
 const loginValidationScheme = yup.object({
@@ -10,7 +11,8 @@ const loginValidationScheme = yup.object({
 });
 
 function LoginForm() {
-	const { state, actions } = useAccountLogin();
+	const navigate = useNavigate();
+	const { state, actions } = useAuthProvider();
 
 	const formik = useFormik({
 		initialValues: {
@@ -21,13 +23,17 @@ function LoginForm() {
 
 		onSubmit: async (values, { setSubmitting, resetForm }) => {
 			setSubmitting(true);
-			await actions.doUserLogin(values);
+
+			const result = await actions.doUserLogin(values);
+			if (result.succeeded) navigate('/', { replace: true });
+
 			setSubmitting(false);
 		},
 	});
 
 	const handleGuestLogin = async () => {
-		await actions.doGuestLogin();
+		const result = await actions.doGuestLogin();
+		if (result.succeeded) navigate('/', { replace: true });
 	};
 
 	return (
