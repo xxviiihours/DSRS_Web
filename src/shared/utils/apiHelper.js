@@ -1,3 +1,5 @@
+import { ENDPOINT_SPECIFIC_FAILURES, NON_RETRYABLE_STATUS_CODES } from '@/shared';
+
 export const getApiErrorMessage = (result) => {
 	const data = result?.data || result?.error?.data;
 
@@ -21,4 +23,21 @@ export const getApiErrorMessage = (result) => {
 	if (typeof data === 'string') return data;
 
 	return 'Something went wrong. Please try again.';
+};
+
+export const shouldFailImmediately = (error, endpointName) => {
+	if (!error || !error.status) {
+		return false;
+	}
+
+	if (NON_RETRYABLE_STATUS_CODES.has(error.status)) {
+		return true;
+	}
+
+	const endpointFailures = ENDPOINT_SPECIFIC_FAILURES.get(endpointName);
+	if (endpointFailures?.has(error.status)) {
+		return true;
+	}
+
+	return false;
 };
