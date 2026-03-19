@@ -17,7 +17,14 @@ export const emailValidator = yup
 export const nameValidator = yup
 	.string()
 	.min(3, 'Name must be at least 3 characters minimum.')
-	.max(30, 'Name must not exceed 30 characters long.');
+	.max(30, 'Name must not exceed 30 characters long.')
+	.required('Name is required.');
+
+export const userNameValidator = yup
+	.string()
+	.min(3, 'Username must be at least 3 characters minimum.')
+	.max(30, 'Username must not exceed 30 characters long.')
+	.required('Username is required.');
 
 export const confirmPasswordValidator = yup
 	.string()
