@@ -41,11 +41,13 @@ export const AuthProvider = ({ children }) => {
 
 			return {
 				succeeded: true,
+				redirectUrl: '/',
 			};
 		} catch (error) {
 			dispatch(showAlert({ message: getApiErrorMessage(error), succeeded: false }));
 			return {
 				succeeded: false,
+				redirectUrl: '/login',
 			};
 		}
 	};
@@ -58,11 +60,13 @@ export const AuthProvider = ({ children }) => {
 
 			return {
 				succeeded: true,
+				redirectUrl: '/',
 			};
 		} catch (error) {
 			dispatch(showAlert({ message: getApiErrorMessage(error), succeeded: false }));
 			return {
 				succeeded: false,
+				redirectUrl: '/login',
 			};
 		}
 	};
@@ -74,11 +78,13 @@ export const AuthProvider = ({ children }) => {
 			dispatch(showAlert({ message: `You have been logged out.`, succeeded: true }));
 			return {
 				succeeded: true,
+				redirectUrl: '/login',
 			};
 		} catch (error) {
 			getApiErrorMessage(error);
 			return {
 				succeeded: false,
+				redirectUrl: '/login',
 			};
 		}
 	};

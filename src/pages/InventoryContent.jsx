@@ -34,7 +34,7 @@ function InventoryContent() {
 								<div className='col-span-2 content-center'>
 									<TheSearchForm />
 								</div>
-								<div className='content-center text-right space-x-2'>
+								<div className='text-right space-x-2'>
 									<button
 										className={`btn-outline btn btn-sm ${viewMode === 'grid' ? 'bg-info border-info text-white' : ''}`}
 										onClick={() => setViewMode('grid')}
@@ -53,7 +53,7 @@ function InventoryContent() {
 										<InventoryItem key={index} data={item} type={'sell-only'} />
 									))
 								) : (
-									<div className='grid col-span-full text-center h-115 content-center'>
+									<div className='grid col-span-full text-center h-full content-center'>
 										<h6>NO ITEMS AVAILABLE</h6>
 									</div>
 								)}
@@ -65,12 +65,12 @@ function InventoryContent() {
 							<FontAwesomeIcon icon={faStore} className='mr-1' />
 							Marketplace
 						</label>
-						<div className='tab-content bg-base-100 border-base-300 p-2 '>
-							<div className='grid grid-cols-3'>
-								<div className='col-span-2'>
+						<div className='tab-content bg-base-100  py-2'>
+							<div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-2'>
+								<div className='col-span-2 content-center px-2'>
 									<TheSearchForm />
 								</div>
-								<div className='text-right space-x-2'>
+								<div className='text-right space-x-2 px-2'>
 									<button
 										className={`btn-outline btn btn-sm ${viewMode === 'grid' ? 'bg-info border-info text-white' : ''}`}
 										onClick={() => setViewMode('grid')}
