@@ -1,12 +1,12 @@
 import { useAuthProvider } from '@/providers';
-import { nameValidator, passwordValidator, TheModal } from '@/shared';
+import { userNameValidator, passwordValidator, TheFormField, TheModal } from '@/shared';
 import { useFormik } from 'formik';
 import React from 'react';
 import { useNavigate } from 'react-router';
 import * as yup from 'yup';
 
 const loginValidationScheme = yup.object({
-	username: nameValidator,
+	username: userNameValidator,
 	password: passwordValidator,
 });
 
@@ -21,11 +21,13 @@ function LoginForm() {
 		},
 		validationSchema: loginValidationScheme,
 
-		onSubmit: async (values, { setSubmitting, resetForm }) => {
+		onSubmit: async (values, { setSubmitting }) => {
 			setSubmitting(true);
 
 			const result = await actions.doUserLogin(values);
-			if (result.succeeded) navigate('/', { replace: true });
+			if (result.succeeded) {
+				navigate(result.redirectUrl, { replace: true });
+			}
 
 			setSubmitting(false);
 		},
@@ -33,7 +35,9 @@ function LoginForm() {
 
 	const handleGuestLogin = async () => {
 		const result = await actions.doGuestLogin();
-		if (result.succeeded) navigate('/', { replace: true });
+		if (result.succeeded) {
+			navigate(result.redirectUrl, { replace: true });
+		}
 	};
 
 	return (
@@ -43,70 +47,15 @@ function LoginForm() {
 
 				<form
 					onSubmit={formik.handleSubmit}
-					className='w-full flex flex-col items-center gap-4 h-100'
+					className='w-80 flex flex-col items-end gap-2 h-100'
 				>
-					<div className='form-group w-full flex flex-col items-center'>
-						<label className='floating-label w-72'>
-							<span>Enter your username</span>
-							<input
-								type='text'
-								name='username'
-								placeholder='Enter your username'
-								className={`input input-md w-full text-center ${
-									formik.errors.username && formik.touched.username ? 'input-error' : ''
-								}`}
-								onBlur={formik.handleBlur}
-								onChange={formik.handleChange}
-								value={formik.values.username}
-							/>
-							{formik.errors.username && formik.touched.username && (
-								<p className='text-error text-xs italic text-center mt-2 w-72'>
-									{formik.errors.username}
-								</p>
-							)}
-						</label>
-					</div>
-					<div className='form-group w-full flex flex-col items-center'>
-						<label className='floating-label w-72'>
-							<span>Enter you password</span>
-							<input
-								type='password'
-								name='password'
-								placeholder='Enter your password'
-								className={`input input-md w-full text-center ${
-									formik.errors.password && formik.touched.password ? 'input-error' : ''
-								}`}
-								onBlur={formik.handleBlur}
-								onChange={formik.handleChange}
-								value={formik.values.password}
-							/>
-							{formik.errors.password && formik.touched.password && (
-								<p className='text-error text-xs italic text-center mt-2 w-72'>
-									{formik.errors.password}
-								</p>
-							)}
-						</label>
-					</div>
-					<div className='form-group w-75 flex flex-col items-end'>
-						<button
-							type='button'
-							className='btn btn-link btn-xs text-right text-sm italic px-4 text-info'
-							onClick={handleGuestLogin}
-							disabled={state.isGuestLoading}
-						>
-							{state.isGuestLoading ? (
-								<>
-									<span className='loading loading-dots loading-sm' /> Creating...
-								</>
-							) : (
-								'Login as guest'
-							)}
-						</button>
-					</div>
+					{Object.keys(formik.initialValues).map((key) => (
+						<TheFormField key={key} name={key} {...formik} />
+					))}
 					<div className='form-group w-full mt-4'>
 						<button
 							type='submit'
-							className='btn btn-block w-75  btn-primary'
+							className='btn btn-block btn-primary'
 							disabled={formik.isSubmitting}
 						>
 							{formik.isSubmitting ? (
@@ -121,10 +70,28 @@ function LoginForm() {
 					<div className='form-group w-full'>
 						<button
 							type='button'
-							className='btn btn-block w-75 btn-soft'
+							className='btn btn-block btn-soft'
+							onClick={() => navigate('/register', { replace: true })}
 							disabled={formik.isSubmitting}
 						>
 							Sign up
+						</button>
+					</div>
+
+					<div className='form-group'>
+						<button
+							type='button'
+							className='btn btn-link btn-xs text-right text-sm italic text-info'
+							onClick={handleGuestLogin}
+							disabled={state.isGuestLoading}
+						>
+							{state.isGuestLoading ? (
+								<>
+									<span className='loading loading-dots loading-sm' /> Creating...
+								</>
+							) : (
+								'Login as guest'
+							)}
 						</button>
 					</div>
 				</form>
