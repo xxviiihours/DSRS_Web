@@ -1,5 +1,4 @@
 import { useGetDailyPricesByItemQuery } from '@/features/dashboard';
-import { getDaisyUIColor } from '@/shared';
 import { skipToken } from '@reduxjs/toolkit/query';
 import React, { useEffect, useState } from 'react';
 

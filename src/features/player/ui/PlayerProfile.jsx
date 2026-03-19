@@ -1,4 +1,5 @@
 import { useLeaderboard } from '@/features/leaderboards';
+import { dateFormat } from '@/shared';
 import { faEdit, faGear } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
@@ -24,7 +25,9 @@ function Player({ player }) {
 					</div>
 					<div className='content-center p-2 pl-5 grid'>
 						<h2 className='card-title font-bold text-xl text-white'>{player.name}</h2>
-						<span className={'font-semibold text-xs  text-white'}>Member since Jan 2026 </span>
+						<span className={'font-semibold text-xs  text-white'}>
+							Member since {dateFormat(player.createdAt)}
+						</span>
 					</div>
 					<div className='flex absolute bottom-1 left-33 gap-5'>
 						<p className='font-semibold text-xs  text-info'>
@@ -39,14 +42,12 @@ function Player({ player }) {
 
 				{/* edit profile / setting */}
 				<div className='flex flex-row absolute bottom-0 right-0 gap-2 p-2'>
-					{/* <div className='gap-2 grid-cols-2 p-2'> */}
 					<button className='btn btn-sm'>
 						<FontAwesomeIcon icon={faEdit} /> Edit profile
 					</button>
 					<button className='btn btn-sm w-10'>
 						<FontAwesomeIcon icon={faGear} size='xl' />
 					</button>
-					{/* </div> */}
 				</div>
 			</div>
 		</div>
