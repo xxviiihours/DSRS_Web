@@ -1,8 +1,8 @@
-import { PlayerRegisterForm } from '@/features/player';
+import { RegisterForm } from '@/features/Account';
 import React from 'react';
 
 function RegisterContent() {
-	return <PlayerRegisterForm />;
+	return <RegisterForm />;
 }
 
 export default RegisterContent;
