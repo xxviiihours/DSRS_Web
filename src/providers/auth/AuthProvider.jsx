@@ -1,4 +1,4 @@
-import { clearPlayer, setPlayer } from '@/features/player';
+import { setPlayer } from '@/features/player';
 import { AuthContext } from '@/providers';
 import {
 	useGuestLoginMutation,
@@ -35,10 +35,8 @@ export const AuthProvider = ({ children }) => {
 	const doGuestLogin = async () => {
 		try {
 			const result = await guestLogin().unwrap();
-
-			dispatch(showAlert({ message: `Welcome, ${result.player.name}!`, succeeded: true }));
 			dispatch(setPlayer(result.player));
-
+			dispatch(showAlert({ message: `Welcome, ${result.player.name}!`, succeeded: true }));
 			return {
 				succeeded: true,
 				redirectUrl: '/',
@@ -55,9 +53,9 @@ export const AuthProvider = ({ children }) => {
 	const doUserLogin = async ({ username, password }) => {
 		try {
 			const result = await userLogin({ username, password }).unwrap();
+
 			dispatch(setPlayer(result.player));
 			dispatch(showAlert({ message: `Welcome, ${result.player.name}!`, succeeded: true }));
-
 			return {
 				succeeded: true,
 				redirectUrl: '/',
@@ -74,14 +72,11 @@ export const AuthProvider = ({ children }) => {
 	const doLogout = async () => {
 		try {
 			await logout().unwrap();
-			dispatch(clearPlayer());
-			dispatch(showAlert({ message: `You have been logged out.`, succeeded: true }));
 			return {
 				succeeded: true,
 				redirectUrl: '/login',
 			};
 		} catch (error) {
-			getApiErrorMessage(error);
 			return {
 				succeeded: false,
 				redirectUrl: '/login',
@@ -93,17 +88,13 @@ export const AuthProvider = ({ children }) => {
 		doInitAuthentication();
 	}, []);
 
-	return (
-		<AuthContext.Provider
-			value={{
-				data: { player },
-				state: { isGuestLoading, isUserLoading, isReady },
-				actions: { doUserLogin, doGuestLogin, doLogout },
-			}}
-		>
-			{children}
-		</AuthContext.Provider>
-	);
+	const value = {
+		data: { player },
+		state: { isGuestLoading, isUserLoading, isReady },
+		actions: { doUserLogin, doGuestLogin, doLogout },
+	};
+
+	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;

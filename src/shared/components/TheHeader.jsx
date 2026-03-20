@@ -1,13 +1,16 @@
+import { clearPlayer } from '@/features/player';
 import { useAuthProvider, useThemeProvider } from '@/providers';
+import { showAlert } from '@/shared/models/alertSlice';
 import { currencyFormat } from '@/shared/utils/valueFormatter';
 import { faCartShopping, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
 function TheHeader() {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const player = useSelector((state) => state.player);
 	const item = useSelector((state) => state.item);
@@ -19,7 +22,12 @@ function TheHeader() {
 
 	const handleLogout = async () => {
 		const result = await actions.doLogout();
-		if (result.succeeded) navigate('/login', { replace: true });
+		if (result.succeeded) {
+			dispatch(clearPlayer());
+			dispatch(showAlert({ message: `You have been logged out.`, succeeded: true }));
+
+			navigate('/login', { replace: true });
+		}
 	};
 
 	return (
