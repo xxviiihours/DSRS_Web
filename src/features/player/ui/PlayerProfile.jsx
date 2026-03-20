@@ -1,14 +1,17 @@
+import { UpgradeForm } from '@/features/Account';
 import { useLeaderboard } from '@/features/leaderboards';
 import { dateFormat } from '@/shared';
 import { faEdit, faGear } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useState } from 'react';
 
-function Player({ player }) {
+function PlayerProfile({ player, handleUpgrade }) {
+	const [show, setShow] = useState(false);
 	const { currentPlayer } = useLeaderboard();
 
 	return (
 		<div className='col-span-full h-50'>
+			<UpgradeForm show={show} closeForm={setShow} />
 			<div className='card bg-base-100 w-full h-full shadow-sm image-full relative'>
 				<figure>
 					<img
@@ -39,12 +42,17 @@ function Player({ player }) {
 						</p>
 					</div>
 				</div>
-
 				{/* edit profile / setting */}
 				<div className='flex flex-row absolute bottom-0 right-0 gap-2 p-2'>
-					<button className='btn btn-sm'>
-						<FontAwesomeIcon icon={faEdit} /> Edit profile
-					</button>
+					{player.isGuest ? (
+						<button type='button' className='btn btn-sm' onClick={() => setShow(true)}>
+							<FontAwesomeIcon icon={faEdit} /> Ugrade Account
+						</button>
+					) : (
+						<button type='button' className='btn btn-sm' onClick={() => setShow(true)}>
+							<FontAwesomeIcon icon={faEdit} /> Edit profile
+						</button>
+					)}
 					<button className='btn btn-sm w-10'>
 						<FontAwesomeIcon icon={faGear} size='xl' />
 					</button>
@@ -54,4 +62,4 @@ function Player({ player }) {
 	);
 }
 
-export default Player;
+export default PlayerProfile;

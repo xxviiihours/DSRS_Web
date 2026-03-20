@@ -1,3 +1,4 @@
+import { UpgradeForm } from '@/features/Account';
 import {
 	BalancePerformanceChart,
 	RecentActivity,
@@ -9,7 +10,7 @@ import { PlayerProfile, PlayerStats } from '@/features/player';
 import { BaseLayout, ContentLayout } from '@/layout';
 import { TheLoaderDefault, TheTabContainer } from '@/shared';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 function PlayerContent() {

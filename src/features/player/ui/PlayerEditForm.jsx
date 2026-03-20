@@ -1,7 +1,7 @@
 import React from 'react';
 
-function PlayerRegisterForm() {
+function PlayerEditForm() {
 	return <div>PlayerRegisterForm</div>;
 }
 
-export default PlayerRegisterForm;
+export default PlayerEditForm;
