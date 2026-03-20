@@ -10,7 +10,9 @@ const useChartData = ({ itemId, playerId }) => {
 
 	useEffect(() => {
 		if (data) {
-			const chartData = data.map((item) => {
+			const sortedData = [...data].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+			const chartData = sortedData.map((item) => {
 				const diff = item.previousPrice - item.basePrice;
 
 				return {
@@ -21,6 +23,7 @@ const useChartData = ({ itemId, playerId }) => {
 					percentage: item.percentage,
 				};
 			});
+
 			setChartData(chartData);
 		}
 	}, [data, isLoading, setChartData]);

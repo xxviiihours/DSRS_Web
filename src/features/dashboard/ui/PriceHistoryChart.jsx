@@ -16,7 +16,8 @@ function PriceHistoryChart({ item, player }) {
 	const { chartDataSet, state } = useChartData({ itemId: item?.id, playerId: player.id });
 	return (
 		<TheChart>
-			<h2 className='card-title'>PRICE HISTORY</h2>
+			<h2 className='card-title font-bold'>PRICE HISTORY</h2>
+			<span className='font-bold text-xs opacity-60'>Last 7 days</span>
 			{state.isLoading ? (
 				<TheLoader />
 			) : (
@@ -24,7 +25,7 @@ function PriceHistoryChart({ item, player }) {
 					style={{
 						width: '100%',
 						aspectRatio: 1.718,
-						height: '345px',
+						height: '330px',
 					}}
 					responsive
 					data={chartDataSet}
