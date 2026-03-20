@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 function TheModal({ show, submit = null, onClose, children, size = 'default' }) {
 	return (
