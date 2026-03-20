@@ -10,8 +10,15 @@ export const accountApi = api.injectEndpoints({
 			}),
 			invalidatesTags: ['Player'],
 		}),
-		// upgradeAccount: builder.mutation()
+		upgradeAccount: builder.mutation({
+			query: (body) => ({
+				url: `/accounts/${body.id}`,
+				method: 'PATCH',
+				data: body,
+			}),
+			invalidatesTags: ['Player'],
+		}),
 	}),
 });
 
-export const { useRegisterAccountMutation } = accountApi;
+export const { useRegisterAccountMutation, useUpgradeAccountMutation } = accountApi;
