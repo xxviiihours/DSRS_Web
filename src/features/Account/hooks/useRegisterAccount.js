@@ -10,9 +10,8 @@ const useRegisterAccount = () => {
 
 	const doRegisterAccount = async (payload) => {
 		try {
-			console.log(payload);
 			const result = await registerAccount(payload).unwrap();
-			console.log(result);
+
 			dispatch(showAlert({ message: `You are now registered!`, succeeded: true }));
 			dispatch(setPlayer(result.player));
 

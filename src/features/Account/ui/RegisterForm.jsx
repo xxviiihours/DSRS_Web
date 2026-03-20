@@ -11,7 +11,7 @@ import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
 import * as yup from 'yup';
 
-const playerValidationScheme = yup.object({
+const playerValidationSchema = yup.object({
 	name: nameValidator,
 	email: emailValidator,
 	password: passwordValidator,
@@ -31,7 +31,7 @@ function RegisterForm() {
 
 	const formik = useFormik({
 		initialValues: initialValues,
-		validationSchema: playerValidationScheme,
+		validationSchema: playerValidationSchema,
 		onSubmit: async (values, { setSubmitting, resetForm }) => {
 			setSubmitting(true);
 			const payload = { ...values };
