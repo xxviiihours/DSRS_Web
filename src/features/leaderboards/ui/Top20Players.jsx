@@ -56,7 +56,11 @@ function Top20Players() {
 					</>
 				)}
 			</ul>
-			{state.isLoading ? <TheLoaderSmall /> : <PlayerRank currentPlayer={currentPlayer} />}
+			{currentPlayer !== undefined && (
+				<>
+					{state.isLoading ? <TheLoaderSmall /> : <PlayerRank currentPlayer={currentPlayer} />}
+				</>
+			)}
 		</div>
 	);
 }
