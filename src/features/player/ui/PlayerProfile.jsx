@@ -1,13 +1,11 @@
 import { UpgradeForm } from '@/features/Account';
-import { useLeaderboard } from '@/features/leaderboards';
 import { dateFormat } from '@/shared';
 import { faEdit, faGear } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 
-function PlayerProfile({ player, handleUpgrade }) {
+function PlayerProfile({ player, playerStatus }) {
 	const [show, setShow] = useState(false);
-	const { currentPlayer } = useLeaderboard();
 
 	return (
 		<div className='col-span-full h-50'>
@@ -34,7 +32,7 @@ function PlayerProfile({ player, handleUpgrade }) {
 					</div>
 					<div className='flex absolute bottom-1 left-33 gap-5'>
 						<p className='font-semibold text-xs  text-info'>
-							Rank: <span className='font-bold text-white'> #{currentPlayer?.rank}</span>
+							Rank: <span className='font-bold text-white'> #{playerStatus?.rank}</span>
 						</p>
 
 						<p className='font-semibold text-xs text-info'>
