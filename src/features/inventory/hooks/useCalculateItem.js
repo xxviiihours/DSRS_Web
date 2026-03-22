@@ -22,17 +22,29 @@ const useCalculateItem = ({ id }) => {
 		};
 	});
 
-	const inventoryValue =
+	const totalValue =
 		inventoryItems.reduce((total, inventory) => {
 			const currentPrice = data?.dailyPrices.find((p) => p.item.id === inventory.itemId);
 
 			return total + (currentPrice?.price ?? 0) * inventory.quantity;
 		}, 0) ?? 0;
 
+	const profit =
+		inventoryItems.reduce((total, inventory) => {
+			const currentPrice = data?.dailyPrices.find((p) => p.item.id === inventory.itemId);
+
+			return (
+				total + ((currentPrice?.price ?? 0) - inventory.purchasePrice) * inventory.quantity
+			);
+		}, 0) ?? 0;
+
 	return {
 		data: {
 			itemDetails,
-			inventoryValue,
+			inventoryDetails: {
+				totalValue,
+				profit,
+			},
 			marketDetails: data?.dailyPrices,
 		},
 		state: {
