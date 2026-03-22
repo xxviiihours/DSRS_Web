@@ -6,6 +6,7 @@ import {
 	WeeklyActivityChart,
 } from '@/features/dashboard';
 import { Inventory, useCalculateItem } from '@/features/inventory';
+import { useLeaderboard } from '@/features/leaderboards';
 import { PlayerProfile, PlayerStats } from '@/features/player';
 import { BaseLayout, ContentLayout } from '@/layout';
 import { TheLoaderDefault, TheTabContainer } from '@/shared';
@@ -15,14 +16,20 @@ import { useSelector } from 'react-redux';
 
 function PlayerContent() {
 	const player = useSelector((state) => state.player);
+	const { currentPlayer: playerStatus } = useLeaderboard();
+	console.log(playerStatus);
 	const { data, isLoading } = useCalculateItem({ id: player.id });
 	return (
 		<BaseLayout>
 			<ContentLayout>
 				<div className='grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4'>
 					{/* Profile cover - image - name  */}
-					<PlayerProfile player={player} />
-					<PlayerStats player={player} value={data.inventoryValue} />
+					<PlayerProfile player={player} playerStatus={playerStatus} />
+					<PlayerStats
+						player={player}
+						inventoryDetails={data.inventoryDetails}
+						playerStatus={playerStatus}
+					/>
 					<div className='col-span-full'>
 						<div className='tabs tabs-lift'>
 							<input
@@ -45,7 +52,10 @@ function PlayerContent() {
 								{isLoading ? (
 									<TheLoaderDefault />
 								) : (
-									<Inventory items={data.itemDetails} value={data.inventoryValue} />
+									<Inventory
+										items={data.itemDetails}
+										inventoryDetails={data.inventoryDetails}
+									/>
 								)}
 							</TheTabContainer>
 
