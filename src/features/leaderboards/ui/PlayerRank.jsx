@@ -1,5 +1,5 @@
 import { currencyFormat } from '@/shared';
-import { faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
+import { faArrowTrendDown, faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
@@ -10,7 +10,19 @@ function PlayerRank({ currentPlayer }) {
 				<div className='stat-title'>
 					<span>Your Rank </span>
 					<span className='text-success text-xs opacity-60'>
-						<FontAwesomeIcon icon={faArrowTrendUp} /> (+20%)
+						{currentPlayer.rankChangePercent === null && (
+							<span className='badge badge-info badge-xs'>NEW</span>
+						)}
+						{currentPlayer.rankChangePercent > 0 && (
+							<>
+								<FontAwesomeIcon icon={faArrowTrendUp} /> ({currentPlayer.rankChangePercent})
+							</>
+						)}
+						{currentPlayer.rankChangePercent < 0 && (
+							<>
+								<FontAwesomeIcon icon={faArrowTrendDown} /> ({currentPlayer.rankChangePercent})
+							</>
+						)}
 					</span>
 				</div>
 				<div className='stat-value'>

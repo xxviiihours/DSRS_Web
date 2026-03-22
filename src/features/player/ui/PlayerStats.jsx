@@ -10,7 +10,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
-function PlayerStats({ player, value }) {
+function PlayerStats({ player, inventoryDetails, playerStatus }) {
 	return (
 		<div className='col-span-full'>
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2'>
@@ -21,7 +21,19 @@ function PlayerStats({ player, value }) {
 					<div className='stat-title'>Total Balance</div>
 					<div className='stat-value'>{currencyFormat(player?.balance)}</div>
 					<div className='stat-desc text-error opacity-60'>
-						<FontAwesomeIcon icon={faArrowTrendDown} /> 90 (14%)
+						{playerStatus?.rankChangePercent === null && (
+							<span className='badge badge-info badge-xs'>NEW</span>
+						)}
+						{playerStatus?.rankChangePercent > 0 && (
+							<>
+								<FontAwesomeIcon icon={faArrowTrendUp} /> ({playerStatus.rankChangePercent})
+							</>
+						)}
+						{playerStatus?.rankChangePercent < 0 && (
+							<>
+								<FontAwesomeIcon icon={faArrowTrendDown} /> ({playerStatus.rankChangePercent})
+							</>
+						)}
 					</div>
 				</div>
 				<div className='stat bg-base-100 col-span-1 rounded-2xl'>
@@ -34,10 +46,17 @@ function PlayerStats({ player, value }) {
 				</div>
 				<div className='stat bg-base-100 col-span-1 rounded-2xl'>
 					<div className='stat-title'>Inventory Value</div>
-					<div className='stat-value'>{currencyFormat(value)}</div>
-					<div className='stat-desc text-success opacity-60'>
-						<FontAwesomeIcon icon={faArrowTrendUp} /> 90 (14%) unrealized
-					</div>
+					<div className='stat-value'>{currencyFormat(inventoryDetails?.totalValue)}</div>
+					{inventoryDetails.profit >= 0 ? (
+						<div className='stat-desc text-success opacity-60'>
+							<FontAwesomeIcon icon={faArrowTrendUp} /> +{inventoryDetails?.profit} unrealized
+						</div>
+					) : (
+						<div className='stat-desc text-error opacity-60'>
+							<FontAwesomeIcon icon={faArrowTrendDown} /> +{inventoryDetails?.profit}{' '}
+							unrealized
+						</div>
+					)}
 					<div className='stat-figure text-info col-start-2'>
 						<FontAwesomeIcon icon={faBoxesStacked} size='2xl' />
 					</div>
