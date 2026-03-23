@@ -10,7 +10,7 @@ const useCalculateItem = ({ id }) => {
 	const itemDetails = inventoryItems.map((inventory) => {
 		const result = data?.dailyPrices.find((p) => p.item.id === inventory.itemId);
 
-		const profit = result?.price - result?.item.basePrice;
+		const profit = (result?.price - inventory.purchasePrice) * inventory.quantity;
 		const percent = Math.round((profit / result?.price) * 100);
 		return {
 			item: result?.item,

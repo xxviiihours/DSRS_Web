@@ -3,7 +3,6 @@ import { currencyFormat } from '@/shared';
 import React from 'react';
 
 function Inventory({ items, inventoryDetails }) {
-	console.log(inventoryDetails);
 	return (
 		<div className='p-3'>
 			<h3 className='font-bold'>Your Inventory</h3>

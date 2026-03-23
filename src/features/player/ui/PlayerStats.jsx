@@ -47,7 +47,7 @@ function PlayerStats({ player, inventoryDetails, playerStatus }) {
 				<div className='stat bg-base-100 col-span-1 rounded-2xl'>
 					<div className='stat-title'>Inventory Value</div>
 					<div className='stat-value'>{currencyFormat(inventoryDetails?.totalValue)}</div>
-					{inventoryDetails.profit >= 0 ? (
+					{inventoryDetails?.profit >= 0 ? (
 						<div className='stat-desc text-success opacity-60'>
 							<FontAwesomeIcon icon={faArrowTrendUp} /> +{inventoryDetails?.profit} unrealized
 						</div>
