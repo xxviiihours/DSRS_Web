@@ -16,7 +16,16 @@ export const accountApi = api.injectEndpoints({
 				method: 'PATCH',
 				data: body,
 			}),
-			invalidatesTags: ['Player'],
+			invalidatesTags: [
+				'Player',
+				'Dashboard',
+				'Market',
+				'Inventory',
+				'Players',
+				'Items',
+				'DailyPrices',
+				'TradeActivities',
+			],
 		}),
 	}),
 });

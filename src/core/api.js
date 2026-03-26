@@ -10,6 +10,16 @@ const baseQueryWithRetry = createRetryQuery(retry, axiosBaseQuery, {
 export const api = createApi({
 	reducerPath: 'api',
 	baseQuery: baseQueryWithRetry,
-	tagTypes: ['Players', 'Player', 'Items', 'Inventory', 'DailyPrices', 'Market', 'Dashboard'],
+	tagTypes: [
+		'Players',
+		'Player',
+		'Items',
+		'Inventory',
+		'DailyPrices',
+		'Market',
+		'Dashboard',
+		'TradeActivities',
+		'Leaderboards',
+	],
 	endpoints: () => ({}),
 });

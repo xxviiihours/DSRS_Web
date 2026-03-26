@@ -4,10 +4,10 @@ export const playerApi = api.injectEndpoints({
 	endpoints: (builder) => ({
 		getPlayers: builder.query({
 			query: (params = {}) => {
-				const { query } = params;
+				const { id, query } = params;
 
 				return {
-					url: `/players${query ? `?query=${query}` : ''}`,
+					url: `/players/others/${query ? `?query=${query}` : ''}`,
 					method: 'GET',
 				};
 			},
