@@ -1,5 +1,5 @@
 import { UpgradeForm } from '@/features/Account';
-import { dateFormat } from '@/shared';
+import { dateShortFormat } from '@/shared';
 import { faEdit, faGear } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
@@ -27,7 +27,7 @@ function PlayerProfile({ player, playerStatus }) {
 					<div className='content-center p-2 pl-5 grid'>
 						<h2 className='card-title font-bold text-xl text-white'>{player.name}</h2>
 						<span className={'font-semibold text-xs  text-white'}>
-							Member since {dateFormat(player.createdAt)}
+							Member since {dateShortFormat(player.createdAt)}
 						</span>
 					</div>
 					<div className='flex absolute bottom-1 left-33 gap-5'>
@@ -36,7 +36,8 @@ function PlayerProfile({ player, playerStatus }) {
 						</p>
 
 						<p className='font-semibold text-xs text-info'>
-							Total trades: <span className='font-bold text-white'>15</span>
+							Total trades:{' '}
+							<span className='font-bold text-white'>{playerStatus?.totalTrades}</span>
 						</p>
 					</div>
 				</div>
