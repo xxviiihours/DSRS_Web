@@ -9,6 +9,7 @@ export { default as WeeklyActivityChart } from './ui/WeeklyActivityChart';
 
 // hooks
 export { default as useChartData } from './hooks/useChartData';
+export { default as useDashboardData } from './hooks/useDashboardData';
 
 // injected api
 export * from './api/dashboardApi';
