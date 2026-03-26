@@ -3,13 +3,14 @@ import {
 	BalancePerformanceChart,
 	RecentActivity,
 	TradeHistory,
+	useDashboardData,
 	WeeklyActivityChart,
 } from '@/features/dashboard';
 import { Inventory, useCalculateItem } from '@/features/inventory';
 import { useLeaderboard } from '@/features/leaderboards';
 import { PlayerProfile, PlayerStats } from '@/features/player';
 import { BaseLayout, ContentLayout } from '@/layout';
-import { TheLoaderDefault, TheTabContainer } from '@/shared';
+import { TheLoaderDefault, TheLoaderSmall, TheTabContainer } from '@/shared';
 
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -17,8 +18,10 @@ import { useSelector } from 'react-redux';
 function PlayerContent() {
 	const player = useSelector((state) => state.player);
 	const { currentPlayer: playerStatus } = useLeaderboard();
-	console.log(playerStatus);
 	const { data, isLoading } = useCalculateItem({ id: player.id });
+	const { data: tradeActivities, isLoading: isTradeLoading } = useDashboardData({
+		id: player.id,
+	});
 	return (
 		<BaseLayout>
 			<ContentLayout>
@@ -43,7 +46,11 @@ function PlayerContent() {
 								<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2'>
 									<BalancePerformanceChart />
 									<WeeklyActivityChart />
-									<RecentActivity />
+									{isTradeLoading ? (
+										<TheLoaderSmall />
+									) : (
+										<RecentActivity data={tradeActivities} />
+									)}
 								</div>
 							</TheTabContainer>
 
