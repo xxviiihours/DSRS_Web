@@ -20,6 +20,7 @@ export const api = createApi({
 		'Dashboard',
 		'TradeActivities',
 		'Leaderboards',
+		'BalancePerformance',
 	],
 	endpoints: () => ({}),
 });

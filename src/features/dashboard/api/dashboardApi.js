@@ -16,7 +16,18 @@ export const dashboardApi = api.injectEndpoints({
 			}),
 			providesTags: ['TradeActivities'],
 		}),
+		getBalancePerformance: builder.query({
+			query: ({ id }) => ({
+				url: `/dashboard/${id}/performance`,
+				method: 'GET',
+			}),
+			providesTags: ['PerformanceBalance'],
+		}),
 	}),
 });
 
-export const { useGetDailyPricesByItemQuery, useGetTradeActivitiesQuery } = dashboardApi;
+export const {
+	useGetDailyPricesByItemQuery,
+	useGetTradeActivitiesQuery,
+	useGetBalancePerformanceQuery,
+} = dashboardApi;
