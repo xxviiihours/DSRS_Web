@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux';
 
 function PlayerContent() {
 	const player = useSelector((state) => state.player);
-	const { currentPlayer: playerStatus } = useLeaderboard();
+	const { currentPlayer: playerStats } = useLeaderboard();
 	const { data, isLoading } = useCalculateItem({ id: player.id });
 	const { data: tradeActivities, isLoading: isTradeLoading } = useDashboardData({
 		id: player.id,
@@ -27,11 +27,12 @@ function PlayerContent() {
 			<ContentLayout>
 				<div className='grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4'>
 					{/* Profile cover - image - name  */}
-					<PlayerProfile player={player} playerStatus={playerStatus} />
+					<PlayerProfile player={player} playerStats={playerStats} />
 					<PlayerStats
 						player={player}
 						inventoryDetails={data.inventoryDetails}
-						playerStatus={playerStatus}
+						playerStats={playerStats}
+						tradeStats={tradeActivities.tradeStats}
 					/>
 					<div className='col-span-full'>
 						<div className='tabs tabs-lift'>
@@ -49,7 +50,7 @@ function PlayerContent() {
 									{isTradeLoading ? (
 										<TheLoaderSmall />
 									) : (
-										<RecentActivity data={tradeActivities} />
+										<RecentActivity data={tradeActivities.tradeHistory} />
 									)}
 								</div>
 							</TheTabContainer>
@@ -73,7 +74,7 @@ function PlayerContent() {
 								aria-label='Trade History'
 							/>
 							<TheTabContainer>
-								<TradeHistory />
+								<TradeHistory data={tradeActivities.tradeHistory} />
 							</TheTabContainer>
 						</div>
 					</div>

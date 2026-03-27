@@ -9,21 +9,19 @@ function PlayerRank({ currentPlayer }) {
 			<div className='stat col-span-full md:col-span-1 lg:col-span-1'>
 				<div className='stat-title'>
 					<span>Your Rank </span>
-					<span className='text-success text-xs opacity-60'>
-						{currentPlayer.rankChangePercent === null && (
-							<span className='badge badge-info badge-xs'>NEW</span>
-						)}
-						{currentPlayer.rankChangePercent > 0 && (
-							<>
-								<FontAwesomeIcon icon={faArrowTrendUp} /> ({currentPlayer.rankChangePercent})
-							</>
-						)}
-						{currentPlayer.rankChangePercent < 0 && (
-							<>
-								<FontAwesomeIcon icon={faArrowTrendDown} /> ({currentPlayer.rankChangePercent})
-							</>
-						)}
-					</span>
+					{currentPlayer.rankChangePercent === null && (
+						<span className='badge badge-info badge-xs'>NEW</span>
+					)}
+					{currentPlayer.rankChangePercent > 0 && (
+						<span className='text-success text-xs opacity-60'>
+							<FontAwesomeIcon icon={faArrowTrendUp} /> ({currentPlayer.rankChangePercent}%)
+						</span>
+					)}
+					{currentPlayer.rankChangePercent < 0 && (
+						<span className='text-error text-xs opacity-60'>
+							<FontAwesomeIcon icon={faArrowTrendDown} /> ({currentPlayer.rankChangePercent}%)
+						</span>
+					)}
 				</div>
 				<div className='stat-value'>
 					<span className='text-base-content'>#{currentPlayer?.rank}</span>

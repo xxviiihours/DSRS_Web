@@ -4,7 +4,7 @@ import { faEdit, faGear } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 
-function PlayerProfile({ player, playerStatus }) {
+function PlayerProfile({ player, playerStats, tradeStats }) {
 	const [show, setShow] = useState(false);
 
 	return (
@@ -32,12 +32,12 @@ function PlayerProfile({ player, playerStatus }) {
 					</div>
 					<div className='flex absolute bottom-1 left-33 gap-5'>
 						<p className='font-semibold text-xs  text-info'>
-							Rank: <span className='font-bold text-white'> #{playerStatus?.rank}</span>
+							Rank: <span className='font-bold text-white'> #{playerStats?.rank}</span>
 						</p>
 
 						<p className='font-semibold text-xs text-info'>
 							Total trades:{' '}
-							<span className='font-bold text-white'>{playerStatus?.totalTrades}</span>
+							<span className='font-bold text-white'>{playerStats?.totalTrades}</span>
 						</p>
 					</div>
 				</div>

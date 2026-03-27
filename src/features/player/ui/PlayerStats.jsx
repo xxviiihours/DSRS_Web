@@ -10,7 +10,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
-function PlayerStats({ player, inventoryDetails, playerStatus }) {
+function PlayerStats({ player, inventoryDetails, playerStats, tradeStats }) {
 	return (
 		<div className='col-span-full'>
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2'>
@@ -21,17 +21,17 @@ function PlayerStats({ player, inventoryDetails, playerStatus }) {
 					<div className='stat-title'>Total Balance</div>
 					<div className='stat-value'>{currencyFormat(player?.balance)}</div>
 					<div className='stat-desc text-error opacity-60'>
-						{playerStatus?.rankChangePercent === null && (
+						{playerStats?.rankChangePercent === null && (
 							<span className='badge badge-info badge-xs'>NEW</span>
 						)}
-						{playerStatus?.rankChangePercent > 0 && (
+						{playerStats?.rankChangePercent > 0 && (
 							<>
-								<FontAwesomeIcon icon={faArrowTrendUp} /> ({playerStatus.rankChangePercent})
+								<FontAwesomeIcon icon={faArrowTrendUp} /> ({playerStats.rankChangePercent}%)
 							</>
 						)}
-						{playerStatus?.rankChangePercent < 0 && (
+						{playerStats?.rankChangePercent < 0 && (
 							<>
-								<FontAwesomeIcon icon={faArrowTrendDown} /> ({playerStatus.rankChangePercent})
+								<FontAwesomeIcon icon={faArrowTrendDown} /> ({playerStats.rankChangePercent}%)
 							</>
 						)}
 					</div>
@@ -41,8 +41,8 @@ function PlayerStats({ player, inventoryDetails, playerStatus }) {
 						<FontAwesomeIcon icon={faMoneyBillTrendUp} size='2xl' />
 					</div>
 					<div className='stat-title'>Total Profit</div>
-					<div className='stat-value'>{currencyFormat(player?.balance)}</div>
-					<div className='stat-desc'>from past 7 sales</div>
+					<div className='stat-value'>{currencyFormat(tradeStats.totalProfit)}</div>
+					<div className='stat-desc'>from past {tradeStats.totalSales} sales</div>
 				</div>
 				<div className='stat bg-base-100 col-span-1 rounded-2xl'>
 					<div className='stat-title'>Inventory Value</div>
