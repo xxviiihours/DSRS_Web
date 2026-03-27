@@ -8,8 +8,9 @@ export { default as TradeHistory } from './ui/TradeHistory';
 export { default as WeeklyActivityChart } from './ui/WeeklyActivityChart';
 
 // hooks
-export { default as useChartData } from './hooks/useChartData';
-export { default as useDashboardData } from './hooks/useDashboardData';
+export { default as useDailyPriceData } from './hooks/useDailyPriceData';
+export { default as usePerformanceData } from './hooks/usePerformanceData';
+export { default as useTradeActivityData } from './hooks/useTradeActivityData';
 
 // injected api
 export * from './api/dashboardApi';

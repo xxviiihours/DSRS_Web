@@ -2,7 +2,7 @@ import { useGetDailyPricesByItemQuery } from '@/features/dashboard';
 import { skipToken } from '@reduxjs/toolkit/query';
 import React, { useEffect, useState } from 'react';
 
-const useChartData = ({ itemId, playerId }) => {
+const useDailyPriceData = ({ itemId, playerId }) => {
 	const { data, isLoading } = useGetDailyPricesByItemQuery(
 		itemId && playerId ? { itemId: itemId, playerId: playerId } : skipToken,
 	);
@@ -36,4 +36,4 @@ const useChartData = ({ itemId, playerId }) => {
 	};
 };
 
-export default useChartData;
+export default useDailyPriceData;

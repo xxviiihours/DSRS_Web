@@ -1,7 +1,7 @@
 import { useGetTradeActivitiesQuery } from '@/features/dashboard/api/dashboardApi';
 import { skipToken } from '@reduxjs/toolkit/query';
 
-const useDashboardData = ({ id }) => {
+const useTradeActivityData = ({ id }) => {
 	const {
 		data: tradeHistory,
 		isLoading,
@@ -20,8 +20,8 @@ const useDashboardData = ({ id }) => {
 	};
 	return {
 		data: { tradeStats, tradeHistory },
-		state: { isLoading, isError },
+		tradeActivityState: { isLoading, isError },
 	};
 };
 
-export default useDashboardData;
+export default useTradeActivityData;
