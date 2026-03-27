@@ -2,7 +2,7 @@ import { InventoryItem, useCalculateItem } from '@/features/inventory';
 import { ItemMarket } from '@/features/market';
 import { PlayerStats } from '@/features/player';
 import { BaseLayout, ContentLayout } from '@/layout';
-import { TheSearchForm } from '@/shared';
+import { TheLoaderInfo, TheSearchForm } from '@/shared';
 import {
 	faBoxesStacked,
 	faGridHorizontal,
@@ -15,7 +15,9 @@ import { useSelector } from 'react-redux';
 
 function InventoryContent() {
 	const player = useSelector((state) => state.player);
-	const { data, isLoading } = useCalculateItem({ id: player.id });
+	const { calculatedItems, calculatedItemState } = useCalculateItem({ id: player.id });
+	const { itemDetails, marketDetails } = calculatedItems;
+
 	const [viewMode, setViewMode] = useState('grid');
 
 	return (
@@ -48,14 +50,20 @@ function InventoryContent() {
 										<FontAwesomeIcon icon={faList} />
 									</button>
 								</div>
-								{data.itemDetails.length > 0 ? (
-									data.itemDetails.map((item, index) => (
-										<InventoryItem key={index} data={item} type={'sell-only'} />
-									))
+								{calculatedItemState.isLoading ? (
+									<TheLoaderInfo />
 								) : (
-									<div className='grid col-span-full text-center h-full content-center'>
-										<h6>NO ITEMS AVAILABLE</h6>
-									</div>
+									<>
+										{itemDetails.length > 0 ? (
+											itemDetails.map((item, index) => (
+												<InventoryItem key={index} data={item} type={'sell-only'} />
+											))
+										) : (
+											<div className='grid col-span-full text-center h-full content-center'>
+												<h6>NO ITEMS AVAILABLE</h6>
+											</div>
+										)}
+									</>
 								)}
 							</div>
 						</div>
@@ -86,11 +94,15 @@ function InventoryContent() {
 								</div>
 							</div>
 
-							<div className={'grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3'}>
-								{data.marketDetails?.map((dailyPrice, index) => (
-									<ItemMarket key={index} data={dailyPrice} />
-								))}
-							</div>
+							{calculatedItemState.isLoading ? (
+								<TheLoaderInfo />
+							) : (
+								<div className={'grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3'}>
+									{marketDetails?.map((dailyPrice, index) => (
+										<ItemMarket key={index} data={dailyPrice} />
+									))}
+								</div>
+							)}
 						</div>
 					</div>
 				</div>

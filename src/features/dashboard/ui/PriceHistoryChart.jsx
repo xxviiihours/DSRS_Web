@@ -7,17 +7,17 @@ import {
 	TheLoader,
 	useThemeObserver,
 } from '@/shared';
-import { useChartData } from '@/features/dashboard';
+import { useDailyPriceData } from '@/features/dashboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowTrendDown, faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
 
 function PriceHistoryChart({ item, player }) {
 	useThemeObserver();
-	const { chartDataSet, state } = useChartData({ itemId: item?.id, playerId: player.id });
+	const { chartDataSet, state } = useDailyPriceData({ itemId: item?.id, playerId: player.id });
 	return (
 		<TheChart>
 			<h2 className='card-title font-bold'>PRICE HISTORY</h2>
-			<span className='font-bold text-xs opacity-60'>Last 7 days</span>
+			<span className='font-bold text-xs opacity-60'>Last {chartDataSet.length} days</span>
 			{state.isLoading ? (
 				<TheLoader />
 			) : (

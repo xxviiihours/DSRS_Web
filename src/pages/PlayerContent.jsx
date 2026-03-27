@@ -1,16 +1,16 @@
-import { UpgradeForm } from '@/features/Account';
 import {
 	BalancePerformanceChart,
 	RecentActivity,
 	TradeHistory,
-	useDashboardData,
+	usePerformanceData,
+	useTradeActivityData,
 	WeeklyActivityChart,
 } from '@/features/dashboard';
 import { Inventory, useCalculateItem } from '@/features/inventory';
 import { useLeaderboard } from '@/features/leaderboards';
 import { PlayerProfile, PlayerStats } from '@/features/player';
 import { BaseLayout, ContentLayout } from '@/layout';
-import { TheLoaderDefault, TheLoaderSmall, TheTabContainer } from '@/shared';
+import { TheTabContainer } from '@/shared';
 
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -18,10 +18,13 @@ import { useSelector } from 'react-redux';
 function PlayerContent() {
 	const player = useSelector((state) => state.player);
 	const { currentPlayer: playerStats } = useLeaderboard();
-	const { data, isLoading } = useCalculateItem({ id: player.id });
-	const { data: tradeActivities, isLoading: isTradeLoading } = useDashboardData({
+	const { calculatedItems, calculatedItemState } = useCalculateItem({ id: player.id });
+	const { data: tradeActivities, tradeActivityState } = useTradeActivityData({
 		id: player.id,
 	});
+
+	const { performanceData, performanceState } = usePerformanceData();
+
 	return (
 		<BaseLayout>
 			<ContentLayout>
@@ -30,7 +33,7 @@ function PlayerContent() {
 					<PlayerProfile player={player} playerStats={playerStats} />
 					<PlayerStats
 						player={player}
-						inventoryDetails={data.inventoryDetails}
+						inventoryDetails={calculatedItems?.inventoryDetails}
 						playerStats={playerStats}
 						tradeStats={tradeActivities.tradeStats}
 					/>
@@ -45,26 +48,18 @@ function PlayerContent() {
 							/>
 							<TheTabContainer>
 								<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2'>
-									<BalancePerformanceChart />
+									<BalancePerformanceChart data={performanceData} state={performanceState} />
 									<WeeklyActivityChart />
-									{isTradeLoading ? (
-										<TheLoaderSmall />
-									) : (
-										<RecentActivity data={tradeActivities.tradeHistory} />
-									)}
+									<RecentActivity
+										data={tradeActivities.tradeHistory}
+										state={tradeActivityState}
+									/>
 								</div>
 							</TheTabContainer>
 
 							<input type='radio' name='my_tabs_6' className='tab' aria-label='Inventory' />
 							<TheTabContainer>
-								{isLoading ? (
-									<TheLoaderDefault />
-								) : (
-									<Inventory
-										items={data.itemDetails}
-										inventoryDetails={data.inventoryDetails}
-									/>
-								)}
+								<Inventory data={calculatedItems} state={calculatedItemState} />
 							</TheTabContainer>
 
 							<input
