@@ -11,7 +11,7 @@ function RecentActivity({ data: tradeActivities }) {
 				<span className='font-bold text-xs opacity-60'>Your latest trades</span>
 			</div>
 
-			{tradeActivities?.map((x) => (
+			{tradeActivities?.slice(0, 10).map((x) => (
 				<div
 					key={x.transactionDate}
 					className='card w-full h-auto bg-base-100 border-2 border-base-300 my-2 flex flex-row content-center justify-between p-2'
