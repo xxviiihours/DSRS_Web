@@ -1,30 +1,50 @@
-import { currencyFormat } from '@/shared';
-import { faArrowTrendDown } from '@fortawesome/free-solid-svg-icons';
+import { currencyFormat, dateFormat, timeFormat } from '@/shared';
+import { faArrowTrendDown, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
-function TradeHistory() {
+function TradeHistory({ data: tradeHistory }) {
 	return (
 		<div className='col-span-full p-3'>
 			<div className='mb-4'>
 				<h3 className='font-bold'>Complete Trade History</h3>
 				<span className='font-bold text-xs opacity-60'>All your past transactions</span>
 			</div>
-			{Array.from({ length: 15 }).map((_, index) => (
+			{tradeHistory?.map((x) => (
 				<div
-					key={index + 1}
+					key={x.transactionDate}
 					className='card w-full h-auto bg-base-100 border-2 border-base-300 my-2 flex flex-row content-center justify-between p-2'
 				>
-					<div className='grid grid-rows-2 grid-cols-2 content-center'>
-						<div className='badge h-full badge-soft badge-error row-span-full'>
-							<FontAwesomeIcon icon={faArrowTrendDown} size='xl' />
-						</div>
-						<span className='font-semibold'>{'test'}</span>
-						<span className='text-sm opacity-60'>100% profit</span>
+					<div className='flex content-center'>
+						{x.type === 0 ? (
+							<div className='badge h-full w-20 badge-soft badge-success row-span-full mr-2 '>
+								{/* <FontAwesomeIcon icon={faArrowTrendUp} size='xl' /> */}
+								<span>Puchased</span>
+							</div>
+						) : (
+							<div className='badge h-full w-20 badge-soft badge-error row-span-full mr-2 '>
+								{/* <FontAwesomeIcon icon={faArrowTrendUp} size='xl' /> */}
+								<span>Sold</span>
+							</div>
+						)}
+						<span className='grid grid-rows-2 row-span-2'>
+							<span className='font-semibold text-sm'>{x.itemName}</span>
+							<span className='text-xs opacity-65 text-left'>
+								<FontAwesomeIcon icon={faInfoCircle} size='xs' />{' '}
+								{dateFormat(x.transactionDate)} at {timeFormat(x.transactionDate)}
+							</span>
+						</span>
 					</div>
-					<div className='grid grid-rows-2 text-right content-center '>
-						<span className='font-semibold'>{currencyFormat(1000)}</span>
-						<span className='text-sm opacity-60'>100% profit</span>
+					<div className='text-right content-center '>
+						{x.type === 0 ? (
+							<span className='font-semibold text-error'>
+								- {currencyFormat(x.priceTotal)}
+							</span>
+						) : (
+							<span className='font-semibold text-success'>
+								+ {currencyFormat(x.priceTotal)}
+							</span>
+						)}
 					</div>
 				</div>
 			))}
