@@ -39,7 +39,7 @@ const useCalculateItem = ({ id }) => {
 		}, 0) ?? 0;
 
 	return {
-		data: {
+		calculatedItems: {
 			itemDetails,
 			inventoryDetails: {
 				totalValue,
@@ -47,7 +47,7 @@ const useCalculateItem = ({ id }) => {
 			},
 			marketDetails: data?.dailyPrices,
 		},
-		state: {
+		calculatedItemState: {
 			isLoading,
 			isUninitialized,
 		},

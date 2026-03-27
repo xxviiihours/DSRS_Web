@@ -41,8 +41,8 @@ function PlayerStats({ player, inventoryDetails, playerStats, tradeStats }) {
 						<FontAwesomeIcon icon={faMoneyBillTrendUp} size='2xl' />
 					</div>
 					<div className='stat-title'>Total Profit</div>
-					<div className='stat-value'>{currencyFormat(tradeStats.totalProfit)}</div>
-					<div className='stat-desc'>from past {tradeStats.totalSales} sales</div>
+					<div className='stat-value'>{currencyFormat(tradeStats?.totalProfit)}</div>
+					<div className='stat-desc'>from past {tradeStats?.totalSales} sales</div>
 				</div>
 				<div className='stat bg-base-100 col-span-1 rounded-2xl'>
 					<div className='stat-title'>Inventory Value</div>
