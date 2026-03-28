@@ -18,38 +18,27 @@ function PriceHistoryChart({ item, player }) {
 		<TheChart>
 			<h2 className='card-title font-bold'>PRICE HISTORY</h2>
 			<span className='font-bold text-xs opacity-60'>Last {chartDataSet.length} days</span>
-			{state.isLoading ? (
-				<TheLoader />
-			) : (
-				<BarChart
-					style={{
-						width: '100%',
-						aspectRatio: 1.718,
-						height: '330px',
-					}}
-					responsive
-					data={chartDataSet}
-				>
-					<CartesianGrid
-						stroke={getDaisyUIColor('--color-base-content')}
-						// stroke={primary}
-						strokeDasharray='5 5'
-					/>
-					<XAxis
-						dataKey='date'
-						stroke={getDaisyUIColor('--color-base-content')}
-						// stroke={primary}
-					/>
-					<YAxis
-						domain={['auto', 'auto']}
-						tickFormatter={(v) => item.basePrice + v}
-						stroke={getDaisyUIColor('--color-base-content')}
-					/>
-					<Bar dataKey='value' shape={customBarShape} />
 
-					<Tooltip cursor={false} content={CustomTooltip} />
-				</BarChart>
-			)}
+			<div className='flex-1 min-h-0'>
+				{state.isLoading ? (
+					<TheLoader />
+				) : (
+					<BarChart responsive data={chartDataSet} style={{ width: '100%', height: '100%' }}>
+						<CartesianGrid
+							stroke={getDaisyUIColor('--color-base-content')}
+							strokeDasharray='5 5'
+						/>
+						<XAxis dataKey='date' stroke={getDaisyUIColor('--color-base-content')} />
+						<YAxis
+							domain={['auto', 'auto']}
+							tickFormatter={(v) => item.basePrice + v}
+							stroke={getDaisyUIColor('--color-base-content')}
+						/>
+						<Bar dataKey='value' shape={customBarShape} />
+						<Tooltip cursor={false} content={CustomTooltip} />
+					</BarChart>
+				)}
+			</div>
 		</TheChart>
 	);
 }

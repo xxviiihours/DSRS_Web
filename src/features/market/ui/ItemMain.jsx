@@ -78,7 +78,7 @@ function ItemMain({ player }) {
 	return (
 		<div
 			ref={carouselRef}
-			className='carousel w-full h-100 col-span-full md:col-span-full lg:col-span-2 relative'
+			className='carousel w-full h-full col-span-full md:col-span-full lg:col-span-2 relative'
 		>
 			{isLoading || isUninitialized ? (
 				<TheLoaderInfo />

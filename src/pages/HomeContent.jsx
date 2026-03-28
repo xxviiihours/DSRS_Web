@@ -11,7 +11,13 @@ function HomeContent() {
 	return (
 		<BaseLayout>
 			<ContentLayout>
-				<div className='grid grid-rows-3 lg:grid-rows-1 grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-2'>
+				<div
+					className='grid h-full 
+						grid-cols-1 md:grid-cols-4 
+						lg:grid-cols-4 
+						lg:grid-rows-[auto_1fr] 
+						gap-2'
+				>
 					<PriceHistoryChart player={player} item={item} />
 					<ItemMain player={player} />
 					<RecentBuyers />
