@@ -7,12 +7,12 @@ import React from 'react';
 function Top20Players() {
 	const { currentPlayer, topPlayers, state } = useLeaderboard();
 	return (
-		<div className=''>
+		<div className='flex flex-col h-full'>
 			<h2 className='px-4 py-4 text-xl font-semibold'>
 				<FontAwesomeIcon icon={faTrophy} /> Global Leaderboard
 			</h2>
 			<span className='px-4 pb-4 text-xs opacity-60'>Top ranking players by balance</span>
-			<ul className='list bg-base-100 rounded-box shadow-md max-h-160 overflow-auto scrollbar-auto-hide'>
+			<ul className='list bg-base-100 rounded-box shadow-md flex-1 overflow-auto scrollbar-auto-hide'>
 				{state.isLoading ? (
 					<>
 						{Array.from({ length: 10 }).map((_, index) => (

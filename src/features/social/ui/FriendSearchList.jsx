@@ -7,9 +7,9 @@ function FriendSearchList() {
 	const { data, playerActions, playerState } = usePlayerSearch();
 
 	return (
-		<>
+		<div className='flex flex-col h-full'>
 			<FriendSearchForm search={playerActions.doSearchPlayers} />
-			<div className='max-h-160 overflow-y-auto scrollbar-auto-hide'>
+			<div className='flex-1 overflow-auto scrollbar-auto-hide min-h-0'>
 				{playerState.isUninitialized || playerState.isLoading ? (
 					<>
 						{Array.from({ length: 10 }).map((_, index) => (
@@ -39,7 +39,7 @@ function FriendSearchList() {
 					</>
 				)}
 			</div>
-		</>
+		</div>
 	);
 }
 
