@@ -21,6 +21,7 @@ export const api = createApi({
 		'TradeActivities',
 		'Leaderboards',
 		'BalancePerformance',
+		'TotalTrades',
 	],
 	endpoints: () => ({}),
 });

@@ -1,44 +1,48 @@
-import { getDaisyUIColor, TheChart, useThemeObserver } from '@/shared';
+import { getDaisyUIColor, TheChart, TheLoaderInfo, useThemeObserver } from '@/shared';
 import { generateWeeklyActivity } from '@/temp/tempData';
 import React from 'react';
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
 
-function WeeklyActivityChart() {
+function WeeklyActivityChart({ data: weeklyActivity, state }) {
 	useThemeObserver();
-	const weeklyActivity = generateWeeklyActivity();
+
 	return (
 		<div className='p-3'>
 			<div className='mb-4'>
 				<h3 className='font-bold'>Weekly Activity</h3>
 				<span className='font-bold text-xs opacity-60'>Trades per day</span>
 			</div>
-			<TheChart>
-				<BarChart
-					data={weeklyActivity}
-					responsive
-					style={{ width: '100%', aspectRatio: 1.718, height: '345px' }}
-				>
-					<CartesianGrid
-						strokeDasharray='3 3'
-						stroke={getDaisyUIColor('--color-base-content')}
-					/>
-					<XAxis
-						dataKey='day'
-						stroke={getDaisyUIColor('--color-base-content')}
-						tick={{ fill: getDaisyUIColor('--color-base-content') }}
-					/>
-					<YAxis
-						stroke={getDaisyUIColor('--color-base-content')}
-						tick={{ fill: getDaisyUIColor('--color-base-content') }}
-					/>
-					<Tooltip
-						cursor={false}
-						content={CustomTooltip}
-						labelStyle={{ color: getDaisyUIColor('--color-white') }}
-					/>
-					<Bar dataKey='trades' fill='#60A5FA' radius={[8, 8, 0, 0]} />
-				</BarChart>
-			</TheChart>
+			{state.isLoading ? (
+				<TheLoaderInfo />
+			) : (
+				<TheChart>
+					<BarChart
+						data={weeklyActivity}
+						responsive
+						style={{ width: '100%', aspectRatio: 1.718, height: '345px' }}
+					>
+						<CartesianGrid
+							strokeDasharray='3 3'
+							stroke={getDaisyUIColor('--color-base-content')}
+						/>
+						<XAxis
+							dataKey='day'
+							stroke={getDaisyUIColor('--color-base-content')}
+							tick={{ fill: getDaisyUIColor('--color-base-content') }}
+						/>
+						<YAxis
+							stroke={getDaisyUIColor('--color-base-content')}
+							tick={{ fill: getDaisyUIColor('--color-base-content') }}
+						/>
+						<Tooltip
+							cursor={false}
+							content={CustomTooltip}
+							labelStyle={{ color: getDaisyUIColor('--color-white') }}
+						/>
+						<Bar dataKey='trades' fill='#60A5FA' radius={[8, 8, 0, 0]} />
+					</BarChart>
+				</TheChart>
+			)}
 		</div>
 	);
 }

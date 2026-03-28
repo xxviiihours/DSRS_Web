@@ -23,6 +23,13 @@ export const dashboardApi = api.injectEndpoints({
 			}),
 			providesTags: ['PerformanceBalance'],
 		}),
+		getTotalTrades: builder.query({
+			query: ({ id }) => ({
+				url: `/dashboard/${id}/total-trades`,
+				method: 'GET',
+			}),
+			providesTags: ['TotalTrades'],
+		}),
 	}),
 });
 
@@ -30,4 +37,5 @@ export const {
 	useGetDailyPricesByItemQuery,
 	useGetTradeActivitiesQuery,
 	useGetBalancePerformanceQuery,
+	useGetTotalTradesQuery,
 } = dashboardApi;
