@@ -1,8 +1,8 @@
 import { useInitDailyPricesQuery } from '@/features/market';
 import { useSelector } from 'react-redux';
 
-const useCalculateItem = ({ id }) => {
-	const { inventoryItems } = useSelector((state) => state.player);
+const useCalculateItem = () => {
+	const { id, inventoryItems } = useSelector((state) => state.player);
 	const { data, isLoading, isUninitialized } = useInitDailyPricesQuery(
 		id ? { id: id } : skipToken,
 	);

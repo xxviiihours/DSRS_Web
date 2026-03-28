@@ -3,6 +3,7 @@ import {
 	RecentActivity,
 	TradeHistory,
 	usePerformanceData,
+	useTotalTradesData,
 	useTradeActivityData,
 	WeeklyActivityChart,
 } from '@/features/dashboard';
@@ -12,18 +13,17 @@ import { PlayerProfile, PlayerStats } from '@/features/player';
 import { BaseLayout, ContentLayout } from '@/layout';
 import { TheTabContainer } from '@/shared';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 function PlayerContent() {
 	const player = useSelector((state) => state.player);
-	const { currentPlayer: playerStats } = useLeaderboard();
-	const { calculatedItems, calculatedItemState } = useCalculateItem({ id: player.id });
-	const { data: tradeActivities, tradeActivityState } = useTradeActivityData({
-		id: player.id,
-	});
 
+	const { currentPlayer: playerStats } = useLeaderboard();
+	const { calculatedItems, calculatedItemState } = useCalculateItem();
+	const { tradeActivities, tradeActivityState } = useTradeActivityData();
 	const { performanceData, performanceState } = usePerformanceData();
+	const { tradesData, tradesState } = useTotalTradesData();
 
 	return (
 		<BaseLayout>
@@ -49,7 +49,7 @@ function PlayerContent() {
 							<TheTabContainer>
 								<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2'>
 									<BalancePerformanceChart data={performanceData} state={performanceState} />
-									<WeeklyActivityChart />
+									<WeeklyActivityChart data={tradesData} state={tradesState} />
 									<RecentActivity
 										data={tradeActivities.tradeHistory}
 										state={tradeActivityState}

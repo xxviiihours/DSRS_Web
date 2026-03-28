@@ -1,7 +1,9 @@
 import { useGetTradeActivitiesQuery } from '@/features/dashboard/api/dashboardApi';
 import { skipToken } from '@reduxjs/toolkit/query';
+import { useSelector } from 'react-redux';
 
-const useTradeActivityData = ({ id }) => {
+const useTradeActivityData = () => {
+	const id = useSelector((state) => state.player.id);
 	const {
 		data: tradeHistory,
 		isLoading,
@@ -19,7 +21,7 @@ const useTradeActivityData = ({ id }) => {
 		totalSales,
 	};
 	return {
-		data: { tradeStats, tradeHistory },
+		tradeActivities: { tradeStats, tradeHistory },
 		tradeActivityState: { isLoading, isError },
 	};
 };
