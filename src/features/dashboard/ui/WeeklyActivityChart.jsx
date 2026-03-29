@@ -15,33 +15,39 @@ function WeeklyActivityChart({ data: weeklyActivity, state }) {
 			{state.isLoading ? (
 				<TheLoaderInfo />
 			) : (
-				<TheChart>
-					<BarChart
-						data={weeklyActivity}
-						responsive
-						style={{ width: '100%', aspectRatio: 1.718, height: '345px' }}
-					>
-						<CartesianGrid
-							strokeDasharray='3 3'
-							stroke={getDaisyUIColor('--color-base-content')}
-						/>
-						<XAxis
-							dataKey='day'
-							stroke={getDaisyUIColor('--color-base-content')}
-							tick={{ fill: getDaisyUIColor('--color-base-content') }}
-						/>
-						<YAxis
-							stroke={getDaisyUIColor('--color-base-content')}
-							tick={{ fill: getDaisyUIColor('--color-base-content') }}
-						/>
-						<Tooltip
-							cursor={false}
-							content={CustomTooltip}
-							labelStyle={{ color: getDaisyUIColor('--color-white') }}
-						/>
-						<Bar dataKey='trades' fill='#60A5FA' radius={[8, 8, 0, 0]} />
-					</BarChart>
-				</TheChart>
+				<>
+					{weeklyActivity.length < 1 ? (
+						'NO DATA'
+					) : (
+						<TheChart>
+							<BarChart
+								data={weeklyActivity}
+								responsive
+								style={{ width: '100%', aspectRatio: 1.718, height: '345px' }}
+							>
+								<CartesianGrid
+									strokeDasharray='3 3'
+									stroke={getDaisyUIColor('--color-base-content')}
+								/>
+								<XAxis
+									dataKey='day'
+									stroke={getDaisyUIColor('--color-base-content')}
+									tick={{ fill: getDaisyUIColor('--color-base-content') }}
+								/>
+								<YAxis
+									stroke={getDaisyUIColor('--color-base-content')}
+									tick={{ fill: getDaisyUIColor('--color-base-content') }}
+								/>
+								<Tooltip
+									cursor={false}
+									content={CustomTooltip}
+									labelStyle={{ color: getDaisyUIColor('--color-white') }}
+								/>
+								<Bar dataKey='trades' fill='#60A5FA' radius={[8, 8, 0, 0]} />
+							</BarChart>
+						</TheChart>
+					)}
+				</>
 			)}
 		</div>
 	);
