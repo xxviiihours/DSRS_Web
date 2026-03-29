@@ -21,7 +21,7 @@ export const dashboardApi = api.injectEndpoints({
 				url: `/dashboard/${id}/performance`,
 				method: 'GET',
 			}),
-			providesTags: ['PerformanceBalance'],
+			providesTags: ['BalancePerformance'],
 		}),
 		getTotalTrades: builder.query({
 			query: ({ id }) => ({
