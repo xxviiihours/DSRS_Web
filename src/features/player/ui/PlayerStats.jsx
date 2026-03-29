@@ -1,4 +1,4 @@
-import { currencyFormat } from '@/shared';
+import { compactCurrency, currencyFormat } from '@/shared';
 import {
 	faArrowTrendDown,
 	faArrowTrendUp,
@@ -19,7 +19,7 @@ function PlayerStats({ player, inventoryDetails, playerStats, tradeStats }) {
 						<FontAwesomeIcon icon={faSackDollar} size='2xl' />
 					</div>
 					<div className='stat-title'>Total Balance</div>
-					<div className='stat-value'>{currencyFormat(player?.balance)}</div>
+					<div className='stat-value'>{compactCurrency(player?.balance)}</div>
 					<div className='stat-desc text-error opacity-60'>
 						{playerStats?.rankChangePercent === null && (
 							<span className='badge badge-info badge-xs'>NEW</span>
@@ -41,12 +41,12 @@ function PlayerStats({ player, inventoryDetails, playerStats, tradeStats }) {
 						<FontAwesomeIcon icon={faMoneyBillTrendUp} size='2xl' />
 					</div>
 					<div className='stat-title'>Total Profit</div>
-					<div className='stat-value'>{currencyFormat(tradeStats?.totalProfit)}</div>
+					<div className='stat-value'>{compactCurrency(tradeStats?.totalProfit)}</div>
 					<div className='stat-desc'>from past {tradeStats?.totalSales} sales</div>
 				</div>
 				<div className='stat bg-base-100 col-span-1 rounded-2xl'>
 					<div className='stat-title'>Inventory Value</div>
-					<div className='stat-value'>{currencyFormat(inventoryDetails?.totalValue)}</div>
+					<div className='stat-value'>{compactCurrency(inventoryDetails?.totalValue)}</div>
 					{inventoryDetails?.profit >= 0 ? (
 						<div className='stat-desc text-success opacity-60'>
 							<FontAwesomeIcon icon={faArrowTrendUp} /> +{inventoryDetails?.profit} unrealized

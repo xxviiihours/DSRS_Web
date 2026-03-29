@@ -1,4 +1,4 @@
-import { currencyFormat } from '@/shared';
+import { compactCurrency } from '@/shared';
 import { faArrowTrendDown, faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
@@ -31,7 +31,7 @@ function PlayerRank({ currentPlayer }) {
 			<div className='stat justify-end'>
 				<div className='stat-title'>Account balance</div>
 				<div className='stat-value text-info'>
-					{currencyFormat(currentPlayer?.totalBalance)}
+					{compactCurrency(currentPlayer?.totalBalance)}
 				</div>
 			</div>
 		</div>

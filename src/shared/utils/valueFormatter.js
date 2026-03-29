@@ -4,6 +4,16 @@ export const currencyFormat = (value) => {
 		currency: 'PHP',
 	}).format(value ? value : 0);
 };
+export const compactCurrency = (num) => {
+	if (!num) return '₱0';
+
+	return new Intl.NumberFormat('en-PH', {
+		style: 'currency',
+		currency: 'PHP',
+		notation: 'compact',
+		maximumFractionDigits: 2,
+	}).format(num);
+};
 
 export const dateFormat = (isoDateString) => {
 	if (!isoDateString) return '';
