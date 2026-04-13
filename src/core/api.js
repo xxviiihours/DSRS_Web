@@ -1,8 +1,7 @@
-import { createApi, retry } from '@reduxjs/toolkit/query/react';
-import { axiosBaseQuery } from './base/axiosBaseQuery';
-import createRetryQuery from '@/core/base/createRetryQuery';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { createRtkQueryWithRetry } from '@/core/base/createRtkQueryWithRetry';
 
-const baseQueryWithRetry = createRetryQuery(retry, axiosBaseQuery, {
+const baseQueryWithRetry = createRtkQueryWithRetry({
 	baseUrl: 'https://localhost:44387',
 	maxRetries: 3,
 });
