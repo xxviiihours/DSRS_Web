@@ -1,8 +1,9 @@
 import { RouterProvider } from 'react-router';
 import { routes } from '@/routes';
-import { AuthProvider, ThemeProvider } from '@/providers';
-import { resetAlert, TheAlert, usePlayerSync } from '@/shared';
+import { resetAlert, TheAlert, TheLoaderDefault, usePlayerSync } from '@/shared';
 import { useDispatch, useSelector } from 'react-redux';
+import { AuthProvider, ThemeProvider } from '@/providers';
+import { Suspense } from 'react';
 
 function App() {
 	usePlayerSync();
@@ -16,7 +17,9 @@ function App() {
 				{alert.show && (
 					<TheAlert show succeeded={alert.succeeded} message={alert.message} onClose={reset} />
 				)}
-				<RouterProvider router={routes} />
+				<Suspense fallback={<TheLoaderDefault />}>
+					<RouterProvider router={routes} />
+				</Suspense>
 			</ThemeProvider>
 		</AuthProvider>
 	);
