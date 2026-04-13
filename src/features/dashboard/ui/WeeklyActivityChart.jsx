@@ -1,9 +1,11 @@
-import { getDaisyUIColor, TheChart, TheLoaderInfo, useThemeObserver } from '@/shared';
-import { generateWeeklyActivity } from '@/temp/tempData';
+import { TheChart, TheLoaderInfo } from '@/shared/components';
+import { useThemeObserver } from '@/shared/hooks';
+import { getDaisyUIColor } from '@/shared/utils';
 import React from 'react';
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
 
 function WeeklyActivityChart({ data: weeklyActivity, state }) {
+	console.log(weeklyActivity);
 	useThemeObserver();
 
 	return (

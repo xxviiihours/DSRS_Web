@@ -1,4 +1,4 @@
-import { currencyFormat, The3DCard, TheModal } from '@/shared';
+import { The3DCard, TheModal } from '@/shared/components';
 import React, { useState } from 'react';
 import image from '@/assets/images/fantasy_item_4.png';
 import { PriceHistoryChart } from '@/features/dashboard';
@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { TransactionForm } from '@/features/market';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowTrendDown, faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
+import { currencyFormat } from '@/shared/utils';
 
 function ItemMarket({ data }) {
 	const player = useSelector((state) => state.player);

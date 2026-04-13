@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { api } from '@/core/api';
 import { playerReducer } from '@/features/player';
 import { itemReducer } from '@/features/market';
-import { alertReducer } from '@/shared';
+import { alertReducer } from '@/shared/models';
 
 export const store = configureStore({
 	reducer: {

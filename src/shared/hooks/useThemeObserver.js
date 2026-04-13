@@ -1,4 +1,4 @@
-import { useThemeProvider } from '@/providers';
+import { useThemeProvider } from '@/providers/themes/hooks/useThemeProvider';
 import { getDaisyUIColor } from '@/shared/utils/colorHelper';
 import React, { useEffect, useState } from 'react';
 

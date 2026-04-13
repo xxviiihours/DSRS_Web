@@ -1,12 +1,11 @@
 import { useRegisterAccount } from '@/features/Account';
+import { TheFormField, TheModal } from '@/shared/components';
 import {
 	confirmPasswordValidator,
 	emailValidator,
 	nameValidator,
 	passwordValidator,
-	TheFormField,
-	TheModal,
-} from '@/shared';
+} from '@/shared/utils';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
 import * as yup from 'yup';

@@ -1,6 +1,6 @@
 import { usePurchaseItemMutation, useSellItemMutation } from '@/features/market';
-import { showAlert } from '@/shared';
-import { getApiErrorMessage } from '@/shared/utils/apiHelper';
+import { showAlert } from '@/shared/models';
+import { getApiErrorMessage } from '@/shared/utils';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 

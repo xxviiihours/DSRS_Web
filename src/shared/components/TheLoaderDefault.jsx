@@ -1,4 +1,3 @@
-import { TheModal } from '@/shared';
 import React from 'react';
 
 function TheLoaderDefault() {

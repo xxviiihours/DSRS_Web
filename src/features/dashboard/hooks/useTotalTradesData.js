@@ -1,5 +1,5 @@
 import { useGetTotalTradesQuery } from '@/features/dashboard/api/dashboardApi';
-import { dateFormat } from '@/shared';
+import { dateFormat } from '@/shared/utils';
 import { skipToken } from '@reduxjs/toolkit/query';
 import { useSelector } from 'react-redux';
 

@@ -11,7 +11,7 @@ import { Inventory, useCalculateItem } from '@/features/inventory';
 import { useLeaderboard } from '@/features/leaderboards';
 import { PlayerProfile, PlayerStats } from '@/features/player';
 import { BaseLayout, ContentLayout } from '@/layout';
-import { TheTabContainer } from '@/shared';
+import { TheTabContainer } from '@/shared/components';
 
 import React from 'react';
 import { useSelector } from 'react-redux';

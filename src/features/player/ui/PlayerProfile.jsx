@@ -1,5 +1,5 @@
 import { UpgradeForm } from '@/features/Account';
-import { dateShortFormat } from '@/shared';
+import { dateShortFormat } from '@/shared/utils';
 import { faEdit, faGear } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';

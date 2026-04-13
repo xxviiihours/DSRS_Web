@@ -1,6 +1,6 @@
 import { usePlayerSearch } from '@/features/player';
 import { FriendSearchForm } from '@/features/social';
-import { TheLoaderSmall } from '@/shared';
+import { TheLoaderSmall } from '@/shared/components';
 import React from 'react';
 
 function FriendSearchList() {

@@ -1,4 +1,7 @@
-import { ENDPOINT_SPECIFIC_FAILURES, NON_RETRYABLE_STATUS_CODES } from '@/shared';
+import {
+	ENDPOINT_SPECIFIC_FAILURES,
+	NON_RETRYABLE_STATUS_CODES,
+} from '@/shared/enums/apiEnums';
 
 export const getApiErrorMessage = (result) => {
 	const data = result?.data || result?.error?.data;

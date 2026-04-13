@@ -1,12 +1,11 @@
 import { useUpgradeAccount } from '@/features/Account';
+import { TheFormField, TheModal } from '@/shared/components';
 import {
 	confirmPasswordValidator,
 	emailValidator,
 	nameValidator,
 	passwordValidator,
-	TheFormField,
-	TheModal,
-} from '@/shared';
+} from '@/shared/utils';
 import { useFormik } from 'formik';
 import React from 'react';
 import { useSelector } from 'react-redux';

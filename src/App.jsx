@@ -1,9 +1,11 @@
 import { RouterProvider } from 'react-router';
 import { routes } from '@/routes';
-import { resetAlert, TheAlert, TheLoaderDefault, usePlayerSync } from '@/shared';
+import { TheAlert, TheLoaderDefault } from '@/shared/components';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthProvider, ThemeProvider } from '@/providers';
 import { Suspense } from 'react';
+import { usePlayerSync } from '@/shared/hooks';
+import { resetAlert } from '@/shared/models';
 
 function App() {
 	usePlayerSync();

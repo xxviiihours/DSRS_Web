@@ -1,5 +1,5 @@
 import { useLazyGetPlayersQuery } from '@/features/player';
-import { getApiErrorMessage } from '@/shared';
+import { getApiErrorMessage } from '@/shared/utils';
 import React, { use, useEffect } from 'react';
 
 const usePlayerSearch = () => {

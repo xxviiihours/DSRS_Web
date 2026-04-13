@@ -6,7 +6,8 @@ import {
 	useLogoutMutation,
 	useUserLoginMutation,
 } from '@/providers/auth/api/authApi';
-import { getApiErrorMessage, showAlert } from '@/shared';
+import { showAlert } from '@/shared/models';
+import { getApiErrorMessage } from '@/shared/utils';
 import { skipToken } from '@reduxjs/toolkit/query';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

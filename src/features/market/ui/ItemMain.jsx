@@ -1,9 +1,11 @@
 import { TransactionForm, useInitDailyPricesQuery } from '@/features/market';
-import { useItemNavigation, currencyFormat, TheLoaderInfo } from '@/shared';
+import { TheLoaderInfo } from '@/shared/components';
 import image from '@/assets/images/fantasy_item_3.png';
 import React, { useRef } from 'react';
 import { faArrowTrendDown, faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { currencyFormat } from '@/shared/utils';
+import { useItemNavigation } from '@/shared/hooks';
 
 function ItemNavigationSlider({ previousAction, nextAction }) {
 	return (

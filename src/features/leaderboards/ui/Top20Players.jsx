@@ -1,5 +1,6 @@
 import { PlayerRank, useLeaderboard } from '@/features/leaderboards';
-import { currencyFormat, TheLoaderSmall } from '@/shared';
+import { TheLoaderSmall } from '@/shared/components';
+import { currencyFormat } from '@/shared/utils';
 import { faCrown, faMedal, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';

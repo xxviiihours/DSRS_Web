@@ -2,7 +2,7 @@ import { Top20Players } from '@/features/leaderboards';
 import { LeaderboardLayout, SidebarLayout } from '@/layout';
 import FooterLayout from '@/layout/FooterLayout';
 import HeaderLayout from '@/layout/HeaderLayout';
-import { TheHeader, TheMenuDock, TheTab } from '@/shared';
+import { TheHeader, TheMenuDock, TheTab } from '@/shared/components';
 import React from 'react';
 
 function BaseLayout({ children }) {

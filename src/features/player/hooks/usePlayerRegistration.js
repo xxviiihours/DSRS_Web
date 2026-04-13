@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getApiErrorMessage, showAlert } from '@/shared';
+import { showAlert } from '@/shared/models';
 import {
 	setPlayer,
 	useLazyGetPlayerByNameQuery,
 	useRegisterPlayerMutation,
 } from '@/features/player';
+import { getApiErrorMessage } from '@/shared/utils';
 
 const usePlayerRegistration = () => {
 	const dispatch = useDispatch();

@@ -1,11 +1,6 @@
-import usePerformanceData from '@/features/dashboard/hooks/usePerformanceData';
-import {
-	currencyFormat,
-	getDaisyUIColor,
-	TheChart,
-	TheLoaderInfo,
-	useThemeObserver,
-} from '@/shared';
+import { TheChart, TheLoaderInfo } from '@/shared/components';
+import { useThemeObserver } from '@/shared/hooks';
+import { currencyFormat, getDaisyUIColor } from '@/shared/utils';
 import React from 'react';
 import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
 

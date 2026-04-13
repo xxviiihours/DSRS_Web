@@ -1,4 +1,4 @@
-import { compactCurrency, currencyFormat } from '@/shared';
+import { compactCurrency } from '@/shared/utils';
 import {
 	faArrowTrendDown,
 	faArrowTrendUp,

@@ -1,6 +1,7 @@
 import { useUpgradeAccountMutation } from '@/features/Account/api/accountApi';
-import { useAuthProvider } from '@/providers';
-import { getApiErrorMessage, resetAlert, showAlert } from '@/shared';
+import { useAuthProvider } from '@/providers/auth/hooks/useAuthProvider';
+import { resetAlert, showAlert } from '@/shared/models';
+import { getApiErrorMessage } from '@/shared/utils';
 import { useDispatch } from 'react-redux';
 
 const useUpgradeAccount = () => {

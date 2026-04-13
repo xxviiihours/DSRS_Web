@@ -1,9 +1,9 @@
-import { currencyFormat, The3DCard } from '@/shared';
 import React from 'react';
 import image from '@/assets/images/fantasy_item_3.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowTrendDown, faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
 import { TransactionForm } from '@/features/market';
+import { currencyFormat } from '@/shared/utils';
 
 function InventoryItem({ data, type }) {
 	return (

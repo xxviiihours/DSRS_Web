@@ -1,5 +1,5 @@
-import { useAuthProvider } from '@/providers';
-import { TheLoaderDefault } from '@/shared';
+import { useAuthProvider } from '@/providers/auth/hooks/useAuthProvider';
+import { TheLoaderDefault } from '@/shared/components';
 import React from 'react';
 import { Navigate, Outlet } from 'react-router';
 

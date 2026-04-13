@@ -1,4 +1,5 @@
-import { currencyFormat, dateFormat, TheLoaderSmall, timeFormat } from '@/shared';
+import { TheLoaderSmall } from '@/shared/components';
+import { currencyFormat, dateFormat, timeFormat } from '@/shared/utils';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';

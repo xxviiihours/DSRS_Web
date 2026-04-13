@@ -1,5 +1,5 @@
-import { currencyFormat, dateFormat, timeFormat } from '@/shared';
-import { faArrowTrendDown, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { currencyFormat, dateFormat, timeFormat } from '@/shared/utils';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 

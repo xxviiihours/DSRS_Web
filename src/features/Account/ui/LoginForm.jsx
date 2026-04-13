@@ -1,5 +1,6 @@
-import { useAuthProvider } from '@/providers';
-import { userNameValidator, passwordValidator, TheFormField, TheModal } from '@/shared';
+import { useAuthProvider } from '@/providers/auth/hooks/useAuthProvider';
+import { TheFormField, TheModal } from '@/shared/components';
+import { passwordValidator, userNameValidator } from '@/shared/utils';
 import { useFormik } from 'formik';
 import React from 'react';
 import { useNavigate } from 'react-router';

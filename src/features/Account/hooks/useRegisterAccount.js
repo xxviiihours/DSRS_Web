@@ -1,6 +1,6 @@
 import { useRegisterAccountMutation } from '@/features/Account/api/accountApi';
 import { setPlayer } from '@/features/player';
-import { getApiErrorMessage, showAlert } from '@/shared';
+import { getApiErrorMessage } from '@/shared/utils';
 import { useDispatch } from 'react-redux';
 
 const useRegisterAccount = () => {

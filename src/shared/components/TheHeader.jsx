@@ -1,7 +1,8 @@
 import { clearPlayer } from '@/features/player';
-import { useAuthProvider, useThemeProvider } from '@/providers';
+import { useAuthProvider } from '@/providers/auth/hooks/useAuthProvider';
+import { useThemeProvider } from '@/providers/themes/hooks/useThemeProvider';
 import { showAlert } from '@/shared/models/alertSlice';
-import { currencyFormat } from '@/shared/utils/valueFormatter';
+import { currencyFormat } from '@/shared/utils';
 import { faCartShopping, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';

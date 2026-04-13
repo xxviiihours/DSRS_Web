@@ -1,4 +1,4 @@
-import { TheLoaderSmall } from '@/shared';
+import { TheLoaderSmall } from '@/shared/components';
 import React from 'react';
 
 function RecentBuyers({ buyers, isFetching = true }) {

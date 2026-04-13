@@ -1,5 +1,6 @@
 import { InventoryItem } from '@/features/inventory';
-import { currencyFormat, TheLoaderInfo } from '@/shared';
+import { TheLoaderInfo } from '@/shared/components';
+import { currencyFormat } from '@/shared/utils';
 import React from 'react';
 
 function Inventory({ data, state }) {

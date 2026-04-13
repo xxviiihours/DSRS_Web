@@ -1,15 +1,11 @@
 import React from 'react';
 import { Bar, BarChart, CartesianGrid, Rectangle, Tooltip, XAxis, YAxis } from 'recharts';
-import {
-	currencyFormat,
-	getDaisyUIColor,
-	TheChart,
-	TheLoader,
-	useThemeObserver,
-} from '@/shared';
+import { TheChart, TheLoader } from '@/shared/components';
+import { useThemeObserver } from '@/shared/hooks';
 import { useDailyPriceData } from '@/features/dashboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowTrendDown, faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
+import { currencyFormat, getDaisyUIColor } from '@/shared/utils';
 
 function PriceHistoryChart({ item, player }) {
 	useThemeObserver();

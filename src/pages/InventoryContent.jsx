@@ -2,7 +2,7 @@ import { InventoryItem, useCalculateItem } from '@/features/inventory';
 import { ItemMarket } from '@/features/market';
 import { PlayerStats } from '@/features/player';
 import { BaseLayout, ContentLayout } from '@/layout';
-import { TheLoaderInfo, TheSearchForm } from '@/shared';
+import { TheLoaderInfo, TheSearchForm } from '@/shared/components';
 import {
 	faBoxesStacked,
 	faGridHorizontal,
